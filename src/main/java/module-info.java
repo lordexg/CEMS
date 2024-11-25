@@ -7,5 +7,9 @@ module com.sage.cems {
     opens com.sage.cems to javafx.fxml;
     exports com.sage.cems;
     exports com.sage.cems.controllers;
-    opens com.sage.cems.controllers to javafx.fxml;
+    exports com.sage.cems.controllers.admin;
+    exports com.sage.cems.controllers.student;
+    exports com.sage.cems.controllers.lecturer;
+    exports com.sage.cems.models;
+    exports com.sage.cems.views;
 }
