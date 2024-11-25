@@ -1,11 +1,6 @@
 package com.sage.cems.models;
 
-import com.sage.cems.models.utils.FileManager;
-import com.sage.cems.models.utils.TableType;
-
-import java.io.File;
-import java.util.List;
-import java.util.Map;
+import com.sage.cems.util.FileManager;
 
 public abstract class User {
     private final FileManager fileManager;

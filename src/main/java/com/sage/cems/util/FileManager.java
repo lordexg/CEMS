@@ -1,4 +1,4 @@
-package com.sage.cems.models.utils;
+package com.sage.cems.util;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 public interface FileManager {
     /*
     * This function return list of records with the searched keyword
-    * The record represent as a Map the key is the column header and the value is the data cell
+    * The record represented as a Map the key is the column header and the value is the data cell
     * */
     List<Map<String, String>> getRow(TableType tableType, Object keyWord);
 

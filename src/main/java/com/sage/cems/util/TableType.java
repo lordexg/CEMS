@@ -1,4 +1,4 @@
-package com.sage.cems.models.utils;
+package com.sage.cems.util;
 
 public enum TableType {
     ADMIN,

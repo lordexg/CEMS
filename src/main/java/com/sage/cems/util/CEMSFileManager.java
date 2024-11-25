@@ -1,4 +1,4 @@
-package com.sage.cems.models.utils;
+package com.sage.cems.util;
 
 import java.util.List;
 import java.util.Map;
