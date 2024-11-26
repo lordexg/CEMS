@@ -1,8 +1,12 @@
 package com.sage.cems.util;
 
 public enum TableName {
-    ADMIN,
     STUDENT,
     LECTURER,
-    USER
+    ACCOUNT,
+    COURSE,
+    ENROLLMENT,
+    EXAM,
+    SOLVED_EXAM,
+    QUESTION,
 }
