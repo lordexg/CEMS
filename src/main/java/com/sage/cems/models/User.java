@@ -24,11 +24,15 @@ public abstract class User {
         ADMIN
     }
 
-    // Dependency injection
-    public User(FileManager fileManager){
+    public User(FileManager fileManager, String userName, String password, String firstName, String lastName, String email, String phoneNumber) {
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.fileManager = fileManager;
     }
-
 
 // =============== neither getters nor setters ===============
     public void updateDB(){

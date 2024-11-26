@@ -3,7 +3,7 @@ package com.sage.cems.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class MainController {
+public class LoginController {
     @FXML
     private Label welcomeText;
 
