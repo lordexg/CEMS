@@ -12,4 +12,5 @@ module com.sage.cems {
     exports com.sage.cems.controllers.lecturer;
     exports com.sage.cems.models;
     exports com.sage.cems.views;
+    exports com.sage.cems.util;
 }

@@ -3,7 +3,7 @@ package com.sage.cems.models;
 import com.sage.cems.util.FileManager;
 
 public abstract class User {
-    private final FileManager fileManager;
+    private FileManager fileManager;
     private String userName;
     private String password;
     private String firstName;
@@ -19,11 +19,19 @@ public abstract class User {
         ADMIN
     }
 
-    // Dependency injection
-    public User(FileManager fileManager){
+    public User(FileManager fileManager, String userName,
+                String password, String firstName, String lastName,
+                String email, String phoneNumber, int ID, Role role) {
         this.fileManager = fileManager;
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.ID = ID;
+        this.role = role;
     }
-
 
 // =============== neither getters nor setters ===============
     public void updateDB(){
@@ -66,6 +74,10 @@ public abstract class User {
 
     public int getID() {
         return ID;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
 // =============== Setters ===============
