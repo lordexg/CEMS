@@ -8,14 +8,14 @@ public interface FileManager {
     * This function return list of records with the searched keyword
     * The record represented as a Map the key is the column header and the value is the data cell
     * */
-    List<Map<String, String>> getRow(TableType tableType, Object keyWord);
+    List<Map<ColumnName, String>> getRow(TableName tableName, Object keyWord);
 
     // This function update the first record that has the searched keyword with the new record
-    void updateRow(TableType tableType, Object keyWord, Map<String, String> newRow);
+    void updateRow(TableName tableName, Object keyWord, Map<ColumnName, String> newRow);
 
     // This function insert new raw into the specified table
-    void insertNewRow(TableType tableType, Map<String, String> newRow);
+    void insertNewRow(TableName tableName, Map<ColumnName, String> newRow);
 
     // This function delete the first record has the passed keyword
-    void deleteRaw(TableType tableType, Object keyWord);
+    void deleteRaw(TableName tableName, Object keyWord);
 }

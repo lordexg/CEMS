@@ -1,0 +1,20 @@
+.parent {
+    -fx-background-color: #EEE;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.login-banner {
+    -fx-background-color: #3282B8;
+}
+
+.header {
+    -fx-font-size: 35;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+}
+
+.sub-header {
+    -fx-font-size: 16;
+}
+
+

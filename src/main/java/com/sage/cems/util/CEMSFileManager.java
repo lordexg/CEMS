@@ -6,22 +6,22 @@ import java.util.Map;
 public class CEMSFileManager implements FileManager{
 
     @Override
-    public List<Map<String, String>> getRow(TableType tableType, Object keyWord) {
+    public List<Map<ColumnName, String>> getRow(TableName tableName, Object keyWord) {
         return List.of();
     }
 
     @Override
-    public void updateRow(TableType tableType, Object keyWord, Map<String, String> newRow) {
+    public void updateRow(TableName tableName, Object keyWord, Map<ColumnName, String> newRow) {
 
     }
 
     @Override
-    public void insertNewRow(TableType tableType, Map<String, String> newRow) {
+    public void insertNewRow(TableName tableName, Map<ColumnName, String> newRow) {
 
     }
 
     @Override
-    public void deleteRaw(TableType tableType, Object keyWord) {
+    public void deleteRaw(TableName tableName, Object keyWord) {
 
     }
 }

@@ -1,0 +1,49 @@
+/*
+    main-color: #3282B8
+    sec-color: #0F4C75
+    dark-color: #1B262C
+    light-color: #BBE1FA
+
+    # This styleSheet editing some main components and has some classes you can use
+    - Buttons: main-btn, round-btn
+*/
+
+.main-btn {
+    -fx-background-color: #3282B8;
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+    -fx-padding: 7 20;
+    -fx-border-width: 0;
+    -fx-border-radius: 5px;       /* Rounded corners */
+    -fx-background-radius: 5px;  /* Background rounding */
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+}
+
+.round-btn {
+    -fx-background-color: #3282B8;
+    -fx-border-width: 0;
+    -fx-border-radius: 50%;       /* Rounded corners */
+    -fx-background-radius: 50%;  /* Background rounding */
+}
+
+.main-btn:hover, .round-btn:hover {
+    -fx-background-color: #3690ce;
+}
+
+.text-field {
+    -fx-background-color: #E2E2E2; /* Background color */
+    -fx-border-width: 0.7;        /* Border width */
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;       /* Rounded corners */
+    -fx-background-radius: 5px;  /* Background rounding */
+    -fx-text-fill: black;       /* Text color */
+    -fx-font-size: 15px;          /* Font size */
+    -fx-padding: 5px;             /* Inner padding */
+    -fx-prompt-text-fill: #aaaaaa; /* Placeholder text color */
+}
+
+.text-field:focused {
+    -fx-border-color: #3282B8;   /* Border color when focused */
+    -fx-background-color: #ffffff; /* Background when focused */
+}

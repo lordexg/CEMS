@@ -1,6 +1,6 @@
 package com.sage.cems.util;
 
-public enum TableType {
+public enum TableName {
     ADMIN,
     STUDENT,
     LECTURER,
