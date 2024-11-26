@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class User {
-    private final FileManager fileManager;
     private String userName;
     private String password;
     private String firstName;
@@ -17,7 +16,7 @@ public abstract class User {
     private String phoneNumber;
     private int ID;
     private Role role;
-
+    private final FileManager fileManager;
     public enum Role {
         STUDENT,
         LECTURER,
@@ -36,7 +35,7 @@ public abstract class User {
 
 // =============== neither getters nor setters ===============
     public void updateDB(){
-//        List<Map<String, String>> row = fileManager.getRow(TableType.USER, this.ID);
+        //  List<Map<String, String>> row = fileManager.getRow(TableType.USER, this.ID);
         // pre-condition: attributes up-to-date
         // get row by id
             // if exist -> update everything & push
