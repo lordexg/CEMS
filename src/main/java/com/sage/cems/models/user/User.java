@@ -1,4 +1,4 @@
-package com.sage.cems.models;
+package com.sage.cems.models.user;
 
 import com.sage.cems.util.FileManager;
 
@@ -11,18 +11,17 @@ public abstract class User {
     private String email;
     private String phoneNumber;
     private int ID;
+    private UserDAO userDataDAO;
     private Role role;
-
     public enum Role {
         STUDENT,
         LECTURER,
         ADMIN
     }
 
-    public User(FileManager fileManager, String userName,
+    public User(String userName,
                 String password, String firstName, String lastName,
                 String email, String phoneNumber, int ID, Role role) {
-        this.fileManager = fileManager;
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -31,20 +30,6 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
         this.ID = ID;
         this.role = role;
-    }
-
-// =============== neither getters nor setters ===============
-    public void updateDB(){
-//        List<Map<String, String>> row = fileManager.getRow(TableType.USER, this.ID);
-        // pre-condition: attributes up-to-date
-        // get row by id
-            // if exist -> update everything & push
-            // else -> insert
-    }
-
-    // this method for first/last name validation;
-    public boolean validateName(String name){
-        return name.matches("^[a-zA-Z0-9]{1,15}$");
     }
 
 // =============== Getters ===============
@@ -82,10 +67,10 @@ public abstract class User {
 
 // =============== Setters ===============
     public boolean setUserName(String userName) {
-        boolean valid = userName.matches("^[a-zA-Z0-9]+$");
+        boolean valid = Validator.validateName(userName);
         if(valid){
             this.userName = userName; // to keep the instance up-to-date
-            updateDB();
+            UserDAO.updateUser(this);
         }
         return valid;
     }
@@ -93,43 +78,43 @@ public abstract class User {
     public boolean setPassword(String password) {
         if(password.length() > 16 || password.length() < 8) return false;
         this.password = password; // to keep the instance up-to-date
-        updateDB();
+        UserDAO.updateUser(this);
         return true;
     }
 
     public boolean setFirstName(String firstName) {
-        boolean valid = validateName(firstName);
+        boolean valid = Validator.validateEmail(firstName);
         if(valid) {
             this.firstName = firstName;
-            updateDB();
+            UserDAO.updateUser(this);
         }
         return valid;
     }
 
     public boolean setLastName(String lastName) {
-        boolean valid = validateName(lastName);
+        boolean valid = Validator.validateEmail(lastName);
         if(valid) {
             this.lastName = lastName;
-            updateDB();
+            UserDAO.updateUser(this);
         }
         return valid;
     }
 
     public boolean setEmail(String email) {
-        boolean valid = email.matches("^\\S+@\\S+\\.\\S+$");
+        boolean valid = Validator.validateEmail(email);
         if(valid) {
             this.email = email;
-            updateDB();
+            UserDAO.updateUser(this);
         }
 
         return valid;
     }
 
     public boolean setPhoneNumber(String phoneNumber) {
-        boolean valid = phoneNumber.matches("^01[0125][0-9]{8}$");
+        boolean valid = Validator.validatePhoneNumber(phoneNumber);
         if(valid) {
             this.phoneNumber = phoneNumber;
-            updateDB();
+            UserDAO.updateUser(this);
         }
         return valid;
     }
@@ -142,14 +127,6 @@ public abstract class User {
 
 
 // =============== Login ===============
-    public boolean login(String userName, String password) {
-        // login logic
 
-        return this.userName.equals(userName) && this.password.equals(password);
-    }
-
-    public void logout() {
-        // logout logic
-    }
 
 }
