@@ -3,14 +3,16 @@ package com.sage.cems.util;
 public enum ColumnName {
     // Student table
     STUDENT_ID,
-    STUDENT_NAME,
+    STUDENT_FIRST_NAME,
+    STUDENT_LAST_NAME,
     STUDENT_PHONE_NUMBER,
     STUDENT_EMAIL,
     // Lecturer table
     LECTURER_ID,
     LECTURER_PHONE_NUMBER,
     LECTURER_EMAIL,
-    LECTURER_NAME,
+    LECTURER_FIRST_NAME,
+    LECTURER_LAST_NAME,
     // Accounts table
     ACCOUNT_ID,
     ACCOUNT_PASSWORD,
