@@ -35,8 +35,8 @@ public class StudentDAO {
         */
         for (Map<ColumnName, String> student : students) {
             String userID = student.get(ColumnName.STUDENT_ID);
-//            Map<ColumnName, String> account = fileManager.getRows(TableName.ACCOUNT, );
-//            accounts.add(account);
+            Map<ColumnName, String> account = fileManager.getRows(TableName.ACCOUNT, userID).getFirst();
+            accounts.add(account);
         }
 
             if (students.isEmpty() || accounts.isEmpty()) {

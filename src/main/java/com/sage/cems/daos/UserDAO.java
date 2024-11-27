@@ -22,8 +22,7 @@ public class UserDAO {
         fileManager.updateRow(TableName.ACCOUNT, createUserMap(user));
     }
 
-    public User getUser(long ID) throws IOException {
-        try{
+    public User getUser(String ID) throws IOException {
             List<Map<ColumnName, String>> users = fileManager.getRows(TableName.ACCOUNT, ID);
             Map<ColumnName, String> target = users.getFirst();
 
@@ -32,9 +31,6 @@ public class UserDAO {
             user.setPassword(target.get(ColumnName.ACCOUNT_PASSWORD));
             user.setRole(Role.valueOf(target.get(ColumnName.ACCOUNT_ROLE)));
             return user;
-        }catch(IOException e){
-            throw new IOException("Cannot get user for ID: " + ID, e);
-        }
     }
 
     public void addUser(User user) throws IOException {
