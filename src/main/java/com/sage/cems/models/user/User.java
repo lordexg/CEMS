@@ -9,22 +9,22 @@ public class User {
     private String phoneNumber;
     private Role role;
 
-    public User() {
+    // empty User
+    public User() {}
 
-    }
-
-    public User(String password, String firstName, String lastName,
-                String email, String phoneNumber, String ID, Role role) {
+    public User(String ID, String password, String firstName, String lastName,
+                String email, String phoneNumber, Role role) {
+        this.ID = ID;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.ID = ID;
         this.role = role;
     }
 
-// =============== Getters ===============
+    // =============== Getters ===============
+    // CTRL + SHIFT + T
     public String getPassword() {
         return password;
     }

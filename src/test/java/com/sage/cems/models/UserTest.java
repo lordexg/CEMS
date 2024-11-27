@@ -1,5 +1,6 @@
 package com.sage.cems.models;
 
+import com.sage.cems.models.user.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +15,17 @@ class UserTest {
 
     @Test
     void validateName() {
+
     }
 
     @Test
     void getUserName() {
+
     }
 
     @Test
-    void getPassword() {
+    void getPasswordTest() {
+
     }
 
     @Test
