@@ -4,6 +4,7 @@ module com.sage.cems {
 
     requires org.controlsfx.controls;
     requires java.logging;
+    requires java.desktop;
 
     opens com.sage.cems to javafx.fxml;
     exports com.sage.cems;
