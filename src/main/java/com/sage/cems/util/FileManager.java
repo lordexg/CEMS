@@ -12,11 +12,11 @@ public interface FileManager {
     List<Map<ColumnName, String>> getRows(TableName tableName, Object keyWord) throws IOException;
 
     // This function update the first record that has the searched keyword with the new record
-    void updateRow(TableName tableName, Map<ColumnName, String> newRow) throws IOException;
+    void updateRow(TableName tableName, Map<ColumnName, String> row) throws IOException;
 
     // This function insert new raw into the specified table
     void insertRow(TableName tableName, Map<ColumnName, String> newRow) throws IOException;
 
     // This function delete the first record has the passed keyword
-    void deleteRaw(TableName tableName, Object keyWord);
+    void deleteRow(TableName tableName, Map<ColumnName, String> row) throws IOException;
 }

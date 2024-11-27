@@ -93,7 +93,7 @@ public class CEMSFileManager implements FileManager{
     }
 
     @Override
-    public void deleteRaw(TableName tableName, Object keyWord) {
+    public void deleteRow(TableName tableName, Map<ColumnName, String> row) throws IOException {
 //        for (int i = 1; i < lines.length; ++i) {
 //            String[] cells = lines[i].split("\t");
 //            boolean isSameRow = true;
@@ -114,7 +114,8 @@ public class CEMSFileManager implements FileManager{
 //            }
 //        }
     }
-    
+
+
     /* Helper Methods */
     // Method to check if the main directory exists and all its files
     private boolean isAllFilesExist() {
