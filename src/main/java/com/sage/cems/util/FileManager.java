@@ -18,5 +18,5 @@ public interface FileManager {
     void insertRow(TableName tableName, Map<ColumnName, String> newRow) throws IOException;
 
     // This function delete the first record has the passed keyword
-    void deleteRaw(TableName tableName, Object keyWord);
+    void deleteRow(TableName tableName, Object keyWord);
 }

@@ -93,7 +93,7 @@ public class CEMSFileManager implements FileManager{
     }
 
     @Override
-    public void deleteRaw(TableName tableName, Object keyWord) {
+    public void deleteRow(TableName tableName, Object keyWord) {
 //        for (int i = 1; i < lines.length; ++i) {
 //            String[] cells = lines[i].split("\t");
 //            boolean isSameRow = true;
