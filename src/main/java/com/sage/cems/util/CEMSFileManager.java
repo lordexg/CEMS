@@ -2,10 +2,15 @@ package com.sage.cems.util;
 
 import com.sage.cems.Configuration;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CEMSFileManager implements FileManager{
 
@@ -15,26 +20,70 @@ public class CEMSFileManager implements FileManager{
     }
 
     @Override
-    public List<Map<ColumnName, String>> getRows(TableName tableName, Object keyWord) {
-        return List.of();
+    public List<Map<ColumnName, String>> getRows(TableName tableName, Object keyWord){
+        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+        List<Map<ColumnName, String>> results = new ArrayList<>();
+        try {
+            // Read file content into a string
+            String content = new String(Files.readAllBytes(Paths.get(filePath)));
+            String[] lines = content.split("\n");
+            String[] headers = lines[0].split("\t");
+
+            for (int i = 1; i < lines.length; ++i) {
+                String[] cells = lines[i].split("\t");
+                boolean found = false;
+                for (String cell : cells) {
+                    if (cell.contains(keyWord.toString())) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    Map<ColumnName, String> record = new TreeMap<>();
+                    for (int j = 0; j < cells.length; ++j) {
+                        record.put(ColumnName.valueOf(headers[j].trim()), cells[j].trim());
+                    }
+                    results.add(record);
+                }
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+
+        return results;
     }
 
     @Override
     public void updateRow(TableName tableName, Map<ColumnName, String> newRow) {
+        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+        try {
+            // Read file content into a string
+            String content = new String(Files.readAllBytes(Paths.get(filePath)));
+            String[] lines = content.split("\n");
+            String[] headers = lines[0].split("\t");
 
+
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @Override
     public void insertRow(TableName tableName, Map<ColumnName, String> newRow) {
-        switch (tableName) {
-            case STUDENT -> fun(tableName, newRow);
-            case LECTURER -> fun(tableName, newRow);
-            case ACCOUNT -> fun(tableName, newRow);
-            case COURSE -> fun(tableName, newRow);
-            case ENROLLMENT -> fun(tableName, newRow);
-            case EXAM -> fun(tableName, newRow);
-            case SOLVED_EXAM -> fun(tableName, newRow);
-            case QUESTION -> fun(tableName, newRow);
+        StringBuilder rowToAppend = new StringBuilder();
+        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+
+        for (String cell : newRow.values()) {
+            rowToAppend.append(cell).append("\t");
+        }
+        rowToAppend.deleteCharAt(rowToAppend.length() - 1);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(rowToAppend.toString());
+            writer.newLine();
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -43,8 +92,8 @@ public class CEMSFileManager implements FileManager{
 
     }
     
-    
-    // Helper Methods
+    /* Helper Methods */
+    // Method for check if the main directory exists and all its files
     private boolean isAllFilesExist() {
         File dir = new File(Configuration.FILES_DIR);
         if (!dir.exists()) return false;
@@ -64,11 +113,5 @@ public class CEMSFileManager implements FileManager{
 
         return new HashSet<>(filesNamesOnDisk).containsAll(filesNames);
     }
-    
-    private void fun(TableName tableName, Map<ColumnName, String> newRow) {
-        StringBuilder rowToAppend = new StringBuilder();
-        List<String> valuesInOrder = new ArrayList<>();
-        valuesInOrder.add(newRow.get(ColumnName.STUDENT_ID));
-        
-    }
+
 }

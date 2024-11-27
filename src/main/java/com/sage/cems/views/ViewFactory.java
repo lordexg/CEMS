@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ViewFactory {
 
@@ -30,7 +32,7 @@ public class ViewFactory {
         try {
             scene = new Scene(loader.load());
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
         Stage stage = new Stage();
         stage.setTitle("College Examination Management System");

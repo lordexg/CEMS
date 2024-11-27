@@ -10,5 +10,4 @@ public enum TableName {
     SOLVED_EXAM,
     QUESTION,
 
-
 }

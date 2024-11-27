@@ -6,6 +6,7 @@ import com.sage.cems.util.ColumnName;
 import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class UserDAO {
         fileManager.updateRow(TableName.ACCOUNT, updatedUser);
     }
 
-    public User getUser(long ID) {
+    public User getUser(long ID) throws IOException {
         List<Map<ColumnName, String>> users = fileManager.getRows(TableName.ACCOUNT, ID);
         Map<ColumnName, String> target = users.getFirst();
         User user = new User();
