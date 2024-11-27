@@ -56,8 +56,8 @@ public class StudentDAO {
         fileManager.insertRow(TableName.STUDENT, createStudentMap(student));
     }
 
-    public void deleteStudent(Student user) {
-        fileManager.deleteRaw(TableName.STUDENT, createStudentMap(user));
+    public void deleteStudent(Student user) throws IOException {
+        fileManager.deleteRow(TableName.STUDENT, createStudentMap(user));
     }
 
     private static void populateStudentFields(Student student, Map<ColumnName, String> studentMap, Map<ColumnName, String> accountMap) {
