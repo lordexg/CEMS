@@ -45,7 +45,7 @@ public class CEMSFileManager implements FileManager{
     
     
     // Helper Methods
-    public static boolean isAllFilesExist() {
+    private boolean isAllFilesExist() {
         File dir = new File(Configuration.FILES_DIR);
         if (!dir.exists()) return false;
 
