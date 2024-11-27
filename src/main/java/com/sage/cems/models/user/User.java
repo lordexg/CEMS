@@ -1,28 +1,20 @@
 package com.sage.cems.models.user;
 
-import com.sage.cems.util.FileManager;
-
-public abstract class User {
-    private FileManager fileManager;
-    private String userName;
+public class User {
+    private String ID;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-    private int ID;
-    private UserDAO userDataDAO;
     private Role role;
-    public enum Role {
-        STUDENT,
-        LECTURER,
-        ADMIN
+
+    public User() {
+
     }
 
-    public User(String userName,
-                String password, String firstName, String lastName,
-                String email, String phoneNumber, int ID, Role role) {
-        this.userName = userName;
+    public User(String password, String firstName, String lastName,
+                String email, String phoneNumber, String ID, Role role) {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -33,10 +25,6 @@ public abstract class User {
     }
 
 // =============== Getters ===============
-    public String getUserName() {
-        return userName;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -57,7 +45,7 @@ public abstract class User {
         return phoneNumber;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
@@ -66,67 +54,31 @@ public abstract class User {
     }
 
 // =============== Setters ===============
-    public boolean setUserName(String userName) {
-        boolean valid = Validator.validateName(userName);
-        if(valid){
-            this.userName = userName; // to keep the instance up-to-date
-            UserDAO.updateUser(this);
-        }
-        return valid;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public boolean setPassword(String password) {
-        if(password.length() > 16 || password.length() < 8) return false;
-        this.password = password; // to keep the instance up-to-date
-        UserDAO.updateUser(this);
-        return true;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public boolean setFirstName(String firstName) {
-        boolean valid = Validator.validateEmail(firstName);
-        if(valid) {
-            this.firstName = firstName;
-            UserDAO.updateUser(this);
-        }
-        return valid;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public boolean setLastName(String lastName) {
-        boolean valid = Validator.validateEmail(lastName);
-        if(valid) {
-            this.lastName = lastName;
-            UserDAO.updateUser(this);
-        }
-        return valid;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public boolean setEmail(String email) {
-        boolean valid = Validator.validateEmail(email);
-        if(valid) {
-            this.email = email;
-            UserDAO.updateUser(this);
-        }
-
-        return valid;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public boolean setPhoneNumber(String phoneNumber) {
-        boolean valid = Validator.validatePhoneNumber(phoneNumber);
-        if(valid) {
-            this.phoneNumber = phoneNumber;
-            UserDAO.updateUser(this);
-        }
-        return valid;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public void setID() {
-        // get last row
-        // get its ID
-        // set this.id = lastRowID++
+    public void setRole(Role role) {
+        this.role = role;
     }
-
-
-// =============== Login ===============
-
-
 }

@@ -30,5 +30,4 @@ public enum ColumnName {
     QUESTION_CORRECT_ANSWER,
     QUESTION_TYPE,
     QUESTION_CHOICES
-
 }

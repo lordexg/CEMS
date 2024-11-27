@@ -11,7 +11,7 @@ public interface FileManager {
     List<Map<ColumnName, String>> getRows(TableName tableName, Object keyWord);
 
     // This function update the first record that has the searched keyword with the new record
-    void updateRow(TableName tableName, Object keyWord, Map<ColumnName, String> newRow);
+    void updateRow(TableName tableName, Map<ColumnName, String> newRow);
 
     // This function insert new raw into the specified table
     void insertRow(TableName tableName, Map<ColumnName, String> newRow);

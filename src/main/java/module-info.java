@@ -14,4 +14,5 @@ module com.sage.cems {
     exports com.sage.cems.views;
     exports com.sage.cems.util;
     exports com.sage.cems.models.user;
+    exports com.sage.cems.services;
 }
