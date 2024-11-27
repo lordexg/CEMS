@@ -23,13 +23,11 @@ public class CEMSFileManager implements FileManager{
     public List<Map<ColumnName, String>> getRows(TableName tableName, Object keyWord) throws IOException {
         String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
         List<Map<ColumnName, String>> results = new ArrayList<>();
-        // Read file content into a string
-        String content = new String(Files.readAllBytes(Paths.get(filePath)));
-        String[] lines = content.split("\n");
-        String[] headers = lines[0].split("\t");
+        List<String> lines = getFileLines(filePath);
+        String[] headers = lines.getFirst().split("\t");
 
-        for (int i = 1; i < lines.length; ++i) {
-            String[] cells = lines[i].split("\t");
+        for (int i = 1; i < lines.size(); ++i) {
+            String[] cells = lines.get(i).split("\t");
             boolean found = false;
             for (String cell : cells) {
                 if (cell.contains(keyWord.toString())) {
@@ -37,7 +35,6 @@ public class CEMSFileManager implements FileManager{
                     break;
                 }
             }
-
             if (found) {
                 Map<ColumnName, String> record = new TreeMap<>();
                 for (int j = 0; j < cells.length; ++j) {
@@ -50,30 +47,22 @@ public class CEMSFileManager implements FileManager{
     }
 
     @Override
-    public void updateRow(TableName tableName, Map<ColumnName, String> newRow) throws IOException {
+    public void updateRow(TableName tableName, Map<ColumnName, String> row) throws IOException {
         String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
-        // Read file content into a string
-        String content = new String(Files.readAllBytes(Paths.get(filePath)));
-        String[] lines = content.split("\n");
-        String[] headers = lines[0].split("\t");
+        List<String> lines = getFileLines(filePath);
+        String[] headers = lines.getFirst().split("\t");
 
-        for (int i = 1; i < lines.length; ++i) {
-            String[] cells = lines[i].split("\t");
-            if (newRow.get(ColumnName.valueOf(headers[0].trim())).equals(cells[0].trim())) {
+        for (int i = 1; i < lines.size(); ++i) {
+            String[] cells = lines.get(i).split("\t");
+            if (row.get(ColumnName.valueOf(headers[0].trim())).equals(cells[0].trim())) {
                 for (int j = 0; j < cells.length; ++j) {
-                    cells[j] = newRow.get(ColumnName.valueOf(headers[j].trim()));
+                    cells[j] = row.get(ColumnName.valueOf(headers[j].trim()));
                 }
-                String result = String.join("\t", cells);
-                lines[i] = result;
+                lines.set(i, String.join("\t", cells));
                 break;
             }
         }
-
-        content = String.join("\n", lines);
-        content += "\n";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(content);
-        }
+        overrideFile(lines, filePath);
     }
 
     @Override
@@ -94,30 +83,30 @@ public class CEMSFileManager implements FileManager{
 
     @Override
     public void deleteRow(TableName tableName, Map<ColumnName, String> row) throws IOException {
-//        for (int i = 1; i < lines.length; ++i) {
-//            String[] cells = lines[i].split("\t");
-//            boolean isSameRow = true;
-//            for (int j = 0; j < cells.length; ++j) {
-//                if (!newRow.get(ColumnName.valueOf(headers[j].trim())).equals(cells[j].trim())) {
-//                    isSameRow = false;
-//                    break;
-//                }
-//                cells[j] = newRow.get(ColumnName.valueOf(headers[j].trim()));
-//            }
-//
-//            if (found) {
-//                Map<ColumnName, String> record = new TreeMap<>();
-//                for (int j = 0; j < cells.length; ++j) {
-//                    record.put(ColumnName.valueOf(headers[j].trim()), cells[j].trim());
-//                }
-//                results.add(record);
-//            }
-//        }
+        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+        List<String> lines = getFileLines(filePath);
+        String[] headers = lines.getFirst().split("\t");
+
+        for (int i = 1; i < lines.size(); ++i) {
+            String[] cells = lines.get(i).split("\t");
+            boolean isSameRow = true;
+            for (int j = 0; j < cells.length; ++j) {
+                if (!row.get(ColumnName.valueOf(headers[j].trim())).equals(cells[j].trim())) {
+                    isSameRow = false;
+                    break;
+                }
+            }
+            if (isSameRow) {
+                lines.remove(i);
+                break;
+            }
+        }
+        overrideFile(lines, filePath);
     }
 
 
     /* Helper Methods */
-    // Method to check if the main directory exists and all its files
+    // For checking if the main directory exists and all its files
     private boolean isAllFilesExist() {
         File dir = new File(Configuration.FILES_DIR);
         if (!dir.exists()) return false;
@@ -136,5 +125,18 @@ public class CEMSFileManager implements FileManager{
         }
 
         return new HashSet<>(filesNamesOnDisk).containsAll(filesNames);
+    }
+    // Converting a file to list of lines
+    private List<String> getFileLines(String filePath) throws IOException{
+        String content = new String(Files.readAllBytes(Paths.get(filePath)));
+        return new ArrayList<>(Arrays.asList(content.split("\n")));
+    }
+    // Rewrite the content of the file with a list of lines
+    private void overrideFile(List<String > lines, String filePath) throws IOException {
+        String content = String.join("\n", lines);
+        content += "\n";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(content);
+        }
     }
 }
