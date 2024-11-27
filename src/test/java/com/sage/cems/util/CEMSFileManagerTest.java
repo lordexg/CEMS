@@ -17,7 +17,7 @@ class CEMSFileManagerTest {
         FileManager fileManager;
         try {
             fileManager = new CEMSFileManager();
-            List<Map<ColumnName, String>> results = fileManager.getRows(TableName.STUDENT, "1");
+            List<Map<ColumnName, String>> results = fileManager.getRows(TableName.ACCOUNT, "student");
             for (Map<ColumnName, String> record : results) {
                 for (String i : record.values())
                     System.out.print(i + "\t");
@@ -30,11 +30,10 @@ class CEMSFileManagerTest {
 
     @Test
     void insertRowTest() {
-//        File file = new File("C:\\Users\\ov\\Documents\\CEMS\\STUDENT.txt");
         Map<ColumnName, String> newRow = new TreeMap<>();
-        newRow.put(ColumnName.ACCOUNT_ID, "1");
-        newRow.put(ColumnName.ACCOUNT_PASSWORD, "password");
-        newRow.put(ColumnName.ACCOUNT_ROLE, "admin");
+        newRow.put(ColumnName.ACCOUNT_ID, "65");
+        newRow.put(ColumnName.ACCOUNT_PASSWORD, "sasassa");
+        newRow.put(ColumnName.ACCOUNT_ROLE, "student");
         FileManager fileManager;
         try {
             fileManager = new CEMSFileManager();
@@ -42,7 +41,36 @@ class CEMSFileManagerTest {
         } catch (IOException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
-
-//        assertNotEquals(file.length(), 84);
     }
+
+    @Test
+    void updateRowTest() {
+        Map<ColumnName, String> newRow = new TreeMap<>();
+        newRow.put(ColumnName.ACCOUNT_ID, "3");
+        newRow.put(ColumnName.ACCOUNT_PASSWORD, "newPassword3");
+        newRow.put(ColumnName.ACCOUNT_ROLE, "student");
+        FileManager fileManager;
+        try {
+            fileManager = new CEMSFileManager();
+            fileManager.updateRow(TableName.ACCOUNT, newRow);
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    @Test
+    void deleteRowTest() {
+        Map<ColumnName, String> newRow = new TreeMap<>();
+        newRow.put(ColumnName.ACCOUNT_ID, "65");
+        newRow.put(ColumnName.ACCOUNT_PASSWORD, "bb");
+        newRow.put(ColumnName.ACCOUNT_ROLE, "student");
+        FileManager fileManager;
+        try {
+            fileManager = new CEMSFileManager();
+            fileManager.deleteRow(TableName.ACCOUNT, newRow);
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
 }
