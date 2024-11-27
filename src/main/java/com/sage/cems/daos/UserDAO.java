@@ -41,8 +41,8 @@ public class UserDAO {
         fileManager.insertRow(TableName.ACCOUNT, createUserMap(user));
     }
 
-    public void deleteUser(User user) {
-        fileManager.deleteRaw(TableName.ACCOUNT, user.getID());
+    public void deleteUser(User user) throws IOException {
+        fileManager.deleteRow(TableName.ACCOUNT, createUserMap(user));
     }
 
     // this function fills a map(row) from a User object
