@@ -42,6 +42,8 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- JUnit 5 -->
+
     </dependencies>
 
     <build>
