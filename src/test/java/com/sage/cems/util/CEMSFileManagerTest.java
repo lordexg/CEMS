@@ -47,9 +47,9 @@ class CEMSFileManagerTest {
     @Test
     void insertRowTest() {
         Map<ColumnName, String> newRow = new TreeMap<>();
-        newRow.put(ColumnName.ACCOUNT_ID, "65");
-        newRow.put(ColumnName.ACCOUNT_PASSWORD, "sasassa");
-        newRow.put(ColumnName.ACCOUNT_ROLE, "student");
+        newRow.put(ColumnName.ACCOUNT_ID, "6");
+        newRow.put(ColumnName.ACCOUNT_PASSWORD, "ui");
+        newRow.put(ColumnName.ACCOUNT_ROLE, "STUDENT");
         FileManager fileManager;
         try {
             fileManager = new CEMSFileManager();
