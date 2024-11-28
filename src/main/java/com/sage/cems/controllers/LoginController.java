@@ -25,7 +25,6 @@ public class LoginController implements Initializable {
     public Label errorLabel;
 
     LoginService loginService;
-    private User user;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,7 +42,7 @@ public class LoginController implements Initializable {
     private void onLogin() {
         try {
             System.out.println(userNameField.getText() + "\t" + passwordField.getText());
-            this.user = loginService.login(userNameField.getText(), passwordField.getText());
+            User user = loginService.login(userNameField.getText(), passwordField.getText());
             ViewFactory.getInstance().closeStage((Stage) loginBtn.getScene().getWindow());
             ViewFactory.getInstance().showStudentWindow();
         } catch (Exception e) {

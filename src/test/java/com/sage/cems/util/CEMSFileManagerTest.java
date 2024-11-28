@@ -17,7 +17,23 @@ class CEMSFileManagerTest {
         FileManager fileManager;
         try {
             fileManager = new CEMSFileManager();
-            List<Map<ColumnName, String>> results = fileManager.getRows(TableName.ACCOUNT, "student");
+            List<Map<ColumnName, String>> results = fileManager.getRows(TableName.ACCOUNT, "STUDENT");
+            for (Map<ColumnName, String> record : results) {
+                for (String i : record.values())
+                    System.out.print(i + "\t");
+                System.out.println();
+            }
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    @Test
+    void getAllRowsTest() {
+        FileManager fileManager;
+        try {
+            fileManager = new CEMSFileManager();
+            List<Map<ColumnName, String>> results = fileManager.getAllRows(TableName.ACCOUNT);
             for (Map<ColumnName, String> record : results) {
                 for (String i : record.values())
                     System.out.print(i + "\t");

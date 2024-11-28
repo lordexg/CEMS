@@ -19,7 +19,7 @@ public class CEMSFileManager implements FileManager{
 
     @Override
     public List<Map<ColumnName, String>> getRows(TableName tableName, Object keyWord) throws IOException {
-        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+        String filePath = getFilePath(tableName);
         List<Map<ColumnName, String>> results = new ArrayList<>();
         List<String> lines = getFileLines(filePath);
         String[] headers = lines.getFirst().split("\t");
@@ -34,19 +34,29 @@ public class CEMSFileManager implements FileManager{
                 }
             }
             if (found) {
-                Map<ColumnName, String> record = new TreeMap<>();
-                for (int j = 0; j < cells.length; ++j) {
-                    record.put(ColumnName.valueOf(headers[j].trim()), cells[j].trim());
-                }
-                results.add(record);
+                results.add(arrayToMap(headers, cells));
             }
         }
         return results;
     }
 
     @Override
+    public List<Map<ColumnName, String>> getAllRows(TableName tableName) throws IOException{
+        String filePath = getFilePath(tableName);
+        List<Map<ColumnName, String>> results = new ArrayList<>();
+        List<String> lines = getFileLines(filePath);
+        String[] headers = lines.getFirst().split("\t");
+
+        for (int i = 1; i < lines.size(); ++i) {
+            String[] cells = lines.get(i).split("\t");
+            results.add(arrayToMap(headers, cells));
+        }
+        return results;
+    }
+
+    @Override
     public void updateRow(TableName tableName, Map<ColumnName, String> row) throws IOException {
-        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+        String filePath = getFilePath(tableName);
         List<String> lines = getFileLines(filePath);
         String[] headers = lines.getFirst().split("\t");
 
@@ -66,7 +76,7 @@ public class CEMSFileManager implements FileManager{
     @Override
     public void insertRow(TableName tableName, Map<ColumnName, String> newRow) throws IOException {
         StringBuilder rowToAppend = new StringBuilder();
-        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+        String filePath = getFilePath(tableName);
 
         for (String cell : newRow.values()) {
             rowToAppend.append(cell).append("\t");
@@ -81,7 +91,7 @@ public class CEMSFileManager implements FileManager{
 
     @Override
     public void deleteRow(TableName tableName, Map<ColumnName, String> row) throws IOException {
-        String filePath = Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
+        String filePath = getFilePath(tableName);
         List<String> lines = getFileLines(filePath);
         String[] headers = lines.getFirst().split("\t");
 
@@ -122,6 +132,18 @@ public class CEMSFileManager implements FileManager{
         }
 
         return new HashSet<>(filesNamesOnDisk).containsAll(filesNames);
+    }
+    // convert cells and headers arrays into map
+    private Map<ColumnName, String> arrayToMap(String[] headers, String[] cells) {
+        Map<ColumnName, String> record = new TreeMap<>();
+        for (int j = 0; j < cells.length; ++j) {
+            record.put(ColumnName.valueOf(headers[j].trim()), cells[j].trim());
+        }
+        return record;
+    }
+    // Return the file path from table name
+    private String getFilePath(TableName tableName) {
+        return Configuration.FILES_DIR + File.separator + tableName.toString() + ".txt";
     }
     // Converting a file to list of lines
     private List<String> getFileLines(String filePath) throws IOException{
