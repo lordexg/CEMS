@@ -16,7 +16,7 @@ public class LoginService {
         this.userDAO = new UserDAO(new CEMSFileManager());
     }
 
-    public User login(String userName, String password) throws Exception{
+    public User login(String userName, String password) throws Exception {
         User user = userDAO.getUser(userName);
         if (!user.getPassword().equals(password)) {
             throw new Exception();

@@ -11,6 +11,9 @@ public interface FileManager {
     * */
     List<Map<ColumnName, String>> getRows(TableName tableName, Object keyWord) throws IOException;
 
+    // This Method return all the records in a given table as a list of maps
+    List<Map<ColumnName, String>> getAllRows(TableName tableName) throws IOException;
+
     // This function update the first record that has the searched keyword with the new record
     void updateRow(TableName tableName, Map<ColumnName, String> row) throws IOException;
 
@@ -19,4 +22,5 @@ public interface FileManager {
 
     // This function delete the first record has the passed keyword
     void deleteRow(TableName tableName, Map<ColumnName, String> row) throws IOException;
+
 }
