@@ -2,8 +2,6 @@ package com.sage.cems.daos;
 
 import com.sage.cems.models.Student;
 import com.sage.cems.models.user.Role;
-import com.sage.cems.models.user.User;
-import com.sage.cems.util.CEMSFileManager;
 import com.sage.cems.util.ColumnName;
 import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
@@ -45,16 +43,21 @@ public class StudentDAO {
         fileManager.insertRow(TableName.STUDENT, createStudentMap(student));
     }
 
+    public void updateStudent(Student student) throws IOException {
+        fileManager.updateRow(TableName.STUDENT, createStudentMap(student));
+    }
+
     public void deleteStudent(Student user) throws IOException {
         fileManager.deleteRow(TableName.STUDENT, createStudentMap(user));
     }
 
     private static void populateStudentFields(Student student, Map<ColumnName, String> studentMap, Map<ColumnName, String> accountMap) {
         student.setID(studentMap.get(ColumnName.STUDENT_ID));
-        student.setFirstName(accountMap.get(ColumnName.STUDENT_FIRST_NAME));
+        student.setFirstName(studentMap.get(ColumnName.STUDENT_FIRST_NAME));
         student.setLastName(studentMap.get(ColumnName.STUDENT_LAST_NAME));
         student.setEmail(studentMap.get(ColumnName.STUDENT_EMAIL));
         student.setPhoneNumber(studentMap.get(ColumnName.STUDENT_PHONE_NUMBER));
+
         student.setPassword(accountMap.get(ColumnName.ACCOUNT_PASSWORD));
         student.setRole(Role.valueOf(accountMap.get(ColumnName.ACCOUNT_ROLE)));
     }
