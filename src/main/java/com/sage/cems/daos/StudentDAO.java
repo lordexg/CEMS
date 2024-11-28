@@ -28,6 +28,9 @@ public class StudentDAO {
         List<Map<ColumnName, String>> students = fileManager.getRows(TableName.STUDENT, keyWord);
         List<Map<ColumnName, String>> accounts = new ArrayList<>();
 
+        if (students.isEmpty()) {
+            throw new IOException("No student found");
+        }
         /*
             From accounts table, user ID is the common with students table.
             so I have to search for each student account using his/her ID
@@ -39,18 +42,20 @@ public class StudentDAO {
             accounts.add(account);
         }
 
-            if (students.isEmpty() || accounts.isEmpty()) {
-                throw new IOException("No student found");
-            }
-            Map<ColumnName, String> studentMap;
-            Map<ColumnName, String> accountMap;
-            List<Student> allStudents = new ArrayList<>();
+        Map<ColumnName, String> studentMap;
+        Map<ColumnName, String> accountMap;
+        List<Student> allStudents = new ArrayList<>();
 
-            for(int i = 0; i < students.size(); i++) {
-                allStudents.add(createStudent(students.get(i), accounts.get(i)));
-            }
-            return allStudents;
+        for(int i = 0; i < students.size(); i++) {
+            allStudents.add(createStudent(students.get(i), accounts.get(i)));
+        }
+        return allStudents;
     }
+
+//    public List<Student> getAllStudents() throws IOException {
+//
+//        return null;
+//    }
 
     public void addStudent(Student student) throws IOException {
         fileManager.insertRow(TableName.STUDENT, createStudentMap(student));
