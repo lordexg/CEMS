@@ -26,7 +26,7 @@
             <TextField fx:id="userNameField" layoutY="132.0" prefHeight="33.0" prefWidth="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Label layoutY="174.0" styleClass="sub-header" text="Password" />
             <PasswordField fx:id="passwordField" layoutY="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="325.0" prefHeight="21.0" prefWidth="234.0" style="-fx-font-size: 15;" text="Wrong User Name or Password" textFill="RED" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="325.0" prefHeight="21.0" prefWidth="234.0" style="-fx-font-size: 15;" text="Wrong User Name or Password" textFill="RED" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Button fx:id="loginBtn" focusTraversable="false" layoutY="272.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="270.0" styleClass="main-btn" text="Login" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
