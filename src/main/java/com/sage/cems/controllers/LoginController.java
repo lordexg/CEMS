@@ -29,7 +29,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            loginService= new LoginService();
+            loginService = new LoginService();
         } catch (IOException e) {
             errorLabel.setText(e.getMessage());
             errorLabel.setVisible(true);

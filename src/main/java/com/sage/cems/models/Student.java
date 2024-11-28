@@ -4,10 +4,11 @@ import com.sage.cems.models.user.Role;
 import com.sage.cems.models.user.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Student extends User {
 
-    ArrayList<Course> courses;
+    List<Course> courses;
 
     // empty student
     public Student() {}
@@ -15,10 +16,10 @@ public class Student extends User {
     public Student(String ID, String password, String firstName, String lastName,
                    String email, String phoneNumber, Role role, ArrayList<Course> courses) {
         super(ID, password, firstName, lastName, email, phoneNumber, role);
-        this.courses = Course.getCourses(this.getID());
+        this.courses = courses;
     }
 
-    public ArrayList<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
