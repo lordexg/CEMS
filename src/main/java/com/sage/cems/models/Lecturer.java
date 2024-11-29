@@ -13,9 +13,9 @@ public class Lecturer extends User {
 
     public Lecturer(){}
 
-    public Lecturer(String ID, String password, String firstName, String lastName,
+    public Lecturer(String password, String firstName, String lastName,
                     String email, String phoneNumber, Role role, ArrayList<Course> courses,List<Report> reports) {
-        super(ID,password,firstName,lastName,email,phoneNumber,role);
+        super(password,firstName,lastName,email,phoneNumber,role);
         this.courses = courses;
         this.reports = reports;
     }

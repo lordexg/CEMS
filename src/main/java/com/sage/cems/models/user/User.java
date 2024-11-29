@@ -12,9 +12,9 @@ public class User {
     // empty User
     public User() {}
 
-    public User(String ID, String password, String firstName, String lastName,
+    public User(String password, String firstName, String lastName,
                 String email, String phoneNumber, Role role) {
-        this.ID = ID;
+        // User ID is set automatically
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;

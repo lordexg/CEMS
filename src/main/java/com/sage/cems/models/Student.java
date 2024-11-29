@@ -8,14 +8,14 @@ import java.util.List;
 
 public class Student extends User {
 
-    List<Course> courses;
+    List<Course> courses =  new ArrayList<>();
 
     // empty student
     public Student() {}
 
-    public Student(String ID, String password, String firstName, String lastName,
+    public Student(String password, String firstName, String lastName,
                    String email, String phoneNumber, Role role, ArrayList<Course> courses) {
-        super(ID, password, firstName, lastName, email, phoneNumber, role);
+        super(password, firstName, lastName, email, phoneNumber, role);
         this.courses = courses;
     }
 
@@ -23,5 +23,7 @@ public class Student extends User {
         return courses;
     }
 
-
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 }

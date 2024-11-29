@@ -19,6 +19,7 @@ public enum ColumnName {
     ACCOUNT_ROLE,
     // Course table
     COURSE_ID,
+    COURSE_NAME,
     // Exam table
     EXAM_ID,
     EXAM_TYPE,
