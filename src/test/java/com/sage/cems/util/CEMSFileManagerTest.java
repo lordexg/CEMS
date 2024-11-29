@@ -45,11 +45,14 @@ class CEMSFileManagerTest {
     }
 
     @Test
-    void getTableLengthTest() {
+    void getLastRowTest() {
         FileManager fileManager;
         try {
             fileManager = new CEMSFileManager();
-            System.out.println(fileManager.getTableLength(TableName.ACCOUNT));
+            Map<ColumnName, String> result = fileManager.getLastRow(TableName.ACCOUNT);
+            for (String i : result.values())
+                System.out.print(i + "\t");
+
         } catch (IOException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }

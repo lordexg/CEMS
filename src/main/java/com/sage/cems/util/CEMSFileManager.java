@@ -113,10 +113,12 @@ public class CEMSFileManager implements FileManager {
     }
 
     @Override
-    public int getTableLength(TableName tableName) throws IOException {
+    public Map<ColumnName, String> getLastRow(TableName tableName) throws IOException {
         String filePath = getFilePath(tableName);
         List<String> lines = getFileLines(filePath);
-        return lines.size() - 1;
+        String[] headers = lines.getFirst().split("\t");
+        String[] lastLine = lines.getLast().split("\t");
+        return arrayToMap(headers, lastLine);
     }
 
     /* Helper Methods */
