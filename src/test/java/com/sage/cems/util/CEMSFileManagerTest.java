@@ -45,6 +45,17 @@ class CEMSFileManagerTest {
     }
 
     @Test
+    void getTableLengthTest() {
+        FileManager fileManager;
+        try {
+            fileManager = new CEMSFileManager();
+            System.out.println(fileManager.getTableLength(TableName.ACCOUNT));
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    @Test
     void insertRowTest() {
         Map<ColumnName, String> newRow = new TreeMap<>();
         newRow.put(ColumnName.ACCOUNT_ID, "65");

@@ -10,10 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class CEMSFileManager implements FileManager{
+public class CEMSFileManager implements FileManager {
 
     public CEMSFileManager() throws IOException {
-        if (!isAllFilesExist())
+        if (!areAllFilesExist())
             throw new IOException("Cannot access the files base");
     }
 
@@ -112,9 +112,16 @@ public class CEMSFileManager implements FileManager{
         overrideFile(lines, filePath);
     }
 
+    @Override
+    public int getTableLength(TableName tableName) throws IOException {
+        String filePath = getFilePath(tableName);
+        List<String> lines = getFileLines(filePath);
+        return lines.size() - 1;
+    }
+
     /* Helper Methods */
     // For checking if the main directory exists and all its files
-    private boolean isAllFilesExist() {
+    private boolean areAllFilesExist() {
         File dir = new File(Configuration.FILES_DIR);
         if (!dir.exists()) return false;
 

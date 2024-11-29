@@ -23,4 +23,5 @@ public interface FileManager {
     // This function delete the first record has the passed keyword
     void deleteRow(TableName tableName, Map<ColumnName, String> row) throws IOException;
 
+    int getTableLength(TableName tableName) throws IOException;
 }
