@@ -57,7 +57,7 @@ public class LecturerDAO {
 
     private static void populateLecturerFields(Lecturer lecturer, Map<ColumnName, String> lecturerMap, Map<ColumnName, String> lecturerAccountMap) {
         lecturer.setID(lecturerMap.get(ColumnName.LECTURER_ID));
-        lecturer.setFirstName(lecturerAccountMap.get(ColumnName.LECTURER_FIRST_NAME));
+        lecturer.setFirstName(lecturerMap.get(ColumnName.LECTURER_FIRST_NAME));
         lecturer.setLastName(lecturerMap.get(ColumnName.LECTURER_LAST_NAME));
         lecturer.setEmail(lecturerMap.get(ColumnName.LECTURER_EMAIL));
         lecturer.setPhoneNumber(lecturerMap.get(ColumnName.LECTURER_PHONE_NUMBER));
