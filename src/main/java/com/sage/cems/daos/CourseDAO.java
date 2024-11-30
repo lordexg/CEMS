@@ -119,6 +119,7 @@ public class CourseDAO {
         return newCourse;
     }
 
+    // Used in some functions that interacts with the CEMS File System (insertion, deletion)
     private Map<ColumnName, String> createCourseMap(Course course){
         Map<ColumnName, String> newCourse = new TreeMap<>();
         newCourse.put(ColumnName.COURSE_ID, course.getCourseID());

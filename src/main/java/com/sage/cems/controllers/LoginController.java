@@ -48,6 +48,7 @@ public class LoginController implements Initializable {
             User user = loginService.login(userNameField.getText(), passwordField.getText());
             ViewFactory.getInstance().closeStage((Stage) loginBtn.getScene().getWindow());
             showUserStage(user);
+            System.out.println("login done");
         } catch (Exception e) {
             errorLabel.setVisible(true);
             errorLabel.setText("Wrong User Name or Password");
@@ -60,7 +61,9 @@ public class LoginController implements Initializable {
                 try {
                     Student student = studentService.getStudentData(user);
                     ViewFactory.getInstance().showStudentWindow(student);
-                } catch (Exception _) {}
+                } catch (Exception e_) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e_);
+                }
             }
             case LECTURER -> ViewFactory.getInstance().showLecturerWindow();
             case ADMIN -> ViewFactory.getInstance().showAdminWindow();

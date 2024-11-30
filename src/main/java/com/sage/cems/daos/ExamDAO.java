@@ -83,6 +83,7 @@ public class ExamDAO {
         return exam;
     }
 
+    // Used in some functions that interacts with the CEMS File System (insertion, deletion, update)
     private Map<ColumnName, String> createExamMap(Exam exam){
         Map<ColumnName, String> newExam = new TreeMap<>();
         newExam.put(ColumnName.EXAM_ID, exam.getExam_ID());

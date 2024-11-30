@@ -12,13 +12,16 @@ import java.util.*;
 
 public class StudentDAO {
     private final FileManager fileManager;
-    private CourseDAO courseDAO;
+    private final CourseDAO courseDAO;
+
     public StudentDAO(FileManager fileManager) {
         this.fileManager = fileManager;
+        this.courseDAO = new CourseDAO(fileManager);
     }
 
-    // this function takes a student property and return all matching.
-    // student properties like: name, id, phone ...
+    /**
+     * @param keyWord student's <code>name</code>, <code>ID</code>, <code>phone</code> ...
+     */
     public List<Student> getAllStudents(String keyWord) throws IOException {
         List<Map<ColumnName, String>> students = fileManager.getRows(TableName.STUDENT, keyWord);
 
