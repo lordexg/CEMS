@@ -37,7 +37,7 @@ class CEMSFileManagerTest {
             for (Map<ColumnName, String> record : results) {
                 /*for (String i : record.values())
                     System.out.print(i + "\t");*/
-                System.out.println(record.get(ColumnName.EXAM_LENGTH));
+                System.out.println(record.get(ColumnName.COURSE_ID));
                 System.out.println();
             }
         } catch (IOException e) {

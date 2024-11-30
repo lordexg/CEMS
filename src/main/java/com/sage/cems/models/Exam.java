@@ -7,7 +7,7 @@ public class Exam {
     private int examLength;
     private String exam_ID;
     private Course course;
-    private Date examDuration;
+    private long examDuration;
     private Date examStartDate;
     private String examName;
     private Double mark;
@@ -17,7 +17,7 @@ public class Exam {
     public Exam(){}
 
 
-    public Exam(int examLength, String exam_ID, Course course, Date examDuration, Date examStartDate, String examName,
+    public Exam(int examLength, String exam_ID, Course course, long examDuration, Date examStartDate, String examName,
                 Double mark, boolean approved, List<Question> questions) {
         this.examLength = examLength;
         this.course = course;
@@ -46,11 +46,11 @@ public class Exam {
         this.exam_ID = exam_ID;
     }
 
-    public Date getExamDuration() {
+    public long getExamDuration() {
         return examDuration;
     }
 
-    public void setExamDuration(Date examDuration) {
+    public void setExamDuration(long examDuration) {
         this.examDuration = examDuration;
     }
 
@@ -70,7 +70,7 @@ public class Exam {
         this.examName = examName;
     }
 
-    public Double getMark() {
+    public double getMark() {
         return mark;
     }
 

@@ -1,5 +1,7 @@
 package com.sage.cems.daos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
 import com.sage.cems.models.Student;
@@ -9,11 +11,7 @@ import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ExamDAO {
 
@@ -25,7 +23,7 @@ public class ExamDAO {
         this.courseDAO = new CourseDAO(fileManager);
     }
 
-    public List<Exam> getAllExams(String keyWord) throws IOException {
+    public List<Exam> getAllExams(String keyWord) throws Exception {
         List<Map<ColumnName, String>> exams = fileManager.getRows(TableName.EXAM, keyWord);
 
         if (exams.isEmpty()) {
@@ -35,13 +33,14 @@ public class ExamDAO {
         return createExamsList(exams);
     }
 
-    public List<Exam> getAllExams() throws IOException {
+    public List<Exam> getAllExams() throws Exception {
         List<Map<ColumnName, String>> exams = fileManager.getAllRows(TableName.EXAM);
         if(exams.isEmpty()) {
             throw new IOException("No student found");
         }
         return createExamsList(exams);
     }
+
 
     public void addExam(Exam exam) throws IOException {
         fileManager.insertRow(TableName.EXAM, createExamMap(exam));
@@ -55,20 +54,29 @@ public class ExamDAO {
         fileManager.deleteRow(TableName.EXAM, createExamMap(exam));
     }
 
-    private void populateExamFields(Exam exam, Map<ColumnName, String> examMap) throws IOException {
+    private void populateExamFields(Exam exam, Map<ColumnName, String> examMap) throws Exception {
 
         exam.setExam_ID(examMap.get(ColumnName.EXAM_ID));
         exam.setExamName(examMap.get(ColumnName.EXAM_NAME));
-        // should include exam_duration in ms
-        // handling converting start_date from string to date
-        //exam.setExamDuration(Date.valueOf(examMap.get(ColumnName.EXAM_DURATION)));
-        //exam.setExamStartDate(Date.valueOf(examMap.get(ColumnName.EXAM_START_DATE)));
+        exam.setExamDuration(Long.parseLong(examMap.get(ColumnName.EXAM_DURATION)));
+        exam.setExamStartDate(convertStringToDate(examMap.get(ColumnName.EXAM_START_DATE)));
         exam.setMark(Double.parseDouble(examMap.get(ColumnName.EXAM_FULL_MARK)));
         exam.setExamLength(Integer.parseInt(examMap.get(ColumnName.EXAM_LENGTH)));
         exam.setApproved(Boolean.parseBoolean(examMap.get(ColumnName.EXAM_IS_APPROVED)));
     }
 
-    private Exam createExam(Map<ColumnName, String> examMap, String courseID) throws IOException {
+    // A method to convert from string to Date
+    private Date convertStringToDate(String stringDate) throws Exception {
+
+        String pattern = "EEE MMM dd HH:mm:ss zzz yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+
+        // Parse the date string into a Date object
+        Date date = sdf.parse(stringDate);
+        return date;
+    }
+
+    private Exam createExam(Map<ColumnName, String> examMap, String courseID) throws Exception {
         Exam exam = new Exam();
         populateExamFields(exam, examMap);
         exam.setCourse(courseDAO.getCourse(courseID));
@@ -89,7 +97,7 @@ public class ExamDAO {
         return newExam;
     }
 
-    private List<Exam> createExamsList(List<Map<ColumnName, String>> exams) throws IOException {
+    private List<Exam> createExamsList(List<Map<ColumnName, String>> exams) throws Exception {
         // create exams list
         List<Exam> examsList = new ArrayList<>();
         for (Map<ColumnName, String> exam : exams) {

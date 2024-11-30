@@ -20,11 +20,11 @@ class ExamDAOTest {
     }
 
     @Test
-    void testGetAllExams() throws IOException {
+    void testGetAllExams() throws Exception {
         ExamDAO examDAO = new ExamDAO(new CEMSFileManager());
         List<Exam> exams;
         exams = examDAO.getAllExams();
-        System.out.println(exams.getFirst().getExamDuration());
+        System.out.println(exams.getFirst().getCourse().getCourseID());
     }
 
     @Test
@@ -33,10 +33,10 @@ class ExamDAOTest {
 
         Course course = new Course();
         course.setCourseName("computer science");
-        course.setCourseID("CS60");
+        course.setCourseID("CS50");
         Date date = new Date();
         List<Question> questions = List.of();
-        Exam exam = new Exam(10,"1",course,date,date,"MidTerm",30d,false,questions);
+        Exam exam = new Exam(10,"1",course,123,date,"MidTerm",30d,false,questions);
         examDAO.addExam(exam);
 
     }
@@ -50,7 +50,7 @@ class ExamDAOTest {
         course.setCourseID("CS54");
         Date date = new Date();
         List<Question> questions = List.of();
-        Exam exam = new Exam(10,"2",course,date,date,"Final",50d,false,questions);
+        Exam exam = new Exam(10,"2",course,1232,date,"Final",50d,false,questions);
         examDAO.updateExam(exam);
 
     }
@@ -64,7 +64,7 @@ class ExamDAOTest {
         course.setCourseID("CS60");
         Date date = new Date();
         List<Question> questions = List.of();
-        Exam exam = new Exam(10,"1",course,date,date,"MidTerm",30d,false,questions);
+        Exam exam = new Exam(10,"1",course,123122,date,"MidTerm",30d,false,questions);
         examDAO.deleteExam(exam);
     }
 }
