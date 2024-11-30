@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 
 public class LoginService {
-    private static final String DOCUMENTATION_URL = "https://github.com/lordexg/CEMS";
+    private static final String DOCUMENTATION_URL = "https://lordexg.github.io/CEMS/";
     private final UserDAO userDAO;
 
     public LoginService() throws IOException {

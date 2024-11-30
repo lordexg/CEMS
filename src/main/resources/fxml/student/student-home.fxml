@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="parent" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.student.StudentHomeController">
+   <stylesheets>
+      <URL value="@../../styles/student.css" />
+      <URL value="@../../styles/main.css" />
+   </stylesheets>
+   <Label fx:id="welcomeMessage" layoutX="26.0" layoutY="30.0" prefHeight="36.0" prefWidth="565.0" styleClass="header-label" text="Hello, User Name" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10.0">
+      <font>
+         <Font name="Segoe UI" size="24.0" />
+      </font>
+   </Label>
+   <Label layoutX="50.0" layoutY="43.0" prefHeight="27.0" prefWidth="386.0" styleClass="header-p" text="Welcome to the CEMS. Please select an option from the menu to begin" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="43.0">
+      <font>
+         <Font name="Segoe UI" size="12.0" />
+      </font>
+   </Label>
+   <Label layoutX="40.0" layoutY="97.0" prefHeight="32.0" prefWidth="428.0" style="-fx-text-fill: #3282b8;" styleClass="header-label" text="Exams Starting Soon (Ordered by Date)" textFill="#3282b8" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="95.0">
+      <font>
+         <Font name="Segoe UI" size="24.0" />
+      </font>
+   </Label>
+</AnchorPane>

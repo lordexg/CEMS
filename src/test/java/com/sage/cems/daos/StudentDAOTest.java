@@ -40,4 +40,11 @@ class StudentDAOTest {
     void deleteStudent() throws IOException {
 
     }
+    @Test
+    void newTest() throws IOException {
+        StudentDAO studentDAO = new StudentDAO(new CEMSFileManager());
+        Student student = studentDAO.getAllStudents("20230317").getFirst();
+
+        System.out.println(student.getLastName());
+    }
 }

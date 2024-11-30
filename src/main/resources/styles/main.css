@@ -7,7 +7,13 @@
     # This styleSheet editing some main components and has some classes you can use
     - Buttons: main-btn, round-btn
 */
-
+.header-label {
+    -fx-text-fill: black;
+    -fx-font-family: "Segoe UI Semibold";
+}
+.header-p {
+    -fx-text-fill: #666;
+}
 .main-btn {
     -fx-background-color: #3282B8;
     -fx-font-size: 15;
@@ -46,4 +52,28 @@
 .text-field:focused {
     -fx-border-color: #3282B8;   /* Border color when focused */
     -fx-background-color: #ffffff; /* Background when focused */
+}
+.scroll-pane {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: transparent; /* Remove the gray border */
+    -fx-background-color: transparent; /* Remove the background color */
+}
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+}
+.thumb {
+    -fx-background-color: #3282B8;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-shape: "";
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
 }

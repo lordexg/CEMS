@@ -1,7 +1,9 @@
 package com.sage.cems.controllers;
 
+import com.sage.cems.models.Student;
 import com.sage.cems.models.user.User;
 import com.sage.cems.services.LoginService;
+import com.sage.cems.services.StudentService;
 import com.sage.cems.views.ViewFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,12 +26,14 @@ public class LoginController implements Initializable {
     public Button infoBtn;
     public Label errorLabel;
 
-    LoginService loginService;
+    private LoginService loginService;
+    private StudentService studentService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             loginService = new LoginService();
+            studentService = new StudentService();
         } catch (IOException e) {
             errorLabel.setText(e.getMessage());
             errorLabel.setVisible(true);
@@ -41,14 +45,25 @@ public class LoginController implements Initializable {
 
     private void onLogin() {
         try {
-            System.out.println(userNameField.getText() + "\t" + passwordField.getText());
             User user = loginService.login(userNameField.getText(), passwordField.getText());
             ViewFactory.getInstance().closeStage((Stage) loginBtn.getScene().getWindow());
-            ViewFactory.getInstance().showStudentWindow();
+            showUserStage(user);
         } catch (Exception e) {
             errorLabel.setVisible(true);
-//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
             errorLabel.setText("Wrong User Name or Password");
+        }
+    }
+
+    private void showUserStage(User user) {
+        switch (user.getRole()) {
+            case STUDENT -> {
+                try {
+                    Student student = studentService.getStudentData(user);
+                    ViewFactory.getInstance().showStudentWindow(student);
+                } catch (Exception _) {}
+            }
+            case LECTURER -> ViewFactory.getInstance().showLecturerWindow();
+            case ADMIN -> ViewFactory.getInstance().showAdminWindow();
         }
     }
 

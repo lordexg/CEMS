@@ -1,6 +1,5 @@
 package com.sage.cems;
 
-import com.sage.cems.models.Model;
 import com.sage.cems.views.ViewFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;

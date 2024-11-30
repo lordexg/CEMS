@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0"
+            prefWidth="230.0" styleClass="course" stylesheets="@../../styles/student.css"
+            xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sage.cems.controllers.student.CourseController">
+   <cursor>
+      <Cursor fx:constant="HAND"/>
+   </cursor>
+   <ImageView fx:id="courseImage" fitHeight="129.0" fitWidth="223.0" layoutX="5.0" layoutY="12.0" pickOnBounds="true"
+              AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="3.0"
+              AnchorPane.topAnchor="11.0">
+      <Image url="@../../images/course-image.jpg"/>
+   </ImageView>
+   <Label fx:id="courseName" layoutX="14.0" layoutY="150.0" prefHeight="84.0" prefWidth="230.0"
+          text="System Analysis and Design System Analysis and Design (SA112)" wrapText="true"
+          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+</AnchorPane>
