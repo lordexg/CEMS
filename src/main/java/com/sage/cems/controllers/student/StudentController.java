@@ -27,6 +27,8 @@ public class StudentController implements Initializable {
             switch (newVal) {
                 case STUDENT_HOME -> passStudentToHomeController();
                 case STUDENT_COURSES -> {
+                    StudentCoursesController coursesController = (StudentCoursesController) ViewFactory.getInstance().getController(View.STUDENT_COURSES);
+                    coursesController.setStudent(student);
                 }
                 case STUDENT_RESULTS -> {
                 }

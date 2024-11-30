@@ -2,39 +2,38 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../styles/main.css"
-            xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sage.cems.controllers.student.StudentCoursesController">
-   <Label layoutX="36.0" layoutY="40.0" prefHeight="36.0" prefWidth="565.0" styleClass="header-label" text="Courses"
-          AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10.0">
+<AnchorPane minHeight="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.student.StudentCoursesController">
+   <Label layoutX="36.0" layoutY="40.0" prefHeight="36.0" prefWidth="565.0" styleClass="header-label" text="Courses" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10.0">
       <font>
-         <Font name="Segoe UI" size="24.0"/>
+         <Font name="Segoe UI" size="24.0" />
       </font>
    </Label>
-   <Label layoutX="59.0" layoutY="80.0" prefHeight="27.0" prefWidth="434.0" styleClass="header-p"
-          text="Here is all the courses you are enrolled in. Select a course to open its exams"
-          AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="43.0">
+   <Label layoutX="59.0" layoutY="80.0" prefHeight="27.0" prefWidth="434.0" styleClass="header-p" text="Here is all the courses you are enrolled in. Select a course to open its exams" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="43.0">
       <font>
-         <Font name="Segoe UI" size="12.0"/>
+         <Font name="Segoe UI" size="12.0" />
       </font>
    </Label>
-   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="77.0"
-               layoutY="135.0" prefHeight="485.0" prefWidth="995.0" AnchorPane.bottomAnchor="30.0"
-               AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
-      <TilePane hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
-         <fx:include source="course.fxml"/>
+   <Label fx:id="noCoursesMessage" alignment="CENTER" contentDisplay="TOP" layoutX="13.0" opacity="0.24" prefHeight="284.0" prefWidth="586.0" style="-fx-padding: 40 120;" styleClass="header-label" text="You are not enrolled in any course. If there is any problem please contact your college admin." textAlignment="CENTER" visible="false" wrapText="true" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <font>
+         <Font name="Segoe UI" size="24.0" />
+      </font>
+      <graphic>
+         <ImageView fitHeight="100.0" fitWidth="100.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../images/Unavailable.png" />
+            </image>
+         </ImageView>
+      </graphic>
+   </Label>
+   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="77.0" layoutY="135.0" prefHeight="485.0" prefWidth="995.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+      <TilePane fx:id="coursesPane" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
+
       </TilePane>
    </ScrollPane>
 </AnchorPane>

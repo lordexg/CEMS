@@ -9,6 +9,10 @@ public class CourseController {
     public Label courseName;
 
     public void setCourseImage(Image image) {
+        courseImage.setImage(image);
+    }
 
+    public void setCourseName(String name) {
+        courseName.setText(name);
     }
 }
