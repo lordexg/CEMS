@@ -33,10 +33,11 @@ class CEMSFileManagerTest {
         FileManager fileManager;
         try {
             fileManager = new CEMSFileManager();
-            List<Map<ColumnName, String>> results = fileManager.getAllRows(TableName.ACCOUNT);
+            List<Map<ColumnName, String>> results = fileManager.getAllRows(TableName.EXAM);
             for (Map<ColumnName, String> record : results) {
-                for (String i : record.values())
-                    System.out.print(i + "\t");
+                /*for (String i : record.values())
+                    System.out.print(i + "\t");*/
+                System.out.println(record.get(ColumnName.COURSE_ID));
                 System.out.println();
             }
         } catch (IOException e) {
@@ -49,9 +50,10 @@ class CEMSFileManagerTest {
         FileManager fileManager;
         try {
             fileManager = new CEMSFileManager();
-            Map<ColumnName, String> result = fileManager.getLastRow(TableName.ACCOUNT);
-            for (String i : result.values())
-                System.out.print(i + "\t");
+            Map<ColumnName, String> result = fileManager.getLastRow(TableName.EXAM);
+            /*for (String i : result.values())
+                System.out.print(i + "\t");*/
+            System.out.println(result.get(ColumnName.EXAM_LENGTH));
 
         } catch (IOException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
@@ -61,8 +63,8 @@ class CEMSFileManagerTest {
     @Test
     void insertRowTest() {
         Map<ColumnName, String> newRow = new TreeMap<>();
-        newRow.put(ColumnName.ACCOUNT_ID, "6");
-        newRow.put(ColumnName.ACCOUNT_PASSWORD, "ui");
+        newRow.put(ColumnName.ACCOUNT_ID, "8");
+        newRow.put(ColumnName.ACCOUNT_PASSWORD, "i");
         newRow.put(ColumnName.ACCOUNT_ROLE, "STUDENT");
         FileManager fileManager;
         try {

@@ -1,7 +1,6 @@
 package com.sage.cems.daos;
 
 import com.sage.cems.models.Lecturer;
-import com.sage.cems.models.Student;
 import com.sage.cems.models.user.Role;
 import com.sage.cems.util.ColumnName;
 import com.sage.cems.util.FileManager;
@@ -29,33 +28,31 @@ public class LecturerDAO {
         fileManager.deleteRow(TableName.LECTURER, createLecturerMap(lecturer));
     }
 
-    public List<Lecturer> getLecturers(String keyWord) throws IOException {
+    public List<Lecturer> getAllLecturer(String keyWord) throws IOException {
         List<Map<ColumnName, String>> lecturers = fileManager.getRows(TableName.LECTURER, keyWord);
-        List<Map<ColumnName, String>> lecturersAccounts = new ArrayList<>();
 
-        for (Map<ColumnName, String> lecturer : lecturers) {
-            String userID = lecturer.get(ColumnName.LECTURER_ID);
-            Map<ColumnName, String> lecturersAccount = fileManager.getRows(TableName.ACCOUNT, userID).getFirst();
-            lecturersAccounts.add(lecturersAccount);
-        }
-
-        if (lecturers.isEmpty() || lecturersAccounts.isEmpty()) {
+        if (lecturers.isEmpty()) {
             throw new IOException("No student found");
         }
 
-        List<Lecturer> allLecturers= new ArrayList<>();
+        return createLecturerList(lecturers);
+    }
 
-        for(int i = 0; i < lecturers.size(); i++) {
-            allLecturers.add(createLecturer(lecturers.get(i), lecturersAccounts.get(i)));
+    public List<Lecturer> getAllLecturer() throws IOException {
+        List<Map<ColumnName, String>> lecturers = fileManager.getAllRows(TableName.LECTURER);
+
+        if (lecturers.isEmpty()) {
+            throw new IOException("No student found");
         }
-        return allLecturers;
+
+        return createLecturerList(lecturers);
     }
 
     public void updateLecturer(Lecturer lecturer) throws IOException {
         fileManager.updateRow(TableName.LECTURER, createLecturerMap(lecturer));
     }
 
-    private static void populateLecturerFields(Lecturer lecturer, Map<ColumnName, String> lecturerMap, Map<ColumnName, String> lecturerAccountMap) {
+    private void populateLecturerFields(Lecturer lecturer, Map<ColumnName, String> lecturerMap, Map<ColumnName, String> lecturerAccountMap) {
         lecturer.setID(lecturerMap.get(ColumnName.LECTURER_ID));
         lecturer.setFirstName(lecturerMap.get(ColumnName.LECTURER_FIRST_NAME));
         lecturer.setLastName(lecturerMap.get(ColumnName.LECTURER_LAST_NAME));
@@ -79,5 +76,21 @@ public class LecturerDAO {
         newLecturer.put(ColumnName.LECTURER_PHONE_NUMBER, lecturer.getPhoneNumber());
         newLecturer.put(ColumnName.LECTURER_EMAIL, lecturer.getEmail());
         return newLecturer;
+    }
+
+    private List<Lecturer> createLecturerList(List<Map<ColumnName, String>> lecturers) throws IOException {
+
+        List<Map<ColumnName, String>> accounts = new ArrayList<>();
+        for (Map<ColumnName, String> lecturer : lecturers) {
+            String userID = lecturer.get(ColumnName.LECTURER_ID);
+            Map<ColumnName, String> account = fileManager.getRows(TableName.ACCOUNT, userID).getFirst();
+            accounts.add(account);
+        }
+
+        List<Lecturer> LecturerList = new ArrayList<>();
+        for(int i = 0; i < lecturers.size(); i++) {
+            LecturerList.add(createLecturer(lecturers.get(i), accounts.get(i)));
+        }
+        return LecturerList;
     }
 }

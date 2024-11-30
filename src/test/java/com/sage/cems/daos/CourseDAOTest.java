@@ -28,7 +28,7 @@ class CourseDAOTest {
         CourseDAO courseDAO = new CourseDAO(new CEMSFileManager());
         List<Course> course = courseDAO.getAllCourses();
         for (Course c : course) {
-            System.out.println(c.getCourseName());
+            System.out.println(c.getCourseID());
         }
     }
 
