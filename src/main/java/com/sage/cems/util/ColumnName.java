@@ -22,7 +22,13 @@ public enum ColumnName {
     COURSE_NAME,
     // Exam table
     EXAM_ID,
-    EXAM_TYPE,
+    EXAM_NAME,
+    EXAM_LENGTH,
+    EXAM_DURATION,
+    EXAM_START_DATE,
+    EXAM_FULL_MARK,
+    EXAM_IS_APPROVED,
+    EXAM_QUESTIONS,
     // Solved exams table
     SOLVED_EXAM_ANSWERS,
     // Questions
@@ -30,5 +36,7 @@ public enum ColumnName {
     QUESTION_STATEMENT,
     QUESTION_CORRECT_ANSWER,
     QUESTION_TYPE,
-    QUESTION_CHOICES
+    QUESTION_CHOICES,
+    // Grades
+    GRADE_MARK
 }

@@ -8,13 +8,12 @@ import java.util.List;
 
 public class Student extends User {
 
-    List<Course> courses =  new ArrayList<>();
+    private List<Course> courses;
 
-    // empty student
     public Student() {}
 
     public Student(String password, String firstName, String lastName,
-                   String email, String phoneNumber, Role role, ArrayList<Course> courses) {
+                   String email, String phoneNumber, Role role, List<Course> courses) {
         super(password, firstName, lastName, email, phoneNumber, role);
         this.courses = courses;
     }

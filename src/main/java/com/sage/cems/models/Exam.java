@@ -5,37 +5,45 @@ import java.util.Date;
 
 public class Exam {
     private int examLength;
+    private String exam_ID;
     private Course course;
     private Date examDuration;
     private Date examStartDate;
     private String examName;
-    private double mark;
-    private boolean completed;
+    private Double mark;
     private boolean approved;
     private List<Question> questions;
 
     public Exam(){}
 
-    public Exam(int examLength, Course course, Date examDuration, Date examStartDate, String examName,
-                double mark, boolean completed, boolean approved, List<Question> questions) {
+
+    public Exam(int examLength, String exam_ID, Course course, Date examDuration, Date examStartDate, String examName,
+                Double mark, boolean approved, List<Question> questions) {
         this.examLength = examLength;
         this.course = course;
         this.examDuration = examDuration;
         this.examStartDate = examStartDate;
         this.examName = examName;
         this.mark = mark;
-        this.completed = completed;
         this.approved = approved;
         this.questions = questions;
+        this.exam_ID = exam_ID;
     }
 
-
-    public Course getCourse() {
-        return course;
+    public int getExamLength() {
+        return examLength;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setExamLength(int examLength) {
+        this.examLength = examLength;
+    }
+
+    public String getExam_ID() {
+        return exam_ID;
+    }
+
+    public void setExam_ID(String exam_ID) {
+        this.exam_ID = exam_ID;
     }
 
     public Date getExamDuration() {
@@ -62,20 +70,12 @@ public class Exam {
         this.examName = examName;
     }
 
-    public double getMark() {
+    public Double getMark() {
         return mark;
     }
 
-    public void setMark(double mark) {
+    public void setMark(Double mark) {
         this.mark = mark;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
     }
 
     public boolean isApproved() {
@@ -86,19 +86,19 @@ public class Exam {
         this.approved = approved;
     }
 
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public List<Question> getQuestions() {
         return questions;
     }
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }
-
-    public int getExamLength() {
-        return examLength;
-    }
-
-    public void setExamLength(int examLength) {
-        this.examLength = examLength;
     }
 }
