@@ -34,7 +34,10 @@ public class CourseController implements Initializable {
     }
 
     private void onCourseClicked() {
-        ViewFactory.getInstance().getStudentCurrentView().set(View.STUDENT_COURSE_EXAMS);
+        ViewFactory.getInstance().getBackStack().push(View.STUDENT_COURSES);
+        ViewFactory.getInstance().backStackSizeProperty().set(ViewFactory.getInstance().getBackStack().size());
+        ViewFactory.getInstance().getCurrentViewProperty().set(View.STUDENT_COURSE_EXAMS);
+//        System.out.println(ViewFactory.getInstance().getBackStack().size());
         StudentCourseExamsController controller = (StudentCourseExamsController) ViewFactory.getInstance().getController(View.STUDENT_COURSE_EXAMS);
         controller.setCourse(course);
     }

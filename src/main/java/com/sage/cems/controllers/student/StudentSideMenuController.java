@@ -64,19 +64,37 @@ public class StudentSideMenuController implements Initializable {
 
     private void updateView(Node node) {
         Button button = (Button) node;
-        button.setOnAction(actionEvent -> ViewFactory.getInstance().getStudentCurrentView().set(View.valueOf(button.getId())));
-        ViewFactory.getInstance().getStudentCurrentView().addListener((obs, oldVal, newVal) -> {
+
+        ViewFactory.getInstance().getCurrentViewProperty().addListener((obs, oldVal, newVal) -> {
+            if (!ViewFactory.getInstance().getBackStack().isEmpty())
+                return;
+            button.getStyleClass().remove("active-btn");
             ImageView imageView = (ImageView) button.getGraphic();
             if (newVal.equals(View.valueOf(button.getId()))) {
                 button.getStyleClass().add("active-btn");
-                String imageUrl = imageView.getImage().getUrl().replace(".png", "-white.png");
-                imageView.setImage(new Image(imageUrl));
+                imageView.setImage(new Image(switchBlackWhite(imageView.getImage().getUrl())));
             }
             else {
                 button.getStyleClass().remove("active-btn");
-                String imageUrl = imageView.getImage().getUrl().replace("-white.png", ".png");
-                imageView.setImage(new Image(imageUrl));
+                imageView.setImage(new Image(switchWhiteBlack(imageView.getImage().getUrl())));
             }
         });
+        button.setOnAction(actionEvent -> {
+            ViewFactory.getInstance().backStackSizeProperty().set(0);
+            ViewFactory.getInstance().getBackStack().clear();
+            ViewFactory.getInstance().getCurrentViewProperty().set(View.valueOf(button.getId()));
+        });
+    }
+
+    private String switchBlackWhite(String imageUrl) {
+        if (imageUrl.contains("-white.png"))
+            return imageUrl;
+        return imageUrl.replace(".png", "-white.png");
+    }
+
+    private String switchWhiteBlack(String imageUrl) {
+        if (imageUrl.contains("-white.png"))
+            return imageUrl.replace("-white.png", ".png");
+        return imageUrl;
     }
 }

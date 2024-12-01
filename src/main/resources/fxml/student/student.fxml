@@ -14,8 +14,8 @@
    <center>
       <BorderPane fx:id="mainView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" BorderPane.alignment="CENTER">
          <top>
-            <AnchorPane maxHeight="-Infinity" prefHeight="35.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" graphicTextGap="0.0" layoutX="31.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" styleClass="back-btn" textAlignment="CENTER" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0">
+            <AnchorPane maxHeight="-Infinity" prefHeight="41.0" prefWidth="635.0" BorderPane.alignment="CENTER">
+               <Button fx:id="backBtn" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" graphicTextGap="0.0" layoutX="31.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" styleClass="back-btn" textAlignment="CENTER" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0">
                   <graphic>
                      <ImageView fitHeight="20.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../../images/Left-Arrow.png" />

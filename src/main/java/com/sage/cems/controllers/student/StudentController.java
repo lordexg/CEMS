@@ -4,6 +4,7 @@ import com.sage.cems.models.Student;
 import com.sage.cems.views.View;
 import com.sage.cems.views.ViewFactory;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -11,6 +12,7 @@ import java.util.ResourceBundle;
 
 public class StudentController implements Initializable {
     public BorderPane mainView;
+    public Button backBtn;
     private final Student student;
 
     public StudentController(Student student) {
@@ -22,8 +24,14 @@ public class StudentController implements Initializable {
         mainView.setCenter(ViewFactory.getInstance().getView(View.STUDENT_HOME));
         passStudentToHomeController();
 
-        ViewFactory.getInstance().getStudentCurrentView().addListener((observableValue, oldVal, newVal) -> {
+        ViewFactory.getInstance().getCurrentViewProperty().addListener((observableValue, oldVal, newVal) -> {
             switchView(newVal);
+        });
+
+        backBtn.setOnAction(actionEvent -> onBack());
+
+        ViewFactory.getInstance().backStackSizeProperty().addListener((observableValue, oldVal, newVal) -> {
+            backBtn.setVisible(!newVal.equals(0));
         });
     }
 
@@ -45,5 +53,11 @@ public class StudentController implements Initializable {
             case STUDENT_PROFILE -> {
             }
         }
+    }
+
+    private void onBack() {
+        View view = ViewFactory.getInstance().getBackStack().pop();
+        ViewFactory.getInstance().backStackSizeProperty().set(ViewFactory.getInstance().getBackStack().size());
+        ViewFactory.getInstance().getCurrentViewProperty().set(view);
     }
 }

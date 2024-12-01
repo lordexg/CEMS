@@ -4,7 +4,9 @@ import com.sage.cems.controllers.admin.AdminController;
 import com.sage.cems.controllers.lecturer.LecturerController;
 import com.sage.cems.controllers.student.StudentController;
 import com.sage.cems.models.Student;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,12 +18,15 @@ import javafx.util.Pair;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ViewFactory {
-    private ObjectProperty<View> studentCurrentView = new SimpleObjectProperty<>(View.STUDENT_HOME);
+    private ObjectProperty<View> currentView = new SimpleObjectProperty<>(View.STUDENT_HOME);
     private final Map<View, Pair<AnchorPane, Object>> cache = new HashMap<>();
+    private final Stack<View> backStack = new Stack<>();
+    private final IntegerProperty backStackSize = new SimpleIntegerProperty(0);
 
     // Singleton Pattern
     private static ViewFactory viewFactory;
@@ -33,7 +38,7 @@ public class ViewFactory {
     }
 
     /*
-    * Generic Methods for all Roles
+    * Generic Methods for all Roles and Views
     * */
     public AnchorPane getView(View view) {
         if (cache.containsKey(view)) {
@@ -54,6 +59,25 @@ public class ViewFactory {
     public Object getController(View view) {
         return cache.get(view).getValue();
     }
+
+    public ObjectProperty<View> getCurrentViewProperty() {
+        return currentView;
+    }
+
+    public void closeStage(Stage stage) {
+        stage.close();
+        currentView = new SimpleObjectProperty<>();
+        cache.clear();
+    }
+
+    public Stack<View> getBackStack() {
+        return backStack;
+    }
+
+    public IntegerProperty backStackSizeProperty() {
+        return backStackSize;
+    }
+
     /*
     * Login Methods
     * */
@@ -62,19 +86,9 @@ public class ViewFactory {
         createStage(loader, 850, 550);
     }
 
-    public void closeStage(Stage stage) {
-        stage.close();
-        studentCurrentView = new SimpleObjectProperty<>(View.STUDENT_HOME);
-        cache.clear();
-    }
-
     /*
     * Student Methods
     * */
-    public ObjectProperty<View> getStudentCurrentView() {
-        return studentCurrentView;
-    }
-
     public void showStudentWindow(Student student) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/student.fxml"));
         StudentController studentController = new StudentController(student);
