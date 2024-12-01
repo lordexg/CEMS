@@ -121,7 +121,12 @@ public class CourseDAO {
     private void populateCourseFields(Map<ColumnName, String> courseMap, Course course) throws IOException {
         course.setCourseID(courseMap.get(ColumnName.COURSE_ID));
         course.setCourseName(courseMap.get(ColumnName.COURSE_NAME));
-        List<Exam> exams = examDAO.getAllExams(course.getCourseID());
+        List<Exam> exams;
+        try {
+            exams = examDAO.getAllExams(course.getCourseID());
+        } catch (Exception e) {
+            exams = new ArrayList<>();
+        }
         course.setExams(exams);
     }
 
