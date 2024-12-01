@@ -6,7 +6,7 @@ import java.util.Date;
 public class Exam {
     private int examLength;
     private String exam_ID;
-    private Course course;
+    private String courseID;
     private long examDuration;
     private Date examStartDate;
     private String examName;
@@ -17,10 +17,9 @@ public class Exam {
     public Exam(){}
 
 
-    public Exam(int examLength, String exam_ID, Course course, long examDuration, Date examStartDate, String examName,
+    public Exam(int examLength, String exam_ID, String courseID, long examDuration, Date examStartDate, String examName,
                 Double mark, boolean approved, List<Question> questions) {
         this.examLength = examLength;
-        this.course = course;
         this.examDuration = examDuration;
         this.examStartDate = examStartDate;
         this.examName = examName;
@@ -28,6 +27,7 @@ public class Exam {
         this.approved = approved;
         this.questions = questions;
         this.exam_ID = exam_ID;
+        this.courseID = courseID;
     }
 
     public int getExamLength() {
@@ -86,12 +86,12 @@ public class Exam {
         this.approved = approved;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getCourseID() {
+        return courseID;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
     }
 
     public List<Question> getQuestions() {
