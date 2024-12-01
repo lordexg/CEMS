@@ -23,7 +23,7 @@ public class ExamDAO {
         this.courseDAO = new CourseDAO(fileManager);
     }
 
-    public List<Exam> getAllExams(String keyWord) throws Exception {
+    public List<Exam> getAllExams(String keyWord) throws IOException {
         List<Map<ColumnName, String>> exams = fileManager.getRows(TableName.EXAM, keyWord);
 
         if (exams.isEmpty()) {
@@ -33,7 +33,7 @@ public class ExamDAO {
         return createExamsList(exams);
     }
 
-    public List<Exam> getAllExams() throws Exception {
+    public List<Exam> getAllExams() throws IOException {
         List<Map<ColumnName, String>> exams = fileManager.getAllRows(TableName.EXAM);
         if(exams.isEmpty()) {
             throw new IOException("No student found");
@@ -54,7 +54,7 @@ public class ExamDAO {
         fileManager.deleteRow(TableName.EXAM, createExamMap(exam));
     }
 
-    private void populateExamFields(Exam exam, Map<ColumnName, String> examMap) throws Exception {
+    private void populateExamFields(Exam exam, Map<ColumnName, String> examMap) throws IOException {
 
         exam.setExam_ID(examMap.get(ColumnName.EXAM_ID));
         exam.setExamName(examMap.get(ColumnName.EXAM_NAME));
@@ -66,17 +66,22 @@ public class ExamDAO {
     }
 
     // A method to convert from string to Date
-    private Date convertStringToDate(String stringDate) throws Exception {
+    private Date convertStringToDate(String stringDate) {
 
         String pattern = "EEE MMM dd HH:mm:ss zzz yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 
         // Parse the date string into a Date object
-        Date date = sdf.parse(stringDate);
+        Date date;
+        try {
+            date = sdf.parse(stringDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         return date;
     }
 
-    private Exam createExam(Map<ColumnName, String> examMap, String courseID) throws Exception {
+    private Exam createExam(Map<ColumnName, String> examMap, String courseID) throws IOException {
         Exam exam = new Exam();
         populateExamFields(exam, examMap);
         exam.setCourse(courseDAO.getCourse(courseID));
@@ -98,7 +103,7 @@ public class ExamDAO {
         return newExam;
     }
 
-    private List<Exam> createExamsList(List<Map<ColumnName, String>> exams) throws Exception {
+    private List<Exam> createExamsList(List<Map<ColumnName, String>> exams) throws IOException {
         // create exams list
         List<Exam> examsList = new ArrayList<>();
         for (Map<ColumnName, String> exam : exams) {

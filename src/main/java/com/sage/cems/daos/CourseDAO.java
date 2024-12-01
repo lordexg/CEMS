@@ -1,6 +1,7 @@
 package com.sage.cems.daos;
 
 import com.sage.cems.models.Course;
+import com.sage.cems.models.Exam;
 import com.sage.cems.models.Lecturer;
 import com.sage.cems.models.Student;
 import com.sage.cems.models.user.User;
@@ -13,9 +14,10 @@ import java.util.*;
 
 public class CourseDAO {
     private final FileManager fileManager;
-
+    private final ExamDAO examDAO;
     public CourseDAO(FileManager fileManager) {
         this.fileManager = fileManager;
+        this.examDAO = new ExamDAO(fileManager);
     }
 
     public Course getCourse(String keyWord) throws IOException {
@@ -119,7 +121,8 @@ public class CourseDAO {
     private void populateCourseFields(Map<ColumnName, String> courseMap, Course course) throws IOException {
         course.setCourseID(courseMap.get(ColumnName.COURSE_ID));
         course.setCourseName(courseMap.get(ColumnName.COURSE_NAME));
-        // course.exam, but this logic for later on. (after ExamDAO)
+        List<Exam> exams = examDAO.getAllExams(course.getCourseID());
+        course.setExams(exams);
     }
 
     private Course createCourse(Map<ColumnName, String> courseMap) throws IOException {
