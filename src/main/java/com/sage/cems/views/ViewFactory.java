@@ -6,13 +6,12 @@ import com.sage.cems.controllers.student.StudentController;
 import com.sage.cems.models.Student;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ViewFactory {
-    private final ObjectProperty<View> studentSelectedMenuBtn = new SimpleObjectProperty<>(View.STUDENT_HOME);
-    private final Map<View, AnchorPane> cache = new HashMap<>();
-    private final Map<View, Object> controllers = new HashMap<>();
+    private ObjectProperty<View> studentCurrentView = new SimpleObjectProperty<>(View.STUDENT_HOME);
+    private final Map<View, Pair<AnchorPane, Object>> cache = new HashMap<>();
 
     // Singleton Pattern
     private static ViewFactory viewFactory;
@@ -39,14 +37,13 @@ public class ViewFactory {
     * */
     public AnchorPane getView(View view) {
         if (cache.containsKey(view)) {
-            return cache.get(view);
+            return cache.get(view).getKey();
         }
         AnchorPane anchorPane = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/" + view.getFilePath()));
             anchorPane = fxmlLoader.load();
-            controllers.put(view, fxmlLoader.getController());
-            cache.put(view, anchorPane);
+            cache.put(view, new Pair<>(anchorPane, fxmlLoader.getController()));
             return anchorPane;
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
@@ -55,7 +52,7 @@ public class ViewFactory {
     }
 
     public Object getController(View view) {
-        return controllers.get(view);
+        return cache.get(view).getValue();
     }
     /*
     * Login Methods
@@ -67,13 +64,15 @@ public class ViewFactory {
 
     public void closeStage(Stage stage) {
         stage.close();
+        studentCurrentView = new SimpleObjectProperty<>(View.STUDENT_HOME);
+        cache.clear();
     }
 
     /*
     * Student Methods
     * */
-    public ObjectProperty<View> getStudentSelectedMenuBtn() {
-        return studentSelectedMenuBtn;
+    public ObjectProperty<View> getStudentCurrentView() {
+        return studentCurrentView;
     }
 
     public void showStudentWindow(Student student) {
@@ -82,7 +81,6 @@ public class ViewFactory {
         loader.setController(studentController);
         createStage(loader, 1200, 720);
     }
-
 
     /*
     * Lecturer Methods

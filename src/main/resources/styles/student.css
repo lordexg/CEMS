@@ -46,8 +46,8 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-background-color: #EAEAEA;
     -fx-text-fill: #1B262C;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
+    -fx-background-radius: 0  0 8 8;
+    -fx-border-radius: 0  0 8 8;
     -fx-padding: 7 15;
 }
 .course:hover .label {

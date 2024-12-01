@@ -64,8 +64,8 @@ public class StudentSideMenuController implements Initializable {
 
     private void updateView(Node node) {
         Button button = (Button) node;
-        button.setOnAction(actionEvent -> ViewFactory.getInstance().getStudentSelectedMenuBtn().set(View.valueOf(button.getId())));
-        ViewFactory.getInstance().getStudentSelectedMenuBtn().addListener((obs, oldVal, newVal) -> {
+        button.setOnAction(actionEvent -> ViewFactory.getInstance().getStudentCurrentView().set(View.valueOf(button.getId())));
+        ViewFactory.getInstance().getStudentCurrentView().addListener((obs, oldVal, newVal) -> {
             ImageView imageView = (ImageView) button.getGraphic();
             if (newVal.equals(View.valueOf(button.getId()))) {
                 button.getStyleClass().add("active-btn");

@@ -13,6 +13,12 @@ public class StudentHomeController implements Initializable {
 
     private Student student = new Student();
 
+    public StudentHomeController(Student student) {
+        this.student = student;
+    }
+    public StudentHomeController() {
+    }
+
     public void setStudent(Student student) {
         this.student = student;
         updateHome();
@@ -20,7 +26,6 @@ public class StudentHomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        updateHome();
     }
 
     private void updateHome() {

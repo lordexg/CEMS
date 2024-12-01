@@ -48,7 +48,6 @@ public class LoginController implements Initializable {
             User user = loginService.login(userNameField.getText(), passwordField.getText());
             ViewFactory.getInstance().closeStage((Stage) loginBtn.getScene().getWindow());
             showUserStage(user);
-            System.out.println("login done");
         } catch (Exception e) {
             errorLabel.setVisible(true);
             errorLabel.setText("Wrong User Name or Password");

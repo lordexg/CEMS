@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="examParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="230.0" styleClass="course" stylesheets="@../../styles/student.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.student.ExamController">
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <ImageView fx:id="examImage" fitHeight="121.0" fitWidth="222.0" layoutX="3.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="21.0">
+      <Image url="@../../images/exam-image.jpg" />
+   </ImageView>
+   <Label fx:id="examName" layoutX="14.0" layoutY="150.0" prefHeight="84.0" prefWidth="230.0" text="Mid-Term Spring 2024" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+</AnchorPane>

@@ -22,24 +22,28 @@ public class StudentController implements Initializable {
         mainView.setCenter(ViewFactory.getInstance().getView(View.STUDENT_HOME));
         passStudentToHomeController();
 
-        ViewFactory.getInstance().getStudentSelectedMenuBtn().addListener((observableValue, oldVal, newVal) -> {
-            mainView.setCenter(ViewFactory.getInstance().getView(newVal));
-            switch (newVal) {
-                case STUDENT_HOME -> passStudentToHomeController();
-                case STUDENT_COURSES -> {
-                    StudentCoursesController coursesController = (StudentCoursesController) ViewFactory.getInstance().getController(View.STUDENT_COURSES);
-                    coursesController.setStudent(student);
-                }
-                case STUDENT_RESULTS -> {
-                }
-                case STUDENT_PROFILE -> {
-                }
-            }
+        ViewFactory.getInstance().getStudentCurrentView().addListener((observableValue, oldVal, newVal) -> {
+            switchView(newVal);
         });
     }
 
     private void passStudentToHomeController() {
         StudentHomeController homeController = (StudentHomeController) ViewFactory.getInstance().getController(View.STUDENT_HOME);
         homeController.setStudent(student);
+    }
+
+    private void switchView(View view) {
+        mainView.setCenter(ViewFactory.getInstance().getView(view));
+        switch (view) {
+            case STUDENT_HOME -> passStudentToHomeController();
+            case STUDENT_COURSES -> {
+                StudentCoursesController coursesController = (StudentCoursesController) ViewFactory.getInstance().getController(View.STUDENT_COURSES);
+                coursesController.setStudent(student);
+            }
+            case STUDENT_RESULTS -> {
+            }
+            case STUDENT_PROFILE -> {
+            }
+        }
     }
 }
