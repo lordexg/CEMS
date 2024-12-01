@@ -1,5 +1,6 @@
 package com.sage.cems.daos;
 
+import com.sage.cems.models.Course;
 import com.sage.cems.models.Student;
 import com.sage.cems.util.CEMSFileManager;
 import org.junit.jupiter.api.Test;
@@ -43,8 +44,13 @@ class StudentDAOTest {
     @Test
     void newTest() throws IOException {
         StudentDAO studentDAO = new StudentDAO(new CEMSFileManager());
-        Student student = studentDAO.getAllStudents("20230317").getFirst();
+        Student student = studentDAO.getAllStudents("10").getFirst();
 
-        System.out.println(student.getLastName());
+//        for (Student student : students) {
+//            System.out.println(student.getFirstName());
+//        }
+        for (Course course : student.getCourses()) {
+            System.out.println(course.getCourseName());
+        }
     }
 }

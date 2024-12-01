@@ -71,8 +71,10 @@ public class StudentDAO {
 
         List<Course> courses = new ArrayList<>();
         for(Map<ColumnName, String> enrollment : enrollments) {
-            String courseID = enrollment.get(ColumnName.COURSE_ID);
-            courses.add(courseDAO.getCourse(courseID));
+            if (enrollment.get(ColumnName.STUDENT_ID).equals(student.getID())) {
+                String courseID = enrollment.get(ColumnName.COURSE_ID);
+                courses.add(courseDAO.getCourse(courseID));
+            }
         }
 
         student.setCourses(courses);

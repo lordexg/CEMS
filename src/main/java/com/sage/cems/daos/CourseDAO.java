@@ -48,9 +48,11 @@ public class CourseDAO {
         // Imma using them to get the courses from courses Table
         List<Map<ColumnName, String>> coursesMapList = new ArrayList<>();
         for(Map<ColumnName, String> enroll : enrollMap) {
-            String courseID = enroll.get(ColumnName.COURSE_ID);
-            Map<ColumnName, String> course = fileManager.getRows(TableName.COURSE, courseID).getFirst();
-            coursesMapList.add(course);
+            if (enroll.get(ColumnName.STUDENT_ID).equals(user.getID())) {
+                String courseID = enroll.get(ColumnName.COURSE_ID);
+                Map<ColumnName, String> course = fileManager.getRows(TableName.COURSE, courseID).getFirst();
+                coursesMapList.add(course);
+            }
         }
         return createCoursesList(coursesMapList);
     }
@@ -67,6 +69,13 @@ public class CourseDAO {
         Map<ColumnName, String> newEnrollment = new TreeMap<>();
         newEnrollment.put(ColumnName.ACCOUNT_ID, user.getID());
         newEnrollment.put(ColumnName.COURSE_ID, course.getCourseID());
+
+        List<Map<ColumnName, String>> search = fileManager.getRows(TableName.ENROLLMENT, user.getID());
+        for (Map<ColumnName, String> row : search) {
+            if (row.get(ColumnName.COURSE_ID).equals(course.getCourseID())) {
+                return;
+            }
+        }
 
         // update the file system
         fileManager.insertRow(TableName.ENROLLMENT, newEnrollment);

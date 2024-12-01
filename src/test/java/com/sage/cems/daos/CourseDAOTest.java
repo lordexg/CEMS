@@ -59,7 +59,7 @@ class CourseDAOTest {
         CourseDAO courseDAO = new CourseDAO(new CEMSFileManager());
 
         Student user = new Student();
-        user.setID("1");
+        user.setID("10");
         Course course = new Course();
         course.setCourseID("CS50");
         courseDAO.assignCourse(course, user);
