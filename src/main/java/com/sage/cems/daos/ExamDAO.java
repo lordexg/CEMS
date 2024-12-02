@@ -15,7 +15,7 @@ import java.util.*;
 
 public class ExamDAO {
 
-    private FileManager fileManager = null;
+    private final FileManager fileManager;
 
     public ExamDAO(FileManager fileManager) {
         this.fileManager = fileManager;
@@ -39,8 +39,24 @@ public class ExamDAO {
         return createExamsList(exams);
     }
 
-
     public void addExam(Exam exam) throws IOException {
+        /*
+            Generate exam ID based on the EXAM_TABLE last EXAM_ID,
+            since its ID is unique throughout the system not in its course only.
+        */
+
+        // might be null (no rows found)
+        String lastID = fileManager.getLastRow(TableName.EXAM).get(ColumnName.EXAM_ID);
+
+        String newID;
+        try{
+            newID = String.valueOf(Integer.parseInt(lastID) + 1);
+        }catch(NumberFormatException e){
+            newID = "1";
+            System.out.println("That's the first Exam");
+        }
+
+        exam.setExam_ID(newID);
         fileManager.insertRow(TableName.EXAM, createExamMap(exam));
     }
 
@@ -53,7 +69,6 @@ public class ExamDAO {
     }
 
     private void populateExamFields(Exam exam, Map<ColumnName, String> examMap) throws IOException {
-
         exam.setExam_ID(examMap.get(ColumnName.EXAM_ID));
         exam.setExamName(examMap.get(ColumnName.EXAM_NAME));
         exam.setExamDuration(Long.parseLong(examMap.get(ColumnName.EXAM_DURATION)));
@@ -64,7 +79,6 @@ public class ExamDAO {
         exam.setCourseID(examMap.get(ColumnName.COURSE_ID));
     }
 
-    // A method to convert from string to Date
     private Date convertStringToDate(String stringDate) {
 
         String pattern = "EEE MMM dd HH:mm:ss zzz yyyy";
@@ -87,7 +101,7 @@ public class ExamDAO {
     }
 
     // Used in some functions that interacts with the CEMS File System (insertion, deletion, update)
-    private Map<ColumnName, String> createExamMap(Exam exam){
+    private Map<ColumnName, String> createExamMap(Exam exam) throws IOException {
         Map<ColumnName, String> newExam = new TreeMap<>();
         newExam.put(ColumnName.EXAM_ID, exam.getExam_ID());
         newExam.put(ColumnName.EXAM_NAME, exam.getExamName());
@@ -109,7 +123,4 @@ public class ExamDAO {
         }
         return examsList;
     }
-
-
-
 }
