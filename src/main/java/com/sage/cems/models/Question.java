@@ -8,6 +8,7 @@ public class Question {
     private String examID;
     private String statement;
     private String correctAnswer;
+    private String studentAnswer;
     private List<String> choices;
     private QuestionType questionType;
 
@@ -17,12 +18,13 @@ public class Question {
         this.statement = statement;
     }
 
-    public Question(int index, String examID, String statement, String correctAnswer, QuestionType questionType) {
+    public Question(int index, String examID, String statement, String correctAnswer, QuestionType questionType,String studentAnswer) {
         this.index = index;
         this.statement = statement;
         this.correctAnswer = correctAnswer;
         this.questionType = questionType;
         this.examID = examID;
+        this.studentAnswer = studentAnswer;
     }
     public Question(int index, String examID, String statement, String correctAnswer, List<String> choices, QuestionType questionType) {
         this.index = index;
@@ -31,6 +33,14 @@ public class Question {
         this.choices = choices;
         this.questionType = questionType;
         this.examID = examID;
+    }
+
+    public String getStudentAnswer() {
+        return studentAnswer;
+    }
+
+    public void setStudentAnswer(String studentAnswer) {
+        this.studentAnswer = studentAnswer;
     }
 
     public String getExamID() {

@@ -8,6 +8,8 @@ public class Grade {
     private String courseID;
     private String examID;
 
+    public Grade(){}
+
     public Grade(int mark, int fullMark, String studentID, String courseID, String examID) {
         this.mark = mark;
         this.fullMark = fullMark;
