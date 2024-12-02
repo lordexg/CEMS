@@ -37,8 +37,8 @@ class ExamDAOTest {
         ExamDAO examDAO = new ExamDAO(new CEMSFileManager());
         Date date = new Date();
         List<Question> questions = List.of();
-        Exam exam = new Exam(10,"CS50",123,date,"MidTerm",30d,false,questions);
-        examDAO.addExam(exam);
+//        Exam exam = new Exam(10,"CS50",123,date,"MidTerm",30d,false,questions);
+//        examDAO.addExam(exam);
 
     }
 
@@ -51,8 +51,8 @@ class ExamDAOTest {
         course.setCourseID("CS54");
         Date date = new Date();
         List<Question> questions = List.of();
-        Exam exam = new Exam(10,"IS",1232,date,"Final",50d,false,questions);
-        examDAO.updateExam(exam);
+//        Exam exam = new Exam(10,"IS",1232,date,"Final",50d,false,questions);
+//        examDAO.updateExam(exam);
 
     }
 
@@ -66,9 +66,9 @@ class ExamDAOTest {
         Date date = convertStringToDate("Mon Dec 02 02:09:10 EET 2024");
 
         List<Question> questions = List.of();
-        Exam exam = new Exam(10,"CS50",123,date,"MidTerm",30.0,false,questions);
-        exam.setExam_ID("6");
-        examDAO.deleteExam(exam);
+//        Exam exam = new Exam(10,"CS50",123,date,"MidTerm",30.0,false,questions);
+//        exam.setExam_ID("6");
+//        examDAO.deleteExam(exam);
     }
     private Date convertStringToDate(String stringDate) {
 

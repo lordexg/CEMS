@@ -76,6 +76,7 @@ public class ExamDAO {
         exam.setMark(Double.parseDouble(examMap.get(ColumnName.EXAM_FULL_MARK)));
         exam.setExamLength(Integer.parseInt(examMap.get(ColumnName.EXAM_LENGTH)));
         exam.setApproved(Boolean.parseBoolean(examMap.get(ColumnName.EXAM_IS_APPROVED)));
+        exam.setCompleted(Boolean.parseBoolean(examMap.get(ColumnName.EXAM_IS_COMPLETED)));
         exam.setCourseID(examMap.get(ColumnName.COURSE_ID));
     }
 
@@ -111,6 +112,7 @@ public class ExamDAO {
         //newExam.put(ColumnName.EXAM_QUESTIONS, questionDAO.getQuestions());
         newExam.put(ColumnName.EXAM_START_DATE, String.valueOf(exam.getExamStartDate()));
         newExam.put(ColumnName.EXAM_IS_APPROVED, String.valueOf(exam.isApproved()));
+        newExam.put(ColumnName.EXAM_IS_COMPLETED, String.valueOf(exam.isCompleted()));
         newExam.put(ColumnName.COURSE_ID, String.valueOf(exam.getCourseID()));
         return newExam;
     }

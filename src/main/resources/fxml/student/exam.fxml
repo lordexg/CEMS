@@ -13,5 +13,16 @@
    <ImageView fx:id="examImage" fitHeight="121.0" fitWidth="222.0" layoutX="3.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="21.0">
       <Image url="@../../images/exam-image.jpg" />
    </ImageView>
-   <Label fx:id="examName" layoutX="14.0" layoutY="150.0" prefHeight="84.0" prefWidth="230.0" text="Mid-Term Spring 2024" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   <AnchorPane layoutX="4.0" layoutY="145.0" prefHeight="59.0" prefWidth="224.0" styleClass="data"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="examName" prefHeight="38.0" prefWidth="228.0" text="Mid-Term Spring 2024" wrapText="true"
+             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+      <Label fx:id="examDate" layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="228.0" styleClass="info"
+             text="20-December-2024" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+             AnchorPane.rightAnchor="0.0"/>
+      <ImageView fx:id="completedMark" fitHeight="17.0" fitWidth="17.0" layoutX="191.0" layoutY="20.0"
+                 pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0">
+         <Image url="@../../images/Done.png"/>
+      </ImageView>
+   </AnchorPane>
 </AnchorPane>

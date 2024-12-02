@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -15,30 +16,27 @@
          <Font name="Segoe UI" size="24.0" />
       </font>
    </Label>
-   <Label layoutX="59.0" layoutY="80.0" prefHeight="27.0" prefWidth="434.0" styleClass="header-p" text="Here is all the exams your lecturer assigned to this course." AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="43.0">
+   <Label layoutX="40.0" layoutY="45.0" prefHeight="27.0" prefWidth="434.0" styleClass="header-p" text="Here is all the exams your lecturer assigned to this course." AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.0">
       <font>
          <Font name="Segoe UI" size="12.0" />
       </font>
    </Label>
    <StackPane layoutY="80.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-      <children>
-         <Label fx:id="noExamsMessage" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.24" prefHeight="284.0" prefWidth="586.0" style="-fx-padding: 20;" styleClass="header-label" text="There are no exams assigned to this course yet" textAlignment="CENTER" wrapText="true">
-            <font>
-               <Font name="Segoe UI" size="24.0" />
-            </font>
-            <graphic>
-               <ImageView fitHeight="100.0" fitWidth="100.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../../images/Unavailable.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Label>
-      </children>
+      <Label fx:id="noExamsMessage" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.24" prefHeight="284.0" prefWidth="586.0" style="-fx-padding: 20;" styleClass="header-label" text="There are no exams assigned to this course yet" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Segoe UI" size="24.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../../images/Unavailable.png" />
+            </ImageView>
+         </graphic>
+      </Label>
    </StackPane>
+   <ChoiceBox fx:id="examsChoiceBox" focusTraversable="false" layoutX="354.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="97.0" AnchorPane.leftAnchor="354.0" />
    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="77.0" layoutY="135.0" prefHeight="485.0" prefWidth="995.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
       <TilePane fx:id="examsPane" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
 
-      </TilePane>
+         </TilePane>
    </ScrollPane>
 </AnchorPane>

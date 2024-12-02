@@ -41,7 +41,11 @@
     -fx-background-radius: 7;
     -fx-border-radius: 7;
 }
-
+.course .data {
+    -fx-background-color: #EAEAEA;
+    -fx-background-radius: 0  0 8 8;
+    -fx-border-radius: 0  0 8 8;
+}
 .course .label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-background-color: #EAEAEA;
@@ -55,4 +59,9 @@
 }
 .course:hover {
     -fx-border-color: #3282B8;
+}
+.course .info {
+    -fx-text-fill: rgba(0, 0, 0, 0.5);
+    -fx-padding: 0 0 10 15;
+    -fx-font-size: 10;
 }

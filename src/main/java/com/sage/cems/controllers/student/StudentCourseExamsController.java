@@ -2,25 +2,39 @@ package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StudentCourseExamsController {
+public class StudentCourseExamsController implements Initializable {
     public Label header;
     public Label noExamsMessage;
     public TilePane examsPane;
+    public ChoiceBox<ExamsViewType> examsChoiceBox;
 
     private Course course = null;
 
     public void setCourse(Course course) {
         this.course = course;
         loadExams();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<ExamsViewType> searchTypes = FXCollections.observableList(List.of(ExamsViewType.values()));
+        examsChoiceBox.setItems(searchTypes);
+        examsChoiceBox.setValue(ExamsViewType.ALL);
     }
 
     private void loadExams() {
