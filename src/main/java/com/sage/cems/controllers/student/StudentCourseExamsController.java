@@ -2,6 +2,7 @@ package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
+import com.sage.cems.views.ViewFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +28,7 @@ public class StudentCourseExamsController implements Initializable {
 
     public void setCourse(Course course) {
         this.course = course;
-        loadExams();
+        loadExams(ExamsViewType.ALL);
     }
 
     @Override
@@ -35,9 +36,13 @@ public class StudentCourseExamsController implements Initializable {
         ObservableList<ExamsViewType> searchTypes = FXCollections.observableList(List.of(ExamsViewType.values()));
         examsChoiceBox.setItems(searchTypes);
         examsChoiceBox.setValue(ExamsViewType.ALL);
+        ViewFactory.getInstance().backStackSizeProperty().addListener(observable -> {
+            examsChoiceBox.setValue(ExamsViewType.ALL);
+        });
+        examsChoiceBox.valueProperty().addListener((obsVal, oldVal, newVal) -> loadExams(newVal));
     }
 
-    private void loadExams() {
+    private void loadExams(ExamsViewType examsViewType) {
         if (course == null)
             return;
         header.setText(course.getCourseName() + " " + "Exams");
@@ -51,7 +56,15 @@ public class StudentCourseExamsController implements Initializable {
             return;
         }
         for (Exam exam : exams) {
-            examsPane.getChildren().add(generateExamView(exam));
+            boolean shouldAdd = switch (examsViewType) {
+                case ALL -> true;
+                case UPCOMING -> !exam.isCompleted();
+                case COMPLETED -> exam.isCompleted();
+            };
+
+            if (shouldAdd) {
+                examsPane.getChildren().add(generateExamView(exam));
+            }
         }
     }
 
@@ -66,5 +79,4 @@ public class StudentCourseExamsController implements Initializable {
         }
         return examView;
     }
-
 }
