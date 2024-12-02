@@ -28,6 +28,7 @@ public enum ColumnName {
     EXAM_START_DATE,
     EXAM_FULL_MARK,
     EXAM_IS_APPROVED,
+    Exam_IS_COMPLETED,
     EXAM_QUESTIONS,
     // Solved exams table
     SOLVED_EXAM_ANSWERS,
