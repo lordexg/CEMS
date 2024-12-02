@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Exam {
     private int examLength;
-    private String exam_ID;
+    private String exam_ID; // unique throughout the system not in its course only
     private String courseID;
     private long examDuration;
     private Date examStartDate;
@@ -17,7 +17,7 @@ public class Exam {
     public Exam(){}
 
 
-    public Exam(int examLength, String exam_ID, String courseID, long examDuration, Date examStartDate, String examName,
+    public Exam(int examLength, String courseID, long examDuration, Date examStartDate, String examName,
                 Double mark, boolean approved, List<Question> questions) {
         this.examLength = examLength;
         this.examDuration = examDuration;
@@ -26,7 +26,6 @@ public class Exam {
         this.mark = mark;
         this.approved = approved;
         this.questions = questions;
-        this.exam_ID = exam_ID;
         this.courseID = courseID;
     }
 

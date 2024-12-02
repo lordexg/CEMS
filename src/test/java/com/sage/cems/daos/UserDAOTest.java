@@ -12,7 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserDAOTest {
 
     @Test
-    void updateUser() {
+    void updateUser() throws IOException {
+        UserDAO userDAO = new UserDAO(new CEMSFileManager());
+        User user = new User();
+        user.setPassword("awwwa");
+        user.setRole(Role.valueOf("ADMIN"));
+        user.setID("2");
+        userDAO.updateUser(user);
     }
 
     @Test
@@ -23,13 +29,18 @@ class UserDAOTest {
     void addUser() throws IOException {
         UserDAO userDAO = new UserDAO(new CEMSFileManager());
         User user = new User();
-        user.setPassword("123");
-        user.setEmail("ahmed@aosf");
-        user.setRole(Role.valueOf("STUDENT"));
+        user.setPassword("aa");
+        user.setRole(Role.valueOf("ADMIN"));
         userDAO.addUser(user);
     }
 
     @Test
-    void deleteUser() {
+    void deleteUser() throws IOException {
+        UserDAO userDAO = new UserDAO(new CEMSFileManager());
+        User user = new User();
+        user.setPassword("aa");
+        user.setRole(Role.valueOf("ADMIN"));
+        user.setID("2");
+        userDAO.deleteUser(user);
     }
 }

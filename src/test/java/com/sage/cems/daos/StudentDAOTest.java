@@ -45,7 +45,7 @@ class StudentDAOTest {
     @Test
     void newTest() throws IOException {
         StudentDAO studentDAO = new StudentDAO(new CEMSFileManager());
-        Student student = studentDAO.getAllStudents("10").getFirst();
+        Student student = studentDAO.getAllStudents("1").getFirst();
 
         for (Exam exam : student.getCourses().getFirst().getExams()) {
             System.out.println(exam.getExamName());
