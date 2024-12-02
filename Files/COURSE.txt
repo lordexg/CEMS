@@ -1,0 +1,5 @@
+COURSE_ID	COURSE_NAME
+CS50	Intorduction to computer science
+IS101	Information Systems
+DC122	Data Comunication
+PL222	Programmin Language 2

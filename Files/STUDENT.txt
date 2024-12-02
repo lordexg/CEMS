@@ -1,0 +1,7 @@
+STUDENT_ID	STUDENT_FIRST_NAME	STUDENT_LAST_NAME	STUDENT_EMAIL	STUDENT_PHONE_NUMBER
+10	Ahmed	Kola	qf@drdd.com	111111111
+1	Abdo	Kola	cv@dcvd.com	777777777
+3	Ali	Kola	hjf@dhjd.com	666666666
+12	Alaa	Kola	aaf@daad.com	555555555
+7	Abdelrhman	Mohsen	dfd@dfdf.com	44
+11	Ahmed	Tharwat	dfd@dfdf.com	02302321233
