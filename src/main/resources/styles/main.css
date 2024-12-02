@@ -108,3 +108,35 @@
 .choice-box .menu-item:focused {
     -fx-background-color: #3282B8;
 }
+.info-icon {
+    -fx-border-width: 1;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-padding: 8;
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+}
+
+.info-header {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: rgba(0, 0, 0, 0.4);
+    -fx-font-size: 16;
+    -fx-padding: 0;
+}
+.info-text {
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-text-fill: #3282B8;
+    -fx-font-size: 16;
+    -fx-padding: 0;
+}
+.warning {
+    -fx-background-color: rgb(255, 229, 229);
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(211, 76, 76);
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: rgb(211, 76, 76);
+    -fx-font-size: 18;
+    -fx-padding: 10;
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+}

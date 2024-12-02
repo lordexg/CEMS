@@ -28,7 +28,7 @@ public class StudentCourseExamsController implements Initializable {
 
     public void setCourse(Course course) {
         this.course = course;
-        loadExams(ExamsViewType.ALL);
+        loadExams(examsChoiceBox.valueProperty().get());
     }
 
     @Override
@@ -36,9 +36,6 @@ public class StudentCourseExamsController implements Initializable {
         ObservableList<ExamsViewType> searchTypes = FXCollections.observableList(List.of(ExamsViewType.values()));
         examsChoiceBox.setItems(searchTypes);
         examsChoiceBox.setValue(ExamsViewType.ALL);
-        ViewFactory.getInstance().backStackSizeProperty().addListener(observable -> {
-            examsChoiceBox.setValue(ExamsViewType.ALL);
-        });
         examsChoiceBox.valueProperty().addListener((obsVal, oldVal, newVal) -> loadExams(newVal));
     }
 

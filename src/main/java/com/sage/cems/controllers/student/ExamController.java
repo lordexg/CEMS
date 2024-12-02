@@ -32,7 +32,6 @@ public class ExamController implements Initializable {
         examName.setText(exam.getExamName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
         examDate.setText(dateFormat.format(exam.getExamStartDate()));
-//        System.out.println(exam.isCompleted());
         completedMark.setVisible(exam.isCompleted());
     }
 
@@ -42,6 +41,10 @@ public class ExamController implements Initializable {
     }
 
     private void onExamClicked() {
-
+        ViewFactory.getInstance().getBackStack().push(View.STUDENT_COURSE_EXAMS);
+        ViewFactory.getInstance().backStackSizeProperty().set(ViewFactory.getInstance().getBackStack().size());
+        ViewFactory.getInstance().getCurrentViewProperty().set(View.STUDENT_EXAM);
+        StudentExamController controller = (StudentExamController) ViewFactory.getInstance().getController(View.STUDENT_EXAM);
+        controller.setExam(exam);
     }
 }
