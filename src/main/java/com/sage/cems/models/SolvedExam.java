@@ -8,6 +8,8 @@ public class SolvedExam {
     private String examID;
     private List<String> solvedExamAnswers;
 
+    public SolvedExam(){}
+
     public SolvedExam(String studentID, String courseID, String examID, List<String> solvedExamAnswers) {
         this.studentID = studentID;
         this.courseID = courseID;

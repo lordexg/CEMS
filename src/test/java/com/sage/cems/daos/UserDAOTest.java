@@ -29,8 +29,8 @@ class UserDAOTest {
     void addUser() throws IOException {
         UserDAO userDAO = new UserDAO(new CEMSFileManager());
         User user = new User();
-        user.setPassword("aa");
-        user.setRole(Role.valueOf("ADMIN"));
+        user.setPassword("a");
+        user.setRole(Role.valueOf("STUDENT"));
         userDAO.addUser(user);
     }
 

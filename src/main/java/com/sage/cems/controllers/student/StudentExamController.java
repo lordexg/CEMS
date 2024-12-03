@@ -35,7 +35,7 @@ public class StudentExamController {
         examCourseName.setText(exam.getCourseID());
         examDuration.setText(TimeConversion.formatMilliseconds(exam.getExamDuration()));
         examNoOfQuestions.setText(String.valueOf(exam.getExamLength()));
-        examTotalMarks.setText(String.valueOf((int)exam.getMark()));
+        examTotalMarks.setText(String.valueOf((int)exam.getFullMark()));
         startCountDownTimer();
     }
 

@@ -6,11 +6,8 @@ import com.sage.cems.util.CEMSFileManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class QuestionDAOTest {
 
@@ -28,7 +25,7 @@ class QuestionDAOTest {
         QuestionDAO questionDAO = new QuestionDAO(new CEMSFileManager());
         List<String> choices = Arrays.asList("apple", "banana", "cherry");
         Question question = new Question();
-        question.setIndex(2);
+        question.setQuestionID("2");
         question.setExamID("1");
         question.setStatement("test?");
         question.setCorrectAnswer("test");
@@ -42,7 +39,7 @@ class QuestionDAOTest {
         QuestionDAO questionDAO = new QuestionDAO(new CEMSFileManager());
         List<String> choices = Arrays.asList("apple", "banana", "cherry");
         Question question = new Question();
-        question.setIndex(2);
+        question.setQuestionID("1");
         question.setExamID("1");
         question.setStatement("test?");
         question.setCorrectAnswer("tesWWWWWWWWWWWWWWt");
@@ -55,7 +52,7 @@ class QuestionDAOTest {
         QuestionDAO questionDAO = new QuestionDAO(new CEMSFileManager());
         List<String> choices = Arrays.asList("apple", "banana", "cherry");
         Question question = new Question();
-        question.setIndex(2);
+        question.setQuestionID("1");
         question.setExamID("1");
         question.setStatement("test?");
         question.setCorrectAnswer("test");

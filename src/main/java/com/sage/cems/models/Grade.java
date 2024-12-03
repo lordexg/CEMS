@@ -2,20 +2,28 @@ package com.sage.cems.models;
 
 public class Grade {
 
+    private String gradeID;
     private int mark;
-    private int fullMark;
     private String studentID;
     private String courseID;
     private String examID;
 
     public Grade(){}
 
-    public Grade(int mark, int fullMark, String studentID, String courseID, String examID) {
+    public Grade(int mark, String studentID, String courseID, String examID, String gradeID) {
+        this.gradeID = gradeID;
         this.mark = mark;
-        this.fullMark = fullMark;
         this.studentID = studentID;
         this.courseID = courseID;
         this.examID = examID;
+    }
+
+    public String getGradeID() {
+        return gradeID;
+    }
+
+    public void setGradeID(String gradeID) {
+        this.gradeID = gradeID;
     }
 
     public String getStudentID() {
@@ -48,37 +56,6 @@ public class Grade {
 
     public void setMark(int mark) {
         this.mark = mark;
-    }
-
-    public int getFullMark() {
-        return fullMark;
-    }
-
-    public void setFullMark(int fullMark) {
-        this.fullMark = fullMark;
-    }
-
-    public String calculateGrade(int mark, int fullMark) {
-        if (mark < 0 || fullMark <= 0 || mark > fullMark) {
-            return "Invalid input";
-        }
-
-        double percentage = ((double) mark / fullMark) * 100;
-
-        if (percentage >= 90) {
-            return "A";
-        } else if (percentage >= 80) {
-            return "B";
-        } else if (percentage >= 70) {
-            return "C";
-        } else if (percentage >= 60) {
-            return "D";
-        } else if (percentage >= 50) {
-            return "E";
-        } else {
-            return "F";
-        }
-
     }
 
 

@@ -2,10 +2,9 @@ package com.sage.cems.daos;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import com.sage.cems.models.Course;
+
 import com.sage.cems.models.Exam;
-import com.sage.cems.models.Student;
-import com.sage.cems.models.user.Role;
+import com.sage.cems.models.Question;
 import com.sage.cems.util.ColumnName;
 import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
@@ -16,9 +15,11 @@ import java.util.*;
 public class ExamDAO {
 
     private final FileManager fileManager;
+    private final QuestionDAO questionDAO;
 
     public ExamDAO(FileManager fileManager) {
         this.fileManager = fileManager;
+        this.questionDAO = new QuestionDAO(fileManager);
     }
 
     public List<Exam> getAllExams(String keyWord) throws IOException {
@@ -73,11 +74,19 @@ public class ExamDAO {
         exam.setExamName(examMap.get(ColumnName.EXAM_NAME));
         exam.setExamDuration(Long.parseLong(examMap.get(ColumnName.EXAM_DURATION)));
         exam.setExamStartDate(convertStringToDate(examMap.get(ColumnName.EXAM_START_DATE)));
-        exam.setMark(Double.parseDouble(examMap.get(ColumnName.EXAM_FULL_MARK)));
+        exam.setFullMark(Double.parseDouble(examMap.get(ColumnName.EXAM_FULL_MARK)));
         exam.setExamLength(Integer.parseInt(examMap.get(ColumnName.EXAM_LENGTH)));
         exam.setApproved(Boolean.parseBoolean(examMap.get(ColumnName.EXAM_IS_APPROVED)));
         exam.setCompleted(Boolean.parseBoolean(examMap.get(ColumnName.EXAM_IS_COMPLETED)));
         exam.setCourseID(examMap.get(ColumnName.COURSE_ID));
+
+        List<Question> questions;
+        try {
+            questions = questionDAO.getQuestions(exam.getExam_ID());
+        } catch (Exception e) {
+            questions = new ArrayList<>();
+        }
+        exam.setQuestions(questions);
     }
 
     private Date convertStringToDate(String stringDate) {
@@ -107,7 +116,7 @@ public class ExamDAO {
         newExam.put(ColumnName.EXAM_ID, exam.getExam_ID());
         newExam.put(ColumnName.EXAM_NAME, exam.getExamName());
         newExam.put(ColumnName.EXAM_LENGTH, String.valueOf(exam.getExamLength()));
-        newExam.put(ColumnName.EXAM_FULL_MARK, String.valueOf(exam.getMark()));
+        newExam.put(ColumnName.EXAM_FULL_MARK, String.valueOf(exam.getFullMark()));
         newExam.put(ColumnName.EXAM_DURATION, String.valueOf(exam.getExamDuration()));
         //newExam.put(ColumnName.EXAM_QUESTIONS, questionDAO.getQuestions());
         newExam.put(ColumnName.EXAM_START_DATE, String.valueOf(exam.getExamStartDate()));

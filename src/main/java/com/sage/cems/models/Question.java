@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Question {
 
-    private int index;
+    private String QuestionID;
     private String examID;
     private String statement;
     private String correctAnswer;
@@ -13,21 +13,21 @@ public class Question {
     private QuestionType questionType;
 
     public Question(){}
-    public Question(int index, String statement) {
-        this.index = index;
+    public Question(String QuestionID, String statement) {
+        this.QuestionID = QuestionID;
         this.statement = statement;
     }
 
-    public Question(int index, String examID, String statement, String correctAnswer, QuestionType questionType,String studentAnswer) {
-        this.index = index;
+    public Question(String QuestionID, String examID, String statement, String correctAnswer, QuestionType questionType, String studentAnswer) {
+        this.QuestionID = QuestionID;
         this.statement = statement;
         this.correctAnswer = correctAnswer;
         this.questionType = questionType;
         this.examID = examID;
         this.studentAnswer = studentAnswer;
     }
-    public Question(int index, String examID, String statement, String correctAnswer, List<String> choices, QuestionType questionType) {
-        this.index = index;
+    public Question(String QuestionID, String examID, String statement, String correctAnswer, List<String> choices, QuestionType questionType) {
+        this.QuestionID = QuestionID;
         this.statement = statement;
         this.correctAnswer = correctAnswer;
         this.choices = choices;
@@ -48,8 +48,8 @@ public class Question {
     }
 
 
-    public int getIndex() {
-        return index;
+    public String getQuestionID() {
+        return QuestionID;
     }
 
     public String getStatement() {
@@ -68,8 +68,8 @@ public class Question {
         return questionType;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setQuestionID(String questionID) {
+        this.QuestionID = questionID;
     }
 
     public void setExamID(String examID) {

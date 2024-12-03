@@ -1,3 +1,4 @@
+/*
 package com.sage.cems.models;
 
 public class TrueFalse extends Question{
@@ -34,3 +35,4 @@ public class TrueFalse extends Question{
         this.studentAnswer = studentAnswer;
     }
 }
+*/

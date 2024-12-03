@@ -75,8 +75,9 @@ public class QuestionDAO {
         newQuestion.put(ColumnName.EXAM_ID, question.getExamID());
         newQuestion.put(ColumnName.QUESTION_STATEMENT, question.getStatement());
         newQuestion.put(ColumnName.QUESTION_TYPE, question.getQuestionType().name());
-        newQuestion.put(ColumnName.QUESTION_ID, Integer.toString(question.getIndex()));
+        newQuestion.put(ColumnName.QUESTION_ID, question.getQuestionID());
         newQuestion.put(ColumnName.QUESTION_CORRECT_ANSWER, question.getCorrectAnswer());
+        //newQuestion.put(ColumnName.QUESTION_STUDENT_ANSWER, question.getStudentAnswer());
 
         return newQuestion;
     }
@@ -91,11 +92,12 @@ public class QuestionDAO {
 
     private void populateQuestionFields(Question question, Map<ColumnName, String> questionMap) throws IOException {
         question.setExamID(questionMap.get(ColumnName.EXAM_ID));
-        question.setIndex(Integer.parseInt(questionMap.get(ColumnName.QUESTION_ID)));
+        question.setQuestionID(String.valueOf(questionMap.get(ColumnName.QUESTION_ID)));
         question.setQuestionType(QuestionType.valueOf(questionMap.get(ColumnName.QUESTION_TYPE)));
         question.setStatement(questionMap.get(ColumnName.QUESTION_STATEMENT));
         question.setChoices(Collections.singletonList(questionMap.get(ColumnName.QUESTION_CHOICES)));
         question.setCorrectAnswer(questionMap.get(ColumnName.QUESTION_CORRECT_ANSWER));
+        //question.setStudentAnswer(questionMap.get(ColumnName.QUESTION_STUDENT_ANSWER));
     }
 
 }

@@ -10,7 +10,7 @@ public class Exam {
     private long examDuration;
     private Date examStartDate;
     private String examName;
-    private Double mark;
+    private Double fullMark;
     private boolean approved;
     private boolean completed;
     private List<Question> questions;
@@ -19,12 +19,12 @@ public class Exam {
 
 
     public Exam(int examLength, String courseID, long examDuration, Date examStartDate, String examName,
-                Double mark, boolean approved, List<Question> questions, boolean completed) {
+                Double fullMark, boolean approved, List<Question> questions, boolean completed) {
         this.examLength = examLength;
         this.examDuration = examDuration;
         this.examStartDate = examStartDate;
         this.examName = examName;
-        this.mark = mark;
+        this.fullMark = fullMark;
         this.approved = approved;
         this.questions = questions;
         this.courseID = courseID;
@@ -79,12 +79,12 @@ public class Exam {
         this.examName = examName;
     }
 
-    public double getMark() {
-        return mark;
+    public double getFullMark() {
+        return fullMark;
     }
 
-    public void setMark(Double mark) {
-        this.mark = mark;
+    public void setFullMark(Double fullMark) {
+        this.fullMark = fullMark;
     }
 
     public boolean isApproved() {
