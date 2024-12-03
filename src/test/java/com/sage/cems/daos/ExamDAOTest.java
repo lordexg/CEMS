@@ -4,6 +4,7 @@ import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
 import com.sage.cems.models.Question;
 import com.sage.cems.util.CEMSFileManager;
+import com.sage.cems.util.TimeConversion;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -47,19 +48,20 @@ class ExamDAOTest {
     @Test
     void updateExam() throws IOException {
         ExamDAO examDAO = new ExamDAO(new CEMSFileManager());
-        Date newDate = Date.from(LocalDateTime.of(2024, 12, 3, 6, 57, 0)
+        Date newDate = Date.from(LocalDateTime.of(2024, 12, 3, 9, 43, 30)
                 .atZone(ZoneId.systemDefault())
                 .toInstant());
         Exam exam = null;
-        List<Exam> exams = examDAO.getAllExams("4");
+        List<Exam> exams = examDAO.getAllExams("1");
         for (Exam e :exams) {
-            if (e.getExam_ID().equals("4")) {
+            if (e.getExam_ID().equals("1")) {
                 exam = e;
                 break;
             }
         }
         assert exam != null;
         exam.setExamStartDate(newDate);
+        exam.setExamDuration(TimeConversion.secondsToMilliseconds(30));
         examDAO.updateExam(exam);
     }
 

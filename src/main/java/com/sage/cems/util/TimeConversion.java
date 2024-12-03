@@ -1,12 +1,16 @@
 package com.sage.cems.util;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 public class TimeConversion {
-    public static long millisecondsToMinutes(long milliseconds) {
-        return milliseconds / (1000 * 60);
+    public static long millisecondsToSeconds(long milliseconds) {
+        return milliseconds / 1000;
     }
 
-    public static long minutesToMilliseconds(long minutes) {
-        return minutes * 60 * 1000;
+    public static long secondsToMilliseconds(long seconds) {
+        return seconds * 1000;
     }
 
     public static String formatMilliseconds(long milliseconds) {
@@ -29,5 +33,20 @@ public class TimeConversion {
                 return String.format("%.2f Hour%s", hours, hours > 1 ? "s" : "");
             }
         }
+    }
+
+    public static long calculateRemainingTimeInSeconds(Date targetDate) {
+        Instant now = Instant.now();
+        Instant target = targetDate.toInstant();
+        return ChronoUnit.SECONDS.between(now, target);
+    }
+
+    public static String formatTime(long totalSeconds) {
+        long days = totalSeconds / (24 * 3600);
+        long hours = (totalSeconds % (24 * 3600)) / 3600;
+        long minutes = (totalSeconds % 3600) / 60;
+        long seconds = totalSeconds % 60;
+
+        return String.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds);
     }
 }

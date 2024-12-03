@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane minHeight="-Infinity" prefHeight="533.0" prefWidth="966.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.student.StudentExamController">
@@ -22,96 +23,100 @@
       </font>
    </Label>
    <AnchorPane layoutX="40.0" layoutY="95.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="95.0">
-      <children>
-         <TilePane hgap="80.0" prefHeight="50.0" prefWidth="994.0" vgap="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-               <AnchorPane prefHeight="50.0" prefWidth="213.0">
-                  <AnchorPane layoutX="43.0" prefHeight="50.0" prefWidth="65.0" AnchorPane.leftAnchor="54.0">
-                     <Label layoutY="1.0" prefHeight="25.0" prefWidth="65.0" styleClass="info-header" text="Course" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="examCourseName" layoutY="25.0" prefHeight="25.0" prefWidth="131.0" styleClass="info-text" text="CS50" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                  </AnchorPane>
-                  <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
-                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../../images/course-icon.png" />
-                     </ImageView>
-                  </StackPane>
-               </AnchorPane>
-               <AnchorPane prefHeight="50.0" prefWidth="238.0">
-                  <AnchorPane layoutX="43.0" prefHeight="50.0" prefWidth="109.0" AnchorPane.leftAnchor="54.0">
-                     <Label layoutY="1.0" prefHeight="25.0" prefWidth="98.0" styleClass="info-header" text="Duration" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="examDuration" layoutY="25.0" prefHeight="25.0" prefWidth="141.0" styleClass="info-text" text="30 Min" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                  </AnchorPane>
-                  <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
-                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../../images/Time.png" />
-                     </ImageView>
-                  </StackPane>
-               </AnchorPane>
-               <AnchorPane prefHeight="50.0" prefWidth="231.0">
-                  <AnchorPane layoutX="43.0" prefHeight="50.0" prefWidth="128.0" AnchorPane.leftAnchor="54.0">
-                     <Label layoutY="1.0" prefHeight="25.0" prefWidth="124.0" styleClass="info-header" text="No. of Question" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="examNoOfQuestions" layoutY="25.0" prefHeight="25.0" prefWidth="133.0" styleClass="info-text" text="20" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                  </AnchorPane>
-                  <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
-                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../../images/Hashtag.png" />
-                     </ImageView>
-                  </StackPane>
-               </AnchorPane>
-               <AnchorPane prefHeight="50.0" prefWidth="216.0">
-                  <AnchorPane layoutX="43.0" AnchorPane.leftAnchor="54.0">
-                     <Label layoutY="1.0" prefHeight="25.0" prefWidth="98.0" styleClass="info-header" text="Total Marks" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="examTotalMarks" layoutY="25.0" prefHeight="25.0" prefWidth="85.0" styleClass="info-text" text="20" AnchorPane.leftAnchor="0.0">
-                        <font>
-                           <Font name="Segoe UI" size="24.0" />
-                        </font>
-                     </Label>
-                  </AnchorPane>
-                  <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
-                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../../images/Exam-mark.png" />
-                     </ImageView>
-                  </StackPane>
-               </AnchorPane>
-            </children>
-         </TilePane>
-         <StackPane layoutY="205.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <children>
-               <Button mnemonicParsing="false" styleClass="main-btn" text="START">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Button>
-            </children>
-         </StackPane>
-      </children>
+      <TilePane hgap="80.0" prefHeight="50.0" prefWidth="994.0" vgap="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <AnchorPane prefHeight="50.0" prefWidth="213.0">
+            <AnchorPane layoutX="43.0" prefHeight="50.0" prefWidth="65.0" AnchorPane.leftAnchor="54.0">
+               <Label layoutY="1.0" prefHeight="25.0" prefWidth="65.0" styleClass="info-header" text="Course" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+               <Label fx:id="examCourseName" layoutY="25.0" prefHeight="25.0" prefWidth="131.0" styleClass="info-text" text="CS50" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+            </AnchorPane>
+            <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../images/course-icon.png" />
+               </ImageView>
+            </StackPane>
+         </AnchorPane>
+         <AnchorPane prefHeight="50.0" prefWidth="238.0">
+            <AnchorPane layoutX="43.0" prefHeight="50.0" prefWidth="109.0" AnchorPane.leftAnchor="54.0">
+               <Label layoutY="1.0" prefHeight="25.0" prefWidth="98.0" styleClass="info-header" text="Duration" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+               <Label fx:id="examDuration" layoutY="25.0" prefHeight="25.0" prefWidth="141.0" styleClass="info-text" text="30 Min" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+            </AnchorPane>
+            <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../images/Time.png" />
+               </ImageView>
+            </StackPane>
+         </AnchorPane>
+         <AnchorPane prefHeight="50.0" prefWidth="231.0">
+            <AnchorPane layoutX="43.0" prefHeight="50.0" prefWidth="128.0" AnchorPane.leftAnchor="54.0">
+               <Label layoutY="1.0" prefHeight="25.0" prefWidth="124.0" styleClass="info-header" text="No. of Question" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+               <Label fx:id="examNoOfQuestions" layoutY="25.0" prefHeight="25.0" prefWidth="133.0" styleClass="info-text" text="20" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+            </AnchorPane>
+            <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../images/Hashtag.png" />
+               </ImageView>
+            </StackPane>
+         </AnchorPane>
+         <AnchorPane prefHeight="50.0" prefWidth="216.0">
+            <AnchorPane layoutX="43.0" AnchorPane.leftAnchor="54.0">
+               <Label layoutY="1.0" prefHeight="25.0" prefWidth="98.0" styleClass="info-header" text="Total Marks" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+               <Label fx:id="examTotalMarks" layoutY="25.0" prefHeight="25.0" prefWidth="85.0" styleClass="info-text" text="20" AnchorPane.leftAnchor="0.0">
+                  <font>
+                     <Font name="Segoe UI" size="24.0" />
+                  </font>
+               </Label>
+            </AnchorPane>
+            <StackPane layoutY="5.0" styleClass="info-icon" AnchorPane.leftAnchor="0.0">
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../images/Exam-mark.png" />
+               </ImageView>
+            </StackPane>
+         </AnchorPane>
+      </TilePane>
+      <StackPane layoutY="205.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <Button fx:id="startExamButton" mnemonicParsing="false" styleClass="main-btn" text="START">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+      </StackPane>
+      <StackPane AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <AnchorPane maxWidth="-Infinity" styleClass="timer">
+            <VBox layoutX="22.0" layoutY="42.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="timerHeader" alignment="CENTER" prefHeight="16.0" prefWidth="331.0" text="YOU CAN START THE EXAM AFTER" />
+                  <Label fx:id="countdownLabel" alignment="CENTER" prefHeight="38.0" prefWidth="331.0" text="You can start the exam after" visible="false" />
+               </children>
+            </VBox>
+         </AnchorPane>
+      </StackPane>
    </AnchorPane>
 </AnchorPane>

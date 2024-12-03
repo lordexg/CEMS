@@ -140,3 +140,17 @@
     -fx-background-radius: 7;
     -fx-border-radius: 7;
 }
+.timer {
+    -fx-background-color: #EAEAEA;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+    -fx-padding: 20 10;
+}
+
+.timer .label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: gray;
+    -fx-font-size: 18;
+}

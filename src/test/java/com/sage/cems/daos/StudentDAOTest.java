@@ -46,9 +46,11 @@ class StudentDAOTest {
     void newTest() throws IOException {
         StudentDAO studentDAO = new StudentDAO(new CEMSFileManager());
         Student student = studentDAO.getAllStudents("1").getFirst();
+        boolean test = student.getCourses().getFirst().getExams().getFirst().getQuestions().getFirst().getChoices().getFirst().equals("حشائش السافانا");
+//        for (Exam exam : student.getCourses().getFirst().getExams()) {
+//            System.out.println(exam.getExamName());
+//        }
 
-        for (Exam exam : student.getCourses().getFirst().getExams()) {
-            System.out.println(exam.getExamName());
-        }
+
     }
 }
