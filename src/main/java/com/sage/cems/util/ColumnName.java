@@ -1,6 +1,9 @@
 package com.sage.cems.util;
 
 public enum ColumnName {
+    GRADE_ID,
+    QUESTION_ID,
+    EXAM_ID,
     // Student table
     STUDENT_ID,
     STUDENT_FIRST_NAME,
@@ -21,7 +24,6 @@ public enum ColumnName {
     COURSE_ID,
     COURSE_NAME,
     // Exam table
-    EXAM_ID,
     EXAM_NAME,
     EXAM_LENGTH,
     EXAM_DURATION,
@@ -33,7 +35,6 @@ public enum ColumnName {
     // Solved exams table
     SOLVED_EXAM_ANSWERS,
     // Questions
-    QUESTION_INDEX,
     QUESTION_STATEMENT,
     QUESTION_CORRECT_ANSWER,
     QUESTION_TYPE,

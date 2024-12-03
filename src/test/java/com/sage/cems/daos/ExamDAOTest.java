@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -45,15 +47,20 @@ class ExamDAOTest {
     @Test
     void updateExam() throws IOException {
         ExamDAO examDAO = new ExamDAO(new CEMSFileManager());
-
-        Course course = new Course();
-        course.setCourseName("computer science");
-        course.setCourseID("CS54");
-        Date date = new Date();
-        List<Question> questions = List.of();
-//        Exam exam = new Exam(10,"IS",1232,date,"Final",50d,false,questions);
-//        examDAO.updateExam(exam);
-
+        Date newDate = Date.from(LocalDateTime.of(2024, 12, 3, 6, 57, 0)
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+        Exam exam = null;
+        List<Exam> exams = examDAO.getAllExams("4");
+        for (Exam e :exams) {
+            if (e.getExam_ID().equals("4")) {
+                exam = e;
+                break;
+            }
+        }
+        assert exam != null;
+        exam.setExamStartDate(newDate);
+        examDAO.updateExam(exam);
     }
 
     @Test
