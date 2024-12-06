@@ -1,12 +1,10 @@
 package com.sage.cems.controllers.student;
 
-import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
 import com.sage.cems.views.View;
 import com.sage.cems.views.ViewFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -22,13 +20,11 @@ public class ExamController implements Initializable {
     public ImageView completedMark;
 
     private Exam exam;
+    private String studentId;
 
-    public void setExamImage(Image image) {
-        examImage.setImage(image);
-    }
-
-    public void setExam(Exam exam) {
+    public void setExamData(Exam exam, String studentId) {
         this.exam = exam;
+        this.studentId = studentId;
         examName.setText(exam.getExamName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
         examDate.setText(dateFormat.format(exam.getExamStartDate()));
@@ -37,7 +33,7 @@ public class ExamController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        examParent.setOnMouseClicked(mouseEvent -> onExamClicked());
+        examParent.setOnMouseClicked(_ -> onExamClicked());
     }
 
     private void onExamClicked() {
@@ -45,6 +41,6 @@ public class ExamController implements Initializable {
         ViewFactory.getInstance().backStackSizeProperty().set(ViewFactory.getInstance().getBackStack().size());
         ViewFactory.getInstance().getCurrentViewProperty().set(View.STUDENT_EXAM);
         StudentExamController controller = (StudentExamController) ViewFactory.getInstance().getController(View.STUDENT_EXAM);
-        controller.setExam(exam);
+        controller.setExamData(exam, studentId);
     }
 }

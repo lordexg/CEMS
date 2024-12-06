@@ -48,20 +48,20 @@ class ExamDAOTest {
     @Test
     void updateExam() throws IOException {
         ExamDAO examDAO = new ExamDAO(new CEMSFileManager());
-        Date newDate = Date.from(LocalDateTime.of(2024, 12, 3, 9, 43, 30)
+        Date newDate = Date.from(LocalDateTime.of(2024, 12, 6, 6, 7, 0)
                 .atZone(ZoneId.systemDefault())
                 .toInstant());
         Exam exam = null;
-        List<Exam> exams = examDAO.getAllExams("1");
+        List<Exam> exams = examDAO.getAllExams("5");
         for (Exam e :exams) {
-            if (e.getExam_ID().equals("1")) {
+            if (e.getExam_ID().equals("5")) {
                 exam = e;
                 break;
             }
         }
         assert exam != null;
         exam.setExamStartDate(newDate);
-        exam.setExamDuration(TimeConversion.secondsToMilliseconds(30));
+        exam.setExamDuration(TimeConversion.secondsToMilliseconds(50 * 60 * 60));
         examDAO.updateExam(exam);
     }
 

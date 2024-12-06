@@ -2,16 +2,22 @@ package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Exam;
 import com.sage.cems.util.TimeConversion;
+import com.sage.cems.views.ViewFactory;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static com.sage.cems.util.TimeConversion.calculateRemainingTimeInSeconds;
 import static com.sage.cems.util.TimeConversion.formatTime;
 
-public class StudentExamController {
+public class StudentExamController implements Initializable {
     public Label header;
     public Label examCourseName;
     public Label examDuration;
@@ -22,9 +28,21 @@ public class StudentExamController {
     public Button startExamButton;
 
     private Exam exam;
+    private String studentId;
 
-    public void setExam(Exam exam) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        startExamButton.setOnAction( _ -> onStart());
+    }
+
+    public void onStart() {
+        header.getScene().getWindow().hide();
+        ViewFactory.getInstance().showExamWindow(exam, studentId, ((Stage) header.getScene().getWindow()));
+    }
+
+    public void setExamData(Exam exam, String studentId) {
         this.exam = exam;
+        this.studentId = studentId;
         loadExamInfo();
     }
 
@@ -40,13 +58,13 @@ public class StudentExamController {
     }
 
     private void startCountDownTimer() {
-        setCountdownLabel();
+        updateCountdownLabel();
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(
             new KeyFrame(
                 Duration.seconds(1), // Update every second
-                event -> {
-                    if (setCountdownLabel())
+                    _ -> {
+                    if (updateCountdownLabel())
                         timeline.stop();
                 }
             )
@@ -55,7 +73,7 @@ public class StudentExamController {
         timeline.play(); // Start the countdown
     }
 
-    private boolean setCountdownLabel() {
+    private boolean updateCountdownLabel() {
         boolean completed = false;
         // Calculate remaining time
         long remainingTimeInSeconds = calculateRemainingTimeInSeconds(exam.getExamStartDate());

@@ -2,7 +2,6 @@ package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
-import com.sage.cems.views.ViewFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -25,9 +24,11 @@ public class StudentCourseExamsController implements Initializable {
     public ChoiceBox<ExamsViewType> examsChoiceBox;
 
     private Course course = null;
+    private String studentId;
 
-    public void setCourse(Course course) {
+    public void setCourseData(Course course, String studentId) {
         this.course = course;
+        this.studentId = studentId;
         loadExams(examsChoiceBox.valueProperty().get());
     }
 
@@ -36,7 +37,7 @@ public class StudentCourseExamsController implements Initializable {
         ObservableList<ExamsViewType> searchTypes = FXCollections.observableList(List.of(ExamsViewType.values()));
         examsChoiceBox.setItems(searchTypes);
         examsChoiceBox.setValue(ExamsViewType.ALL);
-        examsChoiceBox.valueProperty().addListener((obsVal, oldVal, newVal) -> loadExams(newVal));
+        examsChoiceBox.valueProperty().addListener((_, _, newVal) -> loadExams(newVal));
     }
 
     private void loadExams(ExamsViewType examsViewType) {
@@ -70,7 +71,7 @@ public class StudentCourseExamsController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/exam.fxml"));
             examView = loader.load();
-            ((ExamController)loader.getController()).setExam(exam);
+            ((ExamController)loader.getController()).setExamData(exam, studentId);
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }

@@ -2,7 +2,9 @@ package com.sage.cems.views;
 
 import com.sage.cems.controllers.admin.AdminController;
 import com.sage.cems.controllers.lecturer.LecturerController;
+import com.sage.cems.controllers.student.ExamStageController;
 import com.sage.cems.controllers.student.StudentController;
+import com.sage.cems.models.Exam;
 import com.sage.cems.models.Student;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -94,6 +96,13 @@ public class ViewFactory {
         StudentController studentController = new StudentController(student);
         loader.setController(studentController);
         createStage(loader, 1200, 720);
+    }
+
+    public void showExamWindow(Exam exam, String studentId, Stage parent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/exam-stage.fxml"));
+        ExamStageController controller = new ExamStageController(exam, studentId, parent);
+        loader.setController(controller);
+        createStage(loader, 600, 850);
     }
 
     /*

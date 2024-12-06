@@ -3,6 +3,9 @@ package com.sage.cems.models;
 import java.util.List;
 import java.util.Date;
 
+import static com.sage.cems.util.TimeConversion.calculateRemainingTimeInSeconds;
+import static com.sage.cems.util.TimeConversion.millisecondsToSeconds;
+
 public class Exam {
     private int examLength;
     private String exam_ID; // unique throughout the system not in its course only
@@ -32,7 +35,8 @@ public class Exam {
     }
 
     public boolean isCompleted() {
-        return completed;
+        long remainingTime = calculateRemainingTimeInSeconds(examStartDate);
+        return remainingTime < 0 && Math.abs(remainingTime) > millisecondsToSeconds(examDuration);
     }
 
     public void setCompleted(boolean completed) {

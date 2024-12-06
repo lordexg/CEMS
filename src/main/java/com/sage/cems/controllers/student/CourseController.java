@@ -18,19 +18,21 @@ public class CourseController implements Initializable {
     public AnchorPane courseParent;
 
     private Course course;
+    private String studentId;
 
     public void setCourseImage(Image image) {
         courseImage.setImage(image);
     }
 
-    public void setCourse(Course course) {
+    public void setCourseData(Course course, String studentId) {
         this.course = course;
+        this.studentId = studentId;
         courseName.setText(course.getCourseName() + " (" + course.getCourseID() + ")");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        courseParent.setOnMouseClicked(mouseEvent -> onCourseClicked());
+        courseParent.setOnMouseClicked(_ -> onCourseClicked());
     }
 
     private void onCourseClicked() {
@@ -38,6 +40,6 @@ public class CourseController implements Initializable {
         ViewFactory.getInstance().backStackSizeProperty().set(ViewFactory.getInstance().getBackStack().size());
         ViewFactory.getInstance().getCurrentViewProperty().set(View.STUDENT_COURSE_EXAMS);
         StudentCourseExamsController controller = (StudentCourseExamsController) ViewFactory.getInstance().getController(View.STUDENT_COURSE_EXAMS);
-        controller.setCourse(course);
+        controller.setCourseData(course, studentId);
     }
 }

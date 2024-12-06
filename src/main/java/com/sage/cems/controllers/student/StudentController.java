@@ -24,13 +24,13 @@ public class StudentController implements Initializable {
         mainView.setCenter(ViewFactory.getInstance().getView(View.STUDENT_HOME));
         passStudentToHomeController();
 
-        ViewFactory.getInstance().getCurrentViewProperty().addListener((observableValue, oldVal, newVal) -> {
+        ViewFactory.getInstance().getCurrentViewProperty().addListener((_, _, newVal) -> {
             switchView(newVal);
         });
 
-        backBtn.setOnAction(actionEvent -> onBack());
+        backBtn.setOnAction( _ -> onBack());
 
-        ViewFactory.getInstance().backStackSizeProperty().addListener((observableValue, oldVal, newVal) -> {
+        ViewFactory.getInstance().backStackSizeProperty().addListener((_, _, newVal) -> {
             backBtn.setVisible(!newVal.equals(0));
         });
     }
