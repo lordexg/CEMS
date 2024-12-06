@@ -1,0 +1,67 @@
+.parent {
+    -fx-background-color: #EEE;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.side-menu {
+    -fx-background-color: #E2E2E2;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.menu-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 0;
+    -fx-padding: 8 12 8 0;
+}
+.back-btn {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+.menu-btn:hover, .back-btn:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.06);
+}
+.active-btn {
+    -fx-text-fill: white;
+    -fx-background-color: #3282B8;
+}
+.active-btn:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #3282B8;
+}
+
+.course {
+    -fx-background-color: white;
+    -fx-border-width: 1;
+    -fx-border-color: rgba(0, 0, 0, 0.17);
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+}
+.course .data {
+    -fx-background-color: #EAEAEA;
+    -fx-background-radius: 0  0 8 8;
+    -fx-border-radius: 0  0 8 8;
+}
+.course .label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-background-color: #EAEAEA;
+    -fx-text-fill: #1B262C;
+    -fx-background-radius: 0  0 8 8;
+    -fx-border-radius: 0  0 8 8;
+    -fx-padding: 7 15;
+}
+.course:hover .label {
+    -fx-text-fill: #3282B8;
+}
+.course:hover {
+    -fx-border-color: #3282B8;
+}
+.course .info {
+    -fx-text-fill: rgba(0, 0, 0, 0.5);
+    -fx-padding: 0 0 10 15;
+    -fx-font-size: 10;
+}

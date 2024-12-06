@@ -6,7 +6,13 @@ public enum View {
     STUDENT_RESULTS("student/student-results.fxml"),
     STUDENT_PROFILE("student/student-profile.fxml"),
     STUDENT_COURSE_EXAMS("student/student-course-exams.fxml"),
-    STUDENT_EXAM("student/student-exam.fxml");
+    STUDENT_EXAM("student/student-exam.fxml"),
+
+    ADMIN_HOME("admin/admin-home.fxml"),
+    ADMIN_STUDENTS("admin/admin-students-section.fxml"),
+    ADMIN_LECTURER("admin/admin-lecturer.fxml"),
+    ADMIN_COURSES("admin/admin-courses.fxml"),
+    ADMIN_GRADES("admin/admin-grades.fxml");
 
     private final String filePath;
 

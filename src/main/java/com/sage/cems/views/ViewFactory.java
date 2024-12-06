@@ -6,6 +6,7 @@ import com.sage.cems.controllers.student.ExamStageController;
 import com.sage.cems.controllers.student.StudentController;
 import com.sage.cems.models.Exam;
 import com.sage.cems.models.Student;
+import com.sage.cems.models.user.User;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -118,9 +119,9 @@ public class ViewFactory {
     /*
     * Admin Methods
     * */
-    public void showAdminWindow() {
+    public void showAdminWindow(User user) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/admin.fxml"));
-        AdminController adminController = new AdminController();
+        AdminController adminController = new AdminController(user);
         loader.setController(adminController);
         createStage(loader, 1200, 720);
     }
