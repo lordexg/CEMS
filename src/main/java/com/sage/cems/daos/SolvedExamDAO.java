@@ -50,7 +50,7 @@ public class SolvedExamDAO {
         solvedSolvedExam.setSolvedExamAnswers(List.of(solvedSolvedExamMap.get(ColumnName.SOLVED_EXAM_ANSWERS).split(",")));
         solvedSolvedExam.setCourseID(solvedSolvedExamMap.get(ColumnName.COURSE_ID));
         solvedSolvedExam.setExamID(solvedSolvedExamMap.get(ColumnName.EXAM_ID));
-        solvedSolvedExam.setStudentID(solvedSolvedExam.getStudentID());
+        solvedSolvedExam.setStudentID(solvedSolvedExamMap.get(ColumnName.STUDENT_ID));
     }
 
     private SolvedExam createSolvedExam(Map<ColumnName, String> solvedSolvedExamMap) throws IOException {
