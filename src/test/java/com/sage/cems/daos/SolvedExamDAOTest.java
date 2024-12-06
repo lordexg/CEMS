@@ -1,5 +1,6 @@
 package com.sage.cems.daos;
 
+import com.sage.cems.models.Question;
 import com.sage.cems.models.SolvedExam;
 import com.sage.cems.util.CEMSFileManager;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,9 @@ class SolvedExamDAOTest {
     void getAllSolvedExams() throws IOException {
         SolvedExamDAO solvedExamDAO = new SolvedExamDAO(new CEMSFileManager());
         List<SolvedExam> exams = solvedExamDAO.getAllSolvedExams();
-        System.out.println(exams.size());
+        for (String answer : exams.getFirst().getSolvedExamAnswers()) {
+            System.out.println(answer);
+        }
     }
 
     @Test

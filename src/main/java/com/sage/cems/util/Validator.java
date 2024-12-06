@@ -1,4 +1,4 @@
-package com.sage.cems.models.user;
+package com.sage.cems.util;
 
 public class Validator {
     public static boolean validateName(String name) {

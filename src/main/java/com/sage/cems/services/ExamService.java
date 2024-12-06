@@ -66,7 +66,7 @@ public class ExamService {
         solvedExamDAO.addSolvedExam(createSolvedExam(exam, studentID));
     }
 
-    private SolvedExam createSolvedExam(Exam exam, String studentID){
+    private SolvedExam createSolvedExam(Exam exam, String studentID) {
         SolvedExam solvedExam = new SolvedExam();
         solvedExam.setStudentID(studentID);
         solvedExam.setCourseID(exam.getCourseID());
@@ -75,7 +75,7 @@ public class ExamService {
         return solvedExam;
     }
 
-    private List<String> retrieveStudentAnswers(Exam exam){
+    private List<String> retrieveStudentAnswers(Exam exam) {
         List<String> solvedExamAnswers = new ArrayList<>();
         for(Question question : exam.getQuestions()){
             solvedExamAnswers.add(question.getStudentAnswer());

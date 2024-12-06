@@ -117,7 +117,6 @@ public class ExamDAO {
         newExam.put(ColumnName.EXAM_LENGTH, String.valueOf(exam.getExamLength()));
         newExam.put(ColumnName.EXAM_FULL_MARK, String.valueOf(exam.getFullMark()));
         newExam.put(ColumnName.EXAM_DURATION, String.valueOf(exam.getExamDuration()));
-//        newExam.put(ColumnName.EXAM_QUESTIONS, questionDAO.getQuestions());
         newExam.put(ColumnName.EXAM_START_DATE, String.valueOf(exam.getExamStartDate()));
         newExam.put(ColumnName.EXAM_IS_APPROVED, String.valueOf(exam.isApproved()));
         newExam.put(ColumnName.COURSE_ID, String.valueOf(exam.getCourseID()));
