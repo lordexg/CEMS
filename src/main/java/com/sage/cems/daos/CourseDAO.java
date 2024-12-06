@@ -23,7 +23,7 @@ public class CourseDAO {
     public Course getCourse(String keyWord) throws IOException {
         List<Map<ColumnName, String>> courses = fileManager.getRows(TableName.COURSE, keyWord);
         if (courses.isEmpty()) {
-            throw new IOException("No course found");
+            return new Course();
         }
         return createCourse(courses.getFirst());
     }
@@ -34,7 +34,7 @@ public class CourseDAO {
     public List<Course> getAllCourses() throws IOException {
         List<Map<ColumnName, String>> courses = fileManager.getAllRows(TableName.COURSE);
         if(courses.isEmpty()) {
-            throw new IOException("No courses available");
+            return new ArrayList<>();
         }
         return createCoursesList(courses);
     }
@@ -43,7 +43,7 @@ public class CourseDAO {
     public List<Course> getUserCourses(User user) throws IOException {
         List<Map<ColumnName,String>> enrollMap = fileManager.getRows(TableName.ENROLLMENT, user.getID());
         if (enrollMap.isEmpty()) {
-            throw new IOException("No enrollment found");
+            return new ArrayList<>();
         }
 
         // using enrollment table, I got courses IDs

@@ -31,7 +31,7 @@ public class QuestionDAO {
         }
 
         if (examQuestions.isEmpty()) {
-            throw new IOException("No questions found");
+            return new ArrayList<>();
         }
 
         return createQuestionsList(examQuestions);

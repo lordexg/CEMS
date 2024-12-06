@@ -26,7 +26,7 @@ public class StudentDAO {
         List<Map<ColumnName, String>> students = fileManager.getRows(TableName.STUDENT, keyWord);
 
         if (students.isEmpty()) {
-            throw new IOException("No student found");
+            return new ArrayList<>();
         }
 
         return createStudentsList(students);
@@ -35,7 +35,7 @@ public class StudentDAO {
     public List<Student> getAllStudents() throws IOException {
         List<Map<ColumnName, String>> students = fileManager.getAllRows(TableName.STUDENT);
         if(students.isEmpty()) {
-            throw new IOException("No student found");
+            return new ArrayList<>();
         }
         return createStudentsList(students);
     }

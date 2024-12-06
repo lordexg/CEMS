@@ -26,7 +26,7 @@ public class ExamDAO {
         List<Map<ColumnName, String>> exams = fileManager.getRows(TableName.EXAM, keyWord);
 
         if (exams.isEmpty()) {
-            throw new IOException("No exams found");
+            return new ArrayList<>();
         }
 
         return createExamsList(exams);
@@ -35,7 +35,7 @@ public class ExamDAO {
     public List<Exam> getAllExams() throws IOException {
         List<Map<ColumnName, String>> exams = fileManager.getAllRows(TableName.EXAM);
         if(exams.isEmpty()) {
-            throw new IOException("No exams found");
+            return new ArrayList<>();
         }
         return createExamsList(exams);
     }

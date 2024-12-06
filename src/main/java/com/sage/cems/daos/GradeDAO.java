@@ -45,7 +45,7 @@ public class GradeDAO {
     public Grade getGrade(String keyWord) throws IOException {
         List<Map<ColumnName, String>> grades = fileManager.getRows(TableName.GRADE, keyWord);
         if (grades.isEmpty()) {
-            throw new IOException("No course found");
+            return new Grade();
         }
         return createGrade(grades.getFirst());
     }
@@ -54,7 +54,7 @@ public class GradeDAO {
         List<Map<ColumnName, String>> grades = fileManager.getRows(TableName.GRADE, keyWord);
 
         if (grades.isEmpty()) {
-            throw new IOException("No exams found");
+            return new ArrayList<>();
         }
 
         return createGradesList(grades);
@@ -63,7 +63,7 @@ public class GradeDAO {
     public List<Grade> getAllGrades() throws IOException {
         List<Map<ColumnName, String>> grades = fileManager.getAllRows(TableName.GRADE);
         if(grades.isEmpty()) {
-            throw new IOException("No exams found");
+            return new ArrayList<>();
         }
         return createGradesList(grades);
     }

@@ -26,7 +26,7 @@ public class UserDAO {
             List<Map<ColumnName, String>> users = fileManager.getRows(TableName.ACCOUNT, ID);
 
             if (users.isEmpty()) {
-                throw new IOException("No user found");
+                return new User();
             }
 
             Map<ColumnName, String> target = users.getFirst();

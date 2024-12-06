@@ -32,7 +32,7 @@ public class LecturerDAO {
         List<Map<ColumnName, String>> lecturers = fileManager.getRows(TableName.LECTURER, keyWord);
 
         if (lecturers.isEmpty()) {
-            throw new IOException("No student found");
+            return new ArrayList<>();
         }
 
         return createLecturerList(lecturers);
@@ -42,7 +42,7 @@ public class LecturerDAO {
         List<Map<ColumnName, String>> lecturers = fileManager.getAllRows(TableName.LECTURER);
 
         if (lecturers.isEmpty()) {
-            throw new IOException("No student found");
+            return new ArrayList<>();
         }
 
         return createLecturerList(lecturers);
