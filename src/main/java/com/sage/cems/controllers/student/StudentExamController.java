@@ -1,6 +1,7 @@
 package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Exam;
+import com.sage.cems.services.ExamService;
 import com.sage.cems.util.TimeConversion;
 import com.sage.cems.views.ViewFactory;
 import javafx.animation.KeyFrame;
@@ -11,8 +12,11 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.sage.cems.util.TimeConversion.calculateRemainingTimeInSeconds;
 import static com.sage.cems.util.TimeConversion.formatTime;
@@ -29,6 +33,15 @@ public class StudentExamController implements Initializable {
 
     private Exam exam;
     private String studentId;
+    private ExamService examService;
+
+    public StudentExamController() {
+        try {
+            this.examService = new ExamService();
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,9 +88,24 @@ public class StudentExamController implements Initializable {
 
     private boolean updateCountdownLabel() {
         boolean completed = false;
+        try {
+            completed = examService.isExamCompleted(exam, studentId);
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+
         // Calculate remaining time
         long remainingTimeInSeconds = calculateRemainingTimeInSeconds(exam.getExamStartDate());
         long examDurationInSeconds = TimeConversion.millisecondsToSeconds(exam.getExamDuration());
+
+        if (completed) {
+            timerHeader.setText("THE EXAM IS FINISHED");
+            countdownLabel.setVisible(false);
+            countdownLabel.setManaged(false);
+            startExamButton.setDisable(true);
+            return true;
+        }
+
         if (remainingTimeInSeconds >= 0) {
             timerHeader.setText("YOU CAN START THE EXAM AFTER");
             countdownLabel.setVisible(true);
@@ -85,20 +113,14 @@ public class StudentExamController implements Initializable {
             countdownLabel.setText(formatTime(remainingTimeInSeconds));
             startExamButton.setDisable(true);
         }
-        else if (Math.abs(remainingTimeInSeconds) <= examDurationInSeconds) {
+        else {
             timerHeader.setText("THE EXAM WILL BE CLOSED AFTER");
             countdownLabel.setVisible(true);
             countdownLabel.setManaged(true);
             countdownLabel.setText(formatTime(examDurationInSeconds + remainingTimeInSeconds));
             startExamButton.setDisable(false);
         }
-        else {
-            timerHeader.setText("THE EXAM IS FINISHED");
-            countdownLabel.setVisible(false);
-            countdownLabel.setManaged(false);
-            completed = true;
-            startExamButton.setDisable(true);
-        }
-        return completed;
+
+        return false;
     }
 }

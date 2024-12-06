@@ -25,7 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ViewFactory {
-    private ObjectProperty<View> currentView = new SimpleObjectProperty<>(View.STUDENT_HOME);
+    private ObjectProperty<View> currentView = new SimpleObjectProperty<>();
     private final Map<View, Pair<AnchorPane, Object>> cache = new HashMap<>();
     private final Stack<View> backStack = new Stack<>();
     private final IntegerProperty backStackSize = new SimpleIntegerProperty(0);

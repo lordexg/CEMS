@@ -2,6 +2,7 @@ package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
+import com.sage.cems.services.ExamService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,6 +27,15 @@ public class StudentCourseExamsController implements Initializable {
 
     private Course course = null;
     private String studentId;
+    private ExamService examService;
+
+    public StudentCourseExamsController() {
+        try {
+            this.examService = new ExamService();
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
     public void setCourseData(Course course, String studentId) {
         this.course = course;
@@ -54,11 +65,17 @@ public class StudentCourseExamsController implements Initializable {
             return;
         }
         for (Exam exam : exams) {
-            boolean shouldAdd = switch (examsViewType) {
-                case ALL -> true;
-                case UPCOMING -> !exam.isCompleted();
-                case COMPLETED -> exam.isCompleted();
-            };
+            boolean shouldAdd = true;
+            try {
+                shouldAdd = switch (examsViewType) {
+                    case ALL -> true;
+                    case UPCOMING -> !examService.isExamCompleted(exam, studentId);
+                    case COMPLETED -> examService.isExamCompleted(exam, studentId);
+                };
+            } catch (IOException e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+            }
+
 
             if (shouldAdd) {
                 examsPane.getChildren().add(generateExamView(exam));

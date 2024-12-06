@@ -1,6 +1,7 @@
 package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Exam;
+import com.sage.cems.services.ExamService;
 import com.sage.cems.views.View;
 import com.sage.cems.views.ViewFactory;
 import javafx.fxml.Initializable;
@@ -8,9 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ExamController implements Initializable {
     public AnchorPane examParent;
@@ -21,6 +25,15 @@ public class ExamController implements Initializable {
 
     private Exam exam;
     private String studentId;
+    private ExamService examService;
+
+    public ExamController() {
+        try {
+            this.examService = new ExamService();
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
     public void setExamData(Exam exam, String studentId) {
         this.exam = exam;
@@ -28,7 +41,12 @@ public class ExamController implements Initializable {
         examName.setText(exam.getExamName());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
         examDate.setText(dateFormat.format(exam.getExamStartDate()));
-        completedMark.setVisible(exam.isCompleted());
+
+        try {
+            completedMark.setVisible(examService.isExamCompleted(exam, studentId));
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @Override

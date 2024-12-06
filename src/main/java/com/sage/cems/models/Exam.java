@@ -15,14 +15,13 @@ public class Exam {
     private String examName;
     private Double fullMark;
     private boolean approved;
-    private boolean completed;
     private List<Question> questions;
 
     public Exam(){}
 
 
     public Exam(int examLength, String courseID, long examDuration, Date examStartDate, String examName,
-                Double fullMark, boolean approved, List<Question> questions, boolean completed) {
+                Double fullMark, boolean approved, List<Question> questions) {
         this.examLength = examLength;
         this.examDuration = examDuration;
         this.examStartDate = examStartDate;
@@ -31,17 +30,8 @@ public class Exam {
         this.approved = approved;
         this.questions = questions;
         this.courseID = courseID;
-        this.completed = completed;
     }
 
-    public boolean isCompleted() {
-        long remainingTime = calculateRemainingTimeInSeconds(examStartDate);
-        return remainingTime < 0 && Math.abs(remainingTime) > millisecondsToSeconds(examDuration);
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
 
     public int getExamLength() {
         return examLength;

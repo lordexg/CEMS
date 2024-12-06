@@ -1,3 +1,3 @@
 QUESTION_ID	EXAM_ID	QUESTION_STATEMENT	QUESTION_CORRECT_ANSWER	QUESTION_TYPE	QUESTION_CHOICES
-1	1	test?	test	COMPLETE	apple,banana,cherry
-2	4	test?	test	COMPLETE	apple,banana,cherry
+1	5	test?	test	COMPLETE	apple,banana,cherry
+2	5	test?	test	COMPLETE	apple,banana,cherry

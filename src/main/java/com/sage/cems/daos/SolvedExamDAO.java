@@ -20,7 +20,7 @@ public class SolvedExamDAO {
         List<Map<ColumnName, String>> solvedSolvedExams = fileManager.getRows(TableName.SOLVED_EXAM, keyWord);
 
         if (solvedSolvedExams.isEmpty()) {
-            throw new IOException("No solvedSolvedExams found");
+            return new ArrayList<>();
         }
 
         return createSolvedExamsList(solvedSolvedExams);
@@ -29,7 +29,7 @@ public class SolvedExamDAO {
     public List<SolvedExam> getAllSolvedExams() throws IOException {
         List<Map<ColumnName, String>> solvedSolvedExams = fileManager.getAllRows(TableName.SOLVED_EXAM);
         if(solvedSolvedExams.isEmpty()) {
-            throw new IOException("No solvedSolvedExams found");
+            return new ArrayList<>();
         }
         return createSolvedExamsList(solvedSolvedExams);
     }

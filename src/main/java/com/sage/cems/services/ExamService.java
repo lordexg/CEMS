@@ -1,42 +1,48 @@
 package com.sage.cems.services;
 
-import com.sage.cems.daos.ExamDAO;
 import com.sage.cems.daos.GradeDAO;
-import com.sage.cems.daos.QuestionDAO;
 import com.sage.cems.daos.SolvedExamDAO;
 import com.sage.cems.models.Exam;
 import com.sage.cems.models.Grade;
 import com.sage.cems.models.Question;
 import com.sage.cems.models.SolvedExam;
 import com.sage.cems.util.CEMSFileManager;
+import com.sage.cems.util.FileManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sage.cems.util.TimeConversion.calculateRemainingTimeInSeconds;
+import static com.sage.cems.util.TimeConversion.millisecondsToSeconds;
+
 public class ExamService {
 
-    private CEMSFileManager FileManager = new CEMSFileManager();
-    private final ExamDAO examDAO;
     private final SolvedExamDAO solvedExamDAO;
     private final GradeDAO gradeDAO;
-    private final QuestionDAO questionDAO;
 
     public ExamService() throws IOException {
-        this.examDAO = new ExamDAO(FileManager);
-        this.solvedExamDAO = new SolvedExamDAO(FileManager);
-        this.gradeDAO = new GradeDAO(FileManager);
-        this.questionDAO = new QuestionDAO(FileManager);
+        FileManager fileManager = new CEMSFileManager();
+        this.solvedExamDAO = new SolvedExamDAO(fileManager);
+        this.gradeDAO = new GradeDAO(fileManager);
     }
 
     public void submitExam(Exam exam, String studentID) throws IOException {
-
         gradeDAO.addGrade(pupulateGrade(exam,studentID));
         addSolvedExam(exam, studentID);
-        exam.setCompleted(true);
-        examDAO.updateExam(exam);
-
     }
+
+    public boolean isExamCompleted(Exam exam, String studentId) throws IOException {
+        List<SolvedExam> solvedExams = solvedExamDAO.getAllSolvedExams(studentId);
+        for (SolvedExam solvedExam : solvedExams) {
+            if (solvedExam.getExamID().equals(exam.getExam_ID()))
+                return true;
+        }
+
+        long remainingTime = calculateRemainingTimeInSeconds(exam.getExamStartDate());
+        return remainingTime < 0 && Math.abs(remainingTime) > millisecondsToSeconds(exam.getExamDuration());
+    }
+
     private int calculateGrade(Exam exam) {
         int mark = 0;
         for (Question question : exam.getQuestions()) {
@@ -46,6 +52,7 @@ public class ExamService {
         }
         return mark;
     }
+
     private Grade pupulateGrade(Exam exam, String studentID){
         Grade grade = new Grade();
         grade.setMark(calculateGrade(exam));
