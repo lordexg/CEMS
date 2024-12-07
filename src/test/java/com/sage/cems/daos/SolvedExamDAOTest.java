@@ -16,7 +16,7 @@ class SolvedExamDAOTest {
     void getAllSolvedExams() throws IOException {
         SolvedExamDAO solvedExamDAO = new SolvedExamDAO(new CEMSFileManager());
         List<SolvedExam> exams = solvedExamDAO.getAllSolvedExams();
-        for (String answer : exams.getFirst().getSolvedExamAnswers()) {
+        for(String answer : exams.getFirst().getSolvedExamAnswers()){
             System.out.println(answer);
         }
     }

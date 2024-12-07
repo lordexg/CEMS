@@ -65,7 +65,7 @@ public class LoginController implements Initializable {
                 }
             }
             case LECTURER -> ViewFactory.getInstance().showLecturerWindow();
-            case ADMIN -> ViewFactory.getInstance().showAdminWindow();
+            case ADMIN -> ViewFactory.getInstance().showAdminWindow(user);
         }
     }
 
