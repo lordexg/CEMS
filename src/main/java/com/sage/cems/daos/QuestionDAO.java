@@ -66,7 +66,7 @@ public class QuestionDAO {
         String choices;
         try{
             choicesList = question.getChoices();
-            choices = String.join(",", choicesList);
+            choices = String.join(",,,", choicesList);
         }catch (NullPointerException e){
             choices = "-";
         }
@@ -91,11 +91,14 @@ public class QuestionDAO {
     }
 
     private void populateQuestionFields(Question question, Map<ColumnName, String> questionMap) throws IOException {
+        String choices = questionMap.get(ColumnName.QUESTION_CHOICES);
+        List<String> choicesList = List.of(choices.split(",,,"));
+
+        question.setChoices(choicesList);
         question.setExamID(questionMap.get(ColumnName.EXAM_ID));
         question.setQuestionID(String.valueOf(questionMap.get(ColumnName.QUESTION_ID)));
         question.setQuestionType(QuestionType.valueOf(questionMap.get(ColumnName.QUESTION_TYPE)));
         question.setStatement(questionMap.get(ColumnName.QUESTION_STATEMENT));
-        question.setChoices(Collections.singletonList(questionMap.get(ColumnName.QUESTION_CHOICES)));
         question.setCorrectAnswer(questionMap.get(ColumnName.QUESTION_CORRECT_ANSWER));
         //question.setStudentAnswer(questionMap.get(ColumnName.QUESTION_STUDENT_ANSWER));
     }
