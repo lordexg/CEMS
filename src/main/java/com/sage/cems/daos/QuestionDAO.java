@@ -2,6 +2,7 @@ package com.sage.cems.daos;
 import com.sage.cems.models.Question;
 import com.sage.cems.models.QuestionType;
 import com.sage.cems.util.ColumnName;
+import com.sage.cems.util.EnumHelper;
 import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
 import java.io.IOException;
@@ -71,14 +72,16 @@ public class QuestionDAO {
             choices = "-";
         }
 
+        // Question ID has to be calculated based on the last ID in QUESTION_TABLE
+
+        String newIDString = EnumHelper.getNewPK(TableName.QUESTION);
+
+        newQuestion.put(ColumnName.QUESTION_ID, newIDString);
         newQuestion.put(ColumnName.QUESTION_CHOICES, choices);
         newQuestion.put(ColumnName.EXAM_ID, question.getExamID());
         newQuestion.put(ColumnName.QUESTION_STATEMENT, question.getStatement());
         newQuestion.put(ColumnName.QUESTION_TYPE, question.getQuestionType().name());
-        newQuestion.put(ColumnName.QUESTION_ID, question.getQuestionID());
         newQuestion.put(ColumnName.QUESTION_CORRECT_ANSWER, question.getCorrectAnswer());
-        //newQuestion.put(ColumnName.QUESTION_STUDENT_ANSWER, question.getStudentAnswer());
-
         return newQuestion;
     }
 
@@ -100,7 +103,6 @@ public class QuestionDAO {
         question.setQuestionType(QuestionType.valueOf(questionMap.get(ColumnName.QUESTION_TYPE)));
         question.setStatement(questionMap.get(ColumnName.QUESTION_STATEMENT));
         question.setCorrectAnswer(questionMap.get(ColumnName.QUESTION_CORRECT_ANSWER));
-        //question.setStudentAnswer(questionMap.get(ColumnName.QUESTION_STUDENT_ANSWER));
     }
 
 }

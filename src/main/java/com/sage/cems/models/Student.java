@@ -11,6 +11,9 @@ public class Student extends User {
     private List<Course> courses;
 
     public Student() {}
+    public Student(String ID) {
+        this.setID(ID);
+    }
 
     public Student(String password, String firstName, String lastName,
                    String email, String phoneNumber, Role role, List<Course> courses) {
