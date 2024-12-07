@@ -97,4 +97,5 @@ public class StudentSideMenuController implements Initializable {
             return imageUrl.replace("-white.png", ".png");
         return imageUrl;
     }
+
 }

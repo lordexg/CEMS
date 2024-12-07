@@ -14,9 +14,12 @@ class QuestionDAOTest {
     @Test
     void getQuestions() throws IOException {
         QuestionDAO questionDAO = new QuestionDAO(new CEMSFileManager());
-        List<Question> questionList = questionDAO.getQuestions("1");
+        List<Question> questionList = questionDAO.getQuestions("5");
         for (Question question : questionList) {
-            System.out.println(question.getStatement());
+            for (String choice : question.getChoices()) {
+                System.out.print(choice + "\t");
+            }
+            System.out.println("\n================");
         }
     }
 

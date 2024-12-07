@@ -32,7 +32,7 @@ public class CourseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        courseParent.setOnMouseClicked(_ -> onCourseClicked());
+        courseParent.setOnMouseClicked( _ -> onCourseClicked());
     }
 
     private void onCourseClicked() {

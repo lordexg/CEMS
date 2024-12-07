@@ -48,7 +48,7 @@ class ExamDAOTest {
     @Test
     void updateExam() throws IOException {
         ExamDAO examDAO = new ExamDAO(new CEMSFileManager());
-        Date newDate = Date.from(LocalDateTime.of(2024, 12, 6, 6, 7, 0)
+        Date newDate = Date.from(LocalDateTime.of(2024, 12, 7, 23, 42, 30)
                 .atZone(ZoneId.systemDefault())
                 .toInstant());
         Exam exam = null;
@@ -61,7 +61,7 @@ class ExamDAOTest {
         }
         assert exam != null;
         exam.setExamStartDate(newDate);
-        exam.setExamDuration(TimeConversion.secondsToMilliseconds(50 * 60 * 60));
+        exam.setExamDuration(TimeConversion.secondsToMilliseconds(40 * 60 * 60));
         examDAO.updateExam(exam);
     }
 

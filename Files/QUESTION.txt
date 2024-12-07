@@ -1,21 +1,24 @@
 QUESTION_ID	EXAM_ID	QUESTION_STATEMENT	QUESTION_CORRECT_ANSWER	QUESTION_TYPE	QUESTION_CHOICES
 1	5	What is the chemical symbol for water?	h2o	COMPLETE	-
 2	5	The Pyramids of Giza are located in which country?	c	MCQ	Greece,,,India,,,Egypt,,,Peru
-3	5	The sun rises in the east. Is this statement true?	true	TRUE_FALSE	true,,,false
+3	5	The sun rises in the east. Is this statement true?	a	TRUE_FALSE	true,,,false
 4	5	Who painted the famous artwork known as the Mona Lisa?	b	MCQ	Claude Monet,,,Leonardo da Vinci,,,Michelangelo,,,Vincent van Gogh
 5	5	The Great Wall of China was built during the reign of which Chinese dynasty?	han	COMPLETE	-
-6	5	Pi is approximately equal to 3.14. Is this statement true?	true	TRUE_FALSE	true,,,false
+6	5	Pi is approximately equal to 3.14. Is this statement true?	a	TRUE_FALSE	true,,,false
 7	5	This continent is home to the Amazon Rainforest. Which continent is it?	a	MCQ	Africa,,,South America,,,Asia,,,Europe
-8	5	The speed of light is approximately 299,792 kilometers per second. true or false?	true	TRUE_FALSE	true,,,false
+8	5	The speed of light is approximately 299,792 kilometers per second. true or false?	a	TRUE_FALSE	true,,,false
 9	5	What is the freezing point of water in degrees Celsius?	0	COMPLETE	-
 10	5	Who discovered the law of gravity after observing a falling apple?	d	MCQ	Isaac Newton,,,Albert Einstein,,,Galileo Galilei,,,Johannes Kepler
 11	5	The Statue of Liberty was gifted to the United States by which country?	france	COMPLETE	-
-12	5	The Earth is flat. Is this statement true?	false	TRUE_FALSE	true,,,false
-13	5	The largest mammal in the world is the blue whale. Is this true?	true	TRUE_FALSE	true,,,false
+12	5	The Earth is flat. Is this statement true?	b	TRUE_FALSE	true,,,false
+13	5	The largest mammal in the world is the blue whale. Is this true?	a	TRUE_FALSE	true,,,false
 14	5	Which organ in the human body is responsible for pumping blood?	a	MCQ	Heart,,,Brain,,,Lungs,,,Liver
 15	5	In which year did the Titanic sink?	1912	COMPLETE	-
 16	5	The Great Barrier Reef is located in which country?	c	MCQ	Australia,,,USA,,,New Zealand,,,Japan
-17	5	The formula for calculating the area of a circle is πr². Is this correct?	true	TRUE_FALSE	true,,,false
+17	5	The formula for calculating the area of a circle is πr². Is this correct?	a	TRUE_FALSE	true,,,false
 18	5	Who wrote the play "Romeo and Juliet"?	shakespeare	COMPLETE	-
 19	5	Which gas is most abundant in the Earth's atmosphere?	b	MCQ	Oxygen,,,Nitrogen,,,Carbon dioxide,,,Hydrogen
-20	5	Lightning never strikes the same place twice. Is this statement true?	false	TRUE_FALSE	true,,,false
+20	5	Lightning never strikes the same place twice. Is this statement true?	b	TRUE_FALSE	true,,,false
+21	6	What is the chemical symbol for water?	h2o	COMPLETE	-
+22	6	The Pyramids of Giza are located in which country?	c	MCQ	Greece,,,India,,,Egypt,,,Peru
+23	6	The sun rises in the east. Is this statement true?	a	TRUE_FALSE	true,,,false

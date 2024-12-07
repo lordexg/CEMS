@@ -26,6 +26,23 @@
     -fx-font-weight: bold;
 }
 
+.sec-btn {
+    -fx-background-color: #E6E6E6;
+    -fx-font-size: 15;
+    -fx-text-fill: rgb(150, 150, 150);
+    -fx-padding: 7 20;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgba(0, 0, 0, 0.17);
+    -fx-border-radius: 5px;       /* Rounded corners */
+    -fx-background-radius: 5px;  /* Background rounding */
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+}
+
+.sec-btn:hover {
+    -fx-background-color: #EAEAEA;
+}
+
 .round-btn {
     -fx-background-color: #3282B8;
     -fx-border-width: 0;
@@ -63,6 +80,7 @@
     -fx-background-color: transparent;
 }
 .scroll-pane .scroll-bar {
+    -fx-padding: 14 0 0 0;
     -fx-background-color: transparent;
 }
 .thumb {

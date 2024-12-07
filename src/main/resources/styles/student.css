@@ -65,3 +65,68 @@
     -fx-padding: 0 0 10 15;
     -fx-font-size: 10;
 }
+
+.question {
+    -fx-background-color: #F2F2F2;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+}
+.question-error {
+    -fx-border-width: 0.5;
+    -fx-border-color: red;
+}
+
+.statement, .toggle-choice {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: gray;
+    -fx-font-size: 18;
+    -fx-background-color: #F2F2F2;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+    -fx-padding: 7 20 7 50;
+}
+
+.statement {
+    -fx-border-width: 0 0 0.5 0;
+    -fx-padding: 15 20 20 50;
+}
+
+.toggle-choice:hover {
+    -fx-border-color: #3282B8;
+}
+.toggle-choice:selected {
+    -fx-border-color: #3282B8;
+    -fx-border-width: 1;
+}
+.choice-no {
+    -fx-background-color: #3282B8;
+    -fx-padding: 10;
+    -fx-background-radius: 7 0 0 7;
+    -fx-border-radius: 7 0 0 7;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+.qno {
+    -fx-background-color: #1B262C;
+    -fx-padding: 10;
+    -fx-background-radius: 7 0 7 0;
+    -fx-border-radius: 7 0 7 0;
+}
+
+.qno .label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+.short-answer-label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16;
+    -fx-text-fill: #3282B8;
+}

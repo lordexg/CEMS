@@ -1,5 +1,6 @@
 package com.sage.cems.views;
 
+import com.sage.cems.controllers.PopUpController;
 import com.sage.cems.controllers.admin.AdminController;
 import com.sage.cems.controllers.lecturer.LecturerController;
 import com.sage.cems.controllers.student.ExamStageController;
@@ -7,14 +8,12 @@ import com.sage.cems.controllers.student.StudentController;
 import com.sage.cems.models.Exam;
 import com.sage.cems.models.Student;
 import com.sage.cems.models.user.User;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -22,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -81,6 +81,22 @@ public class ViewFactory {
         return backStackSize;
     }
 
+    public boolean showPopUp(String header, String message, PopUpType popUpType) {
+        AtomicBoolean popUpResult = new AtomicBoolean(false);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pop-up.fxml"));
+        PopUpController controller = new PopUpController(header, message, popUpType, popUpResult);
+        loader.setController(controller);
+        Image icon = switch (popUpType) {
+            case INFO, CONFIRMATION -> new Image(Objects.requireNonNull(getClass().getResource("/images/Info.png")).toExternalForm());
+            case WARNING -> new Image(Objects.requireNonNull(getClass().getResource("/images/Warning.png")).toExternalForm());
+        };
+        Stage popUpStage = creatBasicStage(loader, popUpType.toString(), icon, 450, 320);
+        popUpStage.initModality(Modality.APPLICATION_MODAL); // Block main window interaction
+        popUpStage.setResizable(false);
+        popUpStage.showAndWait();
+        return popUpResult.get();
+    }
+
     /*
     * Login Methods
     * */
@@ -103,7 +119,7 @@ public class ViewFactory {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/exam-stage.fxml"));
         ExamStageController controller = new ExamStageController(exam, studentId, parent);
         loader.setController(controller);
-        createStage(loader, 600, 850);
+        createStage(loader, 900, 950);
     }
 
     /*
@@ -130,6 +146,14 @@ public class ViewFactory {
      * Helper Methods
      * */
     private void createStage(FXMLLoader loader, double width, double height) {
+        Image icon = new Image(Objects.requireNonNull(getClass().getResource("/images/exam.png")).toExternalForm());
+        Stage stage = creatBasicStage(loader, "College Examination Management System", icon, width, height);
+        stage.setMinWidth(width*0.85);
+        stage.setMinHeight(height*0.85);
+        stage.show();
+    }
+
+    private Stage creatBasicStage(FXMLLoader loader, String title, Image icon, double width, double height) {
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
@@ -137,14 +161,12 @@ public class ViewFactory {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
         Stage stage = new Stage();
-        stage.setTitle("College Examination Management System");
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/images/exam.png")).toExternalForm()));
+        stage.setTitle(title);
+        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.setWidth(width);
         stage.setHeight(height);
-        stage.setMinWidth(width*0.85);
-        stage.setMinHeight(height*0.85);
-        stage.show();
+        return stage;
     }
 
 }

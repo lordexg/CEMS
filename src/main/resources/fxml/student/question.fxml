@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="questionParent" prefWidth="575.0" styleClass="question" stylesheets="@../../styles/student.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.student.QuestionController">
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+   <VBox layoutX="2.0" layoutY="2.0" prefWidth="575.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="questionStatement" alignment="TOP_CENTER" prefWidth="573.0" styleClass="statement" text="Paris is famous for its iconic landmarks like the Eiffel Tower and the Louvre Museum. What is the capital city of France?" wrapText="true" />
+      <TilePane fx:id="choicesPane" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="573.0" style="-fx-padding: 15;" vgap="20.0">
+         <AnchorPane prefHeight="49.0" prefWidth="261.0">
+            <ToggleButton id="a" fx:id="firstChoice" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="45.0" prefWidth="261.0" styleClass="toggle-choice" text="Berlin">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <toggleGroup>
+                  <ToggleGroup fx:id="choices" />
+               </toggleGroup>
+            </ToggleButton>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="41.0" styleClass="choice-no" text="A" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </AnchorPane>
+         <AnchorPane prefHeight="44.0" prefWidth="261.0">
+            <ToggleButton id="b" fx:id="secondChoice" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="45.0" prefWidth="261.0" styleClass="toggle-choice" text="Madrid" toggleGroup="$choices">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ToggleButton>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="41.0" styleClass="choice-no" text="B" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </AnchorPane>
+         <AnchorPane fx:id="thirdQuestionPane">
+            <ToggleButton id="c" fx:id="thirdChoice" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="45.0" prefWidth="261.0" styleClass="toggle-choice" text="Rome" toggleGroup="$choices">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ToggleButton>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="41.0" styleClass="choice-no" text="C" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </AnchorPane>
+         <AnchorPane fx:id="fourthQuestionPane">
+            <ToggleButton id="d" fx:id="fourthChoice" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="45.0" prefWidth="261.0" styleClass="toggle-choice" text="Paris" toggleGroup="$choices">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ToggleButton>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="41.0" styleClass="choice-no" text="D" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </AnchorPane>
+      </TilePane>
+      <HBox fx:id="shortAnswerPane" spacing="17.0" style="-fx-padding: 30 30 30;">
+         <Label prefHeight="20.0" prefWidth="54.0" styleClass="short-answer-label" text="Answer" />
+         <TextField fx:id="shortAnswerField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="181.0" stylesheets="@../../styles/main.css" />
+      </HBox>
+   </VBox>
+   <StackPane layoutX="3.0" layoutY="3.0" prefHeight="39.0" prefWidth="39.0" styleClass="qno" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="questionNum" text="99" />
+   </StackPane>
+</AnchorPane>
