@@ -65,7 +65,7 @@ public class SolvedExamDAO {
         newSolvedExam.put(ColumnName.EXAM_ID, solvedExam.getExamID());
         newSolvedExam.put(ColumnName.COURSE_ID, solvedExam.getCourseID());
         newSolvedExam.put(ColumnName.STUDENT_ID, solvedExam.getStudentID());
-        newSolvedExam.put(ColumnName.SOLVED_EXAM_ANSWERS,String.join("|", solvedExam.getSolvedExamAnswers()));
+        newSolvedExam.put(ColumnName.SOLVED_EXAM_ANSWERS,String.join(",,,", solvedExam.getSolvedExamAnswers()));
         return newSolvedExam;
     }
 
