@@ -3,6 +3,7 @@ package com.sage.cems.daos;
 import com.sage.cems.models.user.Role;
 import com.sage.cems.models.user.User;
 import com.sage.cems.util.ColumnName;
+import com.sage.cems.util.EnumHelper;
 import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
 
@@ -39,18 +40,6 @@ public class UserDAO {
     }
 
     public void addUser(User user) throws IOException {
-        // calculating the ID based on the last row in ACCOUNT TABLE
-        String lastIDString = fileManager.getLastRow(TableName.ACCOUNT).get(ColumnName.ACCOUNT_ID);
-        int newIDInt;
-        // to handle empty Table --- lastIDString = "String without a Number in it"
-        try{
-            newIDInt = Integer.parseInt(lastIDString) + 1;
-        }catch(NumberFormatException e){
-            newIDInt = 1;
-        }
-        String newIDString = Integer.toString(newIDInt);
-        user.setID(newIDString);
-
         fileManager.insertRow(TableName.ACCOUNT, createUserMap(user));
     }
 
@@ -61,9 +50,14 @@ public class UserDAO {
     // this function fills a map(row) from a User object
     private Map<ColumnName, String> createUserMap(User newUser) throws IOException {
         Map<ColumnName, String> user = new TreeMap<>();
-        user.put(ColumnName.ACCOUNT_ID, newUser.getID());
+
+        // generate new ID
+        String newIDString = EnumHelper.getNewPK(TableName.ACCOUNT);
+
+        user.put(ColumnName.ACCOUNT_ID,newIDString);
         user.put(ColumnName.ACCOUNT_PASSWORD, newUser.getPassword());
         user.put(ColumnName.ACCOUNT_ROLE, newUser.getRole().toString());
+
         return user;
     }
 }

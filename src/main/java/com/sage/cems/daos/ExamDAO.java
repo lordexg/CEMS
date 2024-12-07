@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import com.sage.cems.models.Exam;
 import com.sage.cems.models.Question;
 import com.sage.cems.util.ColumnName;
+import com.sage.cems.util.EnumHelper;
 import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
 
@@ -41,23 +42,6 @@ public class ExamDAO {
     }
 
     public void addExam(Exam exam) throws IOException {
-        /*
-            Generate exam ID based on the EXAM_TABLE last EXAM_ID,
-            since its ID is unique throughout the system not in its course only.
-        */
-
-        // might be null (no rows found)
-        String lastID = fileManager.getLastRow(TableName.EXAM).get(ColumnName.EXAM_ID);
-
-        String newID;
-        try{
-            newID = String.valueOf(Integer.parseInt(lastID) + 1);
-        }catch(NumberFormatException e){
-            newID = "1";
-            System.out.println("That's the first Exam");
-        }
-
-        exam.setExam_ID(newID);
         fileManager.insertRow(TableName.EXAM, createExamMap(exam));
     }
 
@@ -112,7 +96,9 @@ public class ExamDAO {
     // Used in some functions that interacts with the CEMS File System (insertion, deletion, update)
     private Map<ColumnName, String> createExamMap(Exam exam) throws IOException {
         Map<ColumnName, String> newExam = new TreeMap<>();
-        newExam.put(ColumnName.EXAM_ID, exam.getExam_ID());
+        String newExamID = EnumHelper.getNewPK(TableName.EXAM);
+
+        newExam.put(ColumnName.EXAM_ID, newExamID);
         newExam.put(ColumnName.EXAM_NAME, exam.getExamName());
         newExam.put(ColumnName.EXAM_LENGTH, String.valueOf(exam.getExamLength()));
         newExam.put(ColumnName.EXAM_FULL_MARK, String.valueOf(exam.getFullMark()));
