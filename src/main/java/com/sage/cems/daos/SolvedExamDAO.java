@@ -47,7 +47,7 @@ public class SolvedExamDAO {
     }
 
     private void populateSolvedExamFields(SolvedExam solvedSolvedExam, Map<ColumnName, String> solvedSolvedExamMap) throws IOException {
-        solvedSolvedExam.setSolvedExamAnswers(List.of(solvedSolvedExamMap.get(ColumnName.SOLVED_EXAM_ANSWERS).split(",")));
+        solvedSolvedExam.setSolvedExamAnswers(List.of(solvedSolvedExamMap.get(ColumnName.SOLVED_EXAM_ANSWERS).split(",,,")));
         solvedSolvedExam.setCourseID(solvedSolvedExamMap.get(ColumnName.COURSE_ID));
         solvedSolvedExam.setExamID(solvedSolvedExamMap.get(ColumnName.EXAM_ID));
         solvedSolvedExam.setStudentID(solvedSolvedExamMap.get(ColumnName.STUDENT_ID));
