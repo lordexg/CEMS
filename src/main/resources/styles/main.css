@@ -172,3 +172,47 @@
     -fx-text-fill: gray;
     -fx-font-size: 18;
 }
+
+.vbox-table {
+    -fx-background-color: #EEE;
+    -fx-border-width: 1;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+    /*-fx-padding: 20 0;*/
+}
+
+.vbox-table-row {
+    -fx-background-color: #EEE;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 10;
+    /*-fx-padding: 20 0;*/
+}
+.vbox-table-row .label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: gray;
+    -fx-font-size: 16;
+    -fx-background-color: #EEE;
+    -fx-border-width: 0 0 0 1;
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(0, 0, 0, 0.2);
+    -fx-padding: 0 0 0 10;
+}
+.vbox-table-row .first-row {
+    -fx-border-width: 0;
+}
+.last-row {
+    -fx-border-width: 0;
+}
+.more-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-width: 0;
+    -fx-padding: 2 1;
+}
+
+.more-btn:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.06);
+}

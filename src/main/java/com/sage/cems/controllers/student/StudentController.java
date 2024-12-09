@@ -49,6 +49,8 @@ public class StudentController implements Initializable {
                 coursesController.setStudent(student);
             }
             case STUDENT_RESULTS -> {
+                StudentResultsController resultsController = (StudentResultsController) ViewFactory.getInstance().getController(View.STUDENT_RESULTS);
+                resultsController.setStudentID(student.getID());
             }
             case STUDENT_PROFILE -> {
             }

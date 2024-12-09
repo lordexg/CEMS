@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="774.0" styleClass="vbox-table-row"
+            stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sage.cems.controllers.student.GradeController">
+   <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="examNameLabel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+             prefHeight="49.0" prefWidth="243.0" styleClass="first-row" text="Final Spring-2024"/>
+      <Label fx:id="courseIdLabel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+             prefHeight="49.0" prefWidth="119.0" text="CS50"/>
+      <Label fx:id="gradeLabel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+             prefHeight="49.0" prefWidth="83.0" text="97"/>
+      <Label fx:id="totalGradeLabel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+             prefHeight="49.0" prefWidth="122.0" text="100"/>
+   </HBox>
+   <AnchorPane layoutX="586.0" layoutY="6.0" AnchorPane.rightAnchor="10.0">
+      <Button fx:id="moreButton" focusTraversable="false" layoutX="141.0" layoutY="2.0" mnemonicParsing="false"
+              styleClass="more-btn">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../../images/Menu-Vertical.png"/>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </Button>
+      <Button fx:id="checkAnswersButton" focusTraversable="false" layoutY="3.0" mnemonicParsing="false"
+              prefHeight="14.0" prefWidth="136.0" style="-fx-padding: 5 10;" styleClass="main-btn"
+              text="Check Answers">
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </Button>
+   </AnchorPane>
+</AnchorPane>
