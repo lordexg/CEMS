@@ -4,6 +4,8 @@ public class Grade {
 
     private String gradeID;
     private int mark;
+    private int fullMark;
+    private String examName;
     private String studentID;
     private String courseID;
     private String examID;
@@ -58,5 +60,19 @@ public class Grade {
         this.mark = mark;
     }
 
+    public int getFullMark() {
+        return fullMark;
+    }
 
+    public void setFullMark(int fullMark) {
+        this.fullMark = fullMark;
+    }
+
+    public String getExamName() {
+        return examName;
+    }
+
+    public void setExamName(String examName) {
+        this.examName = examName;
+    }
 }
