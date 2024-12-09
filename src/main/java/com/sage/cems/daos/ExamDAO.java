@@ -23,14 +23,24 @@ public class ExamDAO {
         this.questionDAO = new QuestionDAO(fileManager);
     }
 
-    public List<Exam> getAllExams(String keyWord) throws IOException {
-        List<Map<ColumnName, String>> exams = fileManager.getRows(TableName.EXAM, keyWord);
+    /**
+     * @param courseID to retrieve the exams for the specified coursID
+    * */
+    public List<Exam> getAllExams(String courseID) throws IOException {
+        List<Map<ColumnName, String>> allMatchedExams = fileManager.getRows(TableName.EXAM, courseID);
+        List<Map<ColumnName, String>> examsMap = new ArrayList<>();
 
-        if (exams.isEmpty()) {
+        for(Map<ColumnName, String> examMap : allMatchedExams) {
+            if(Objects.equals(examMap.get(ColumnName.COURSE_ID), courseID)){
+                examsMap.add(examMap);
+            }
+        }
+
+        if (examsMap.isEmpty()) {
             return new ArrayList<>();
         }
 
-        return createExamsList(exams);
+        return createExamsList(examsMap);
     }
 
     public List<Exam> getAllExams() throws IOException {
