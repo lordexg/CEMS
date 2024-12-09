@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.sage.cems.controllers.student.StudentResultsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane minHeight="-Infinity" prefHeight="540.0" prefWidth="871.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.student.StudentResultsController">
+   <Label layoutX="36.0" layoutY="40.0" prefHeight="36.0" prefWidth="565.0" styleClass="header-label" text="Results" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10.0">
+      <font>
+         <Font name="Segoe UI" size="24.0" />
+      </font>
+   </Label>
+   <Label layoutX="40.0" layoutY="45.0" prefHeight="27.0" prefWidth="434.0" styleClass="header-p" text="Here are all the exam grades you completed earlier." AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.0">
+      <font>
+         <Font name="Segoe UI" size="12.0" />
+      </font>
+   </Label>
+   <StackPane layoutY="80.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <Label fx:id="noResultsMessage" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.24" prefHeight="284.0" prefWidth="586.0" style="-fx-padding: 20;" styleClass="header-label" text="Theres are no results announced yet" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Segoe UI" size="24.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../../images/Unavailable.png" />
+            </ImageView>
+         </graphic>
+      </Label>
+   </StackPane>
+   <ScrollPane fx:id="gradesScrollPane" fitToWidth="true" hbarPolicy="NEVER" layoutX="77.0" layoutY="135.0" prefHeight="485.0" prefWidth="995.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+      <VBox styleClass="vbox-table">
+         <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="774.0"
+                     styleClass="vbox-table-row" stylesheets="@../../styles/main.css">
+            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+                      prefHeight="49.0" prefWidth="243.0" style="-fx-text-fill: #3282B8;" styleClass="first-row"
+                      text="Exam"/>
+               <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+                      prefHeight="49.0" prefWidth="119.0" style="-fx-text-fill: #3282B8;" text="Course"/>
+               <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+                      prefHeight="49.0" prefWidth="83.0" style="-fx-text-fill: #3282B8;" text="Grade"/>
+               <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity"
+                      prefHeight="49.0" prefWidth="122.0" style="-fx-text-fill: #3282B8;" text="Total Grade"/>
+            </HBox>
+         </AnchorPane>
+         <VBox fx:id="gradesPane">
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml"/>
+            <fx:include source="grade.fxml" styleClass="last-row"/>
+         </VBox>
+      </VBox>
+      <padding>
+         <Insets right="13.0" />
+      </padding>
+   </ScrollPane>
 </AnchorPane>
