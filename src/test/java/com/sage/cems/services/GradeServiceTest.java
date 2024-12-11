@@ -1,5 +1,6 @@
 package com.sage.cems.services;
 
+import com.sage.cems.models.Exam;
 import com.sage.cems.models.Grade;
 import com.sage.cems.models.SolvedExam;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,7 @@ class GradeServiceTest {
     @Test
     void getStudentSolvedExam() throws IOException {
         GradeService gradeService = new GradeService();
-        SolvedExam solvedExam = gradeService.getStudentSolvedExam("4","1");
-        System.out.println(solvedExam.getSolvedExamAnswers());
+        Exam solvedExam = gradeService.getStudentSolvedExam("4","1");
 
     }
 

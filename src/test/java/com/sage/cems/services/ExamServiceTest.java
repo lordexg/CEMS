@@ -2,6 +2,7 @@ package com.sage.cems.services;
 
 import com.sage.cems.daos.ExamDAO;
 import com.sage.cems.models.Exam;
+import com.sage.cems.models.Question;
 import com.sage.cems.util.CEMSFileManager;
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +22,11 @@ class ExamServiceTest {
         ExamService examService = new ExamService();
 
         ExamDAO examDAO = new ExamDAO(new CEMSFileManager());
-        Exam exam = getexam("4");
-        exam.getQuestions().getFirst().setStudentAnswer("test");
+        Exam exam = getexam("5");
+        for (Question question : exam.getQuestions()){
+            question.setStudentAnswer(question.getCorrectAnswer());
+        }
+        exam.getQuestions().getFirst().setStudentAnswer("scla");
         examService.submitExam(exam,"1");
     }
 

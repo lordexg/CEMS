@@ -3,6 +3,7 @@ package com.sage.cems.util;
 public enum ColumnName {
     GRADE_ID,
     QUESTION_ID,
+    RECORRECTION_ID,
     EXAM_ID,
     // Student table
     STUDENT_ID,
@@ -41,5 +42,8 @@ public enum ColumnName {
     QUESTION_CHOICES,
     QUESTION_STUDENT_ANSWER,
     // Grades
-    GRADE_MARK
+    GRADE_MARK,
+    // Recorrection table
+    STUDENT_MESSAGE,
+    REQUEST_STATUS
 }
