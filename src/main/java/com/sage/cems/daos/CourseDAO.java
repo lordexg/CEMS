@@ -47,7 +47,7 @@ public class CourseDAO {
         }
 
         // using enrollment table, I got courses IDs
-        // Imma using them to get the courses from courses Table
+        // Imma use them to get the courses from courses Table
         List<Map<ColumnName, String>> coursesMapList = new ArrayList<>();
         for(Map<ColumnName, String> enroll : enrollMap) {
             if (enroll.get(ColumnName.STUDENT_ID).equals(user.getID())) {
@@ -89,10 +89,6 @@ public class CourseDAO {
 //            lecturer.getCourses().add(course);
 //        }
     }
-
-//    public void updateCourse(Course course) throws IOException {
-//        fileManager.updateRow(TableName.COURSE, createCourseMap(course));
-//    }
 
     /**
      * <strong>This function deletes a course and all its enrollments</strong>
