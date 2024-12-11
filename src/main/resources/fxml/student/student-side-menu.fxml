@@ -72,7 +72,7 @@
       </VBox>
       <VBox layoutX="17.0" layoutY="30.0" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
          <children>
-            <Button id="STUDENT_PROFILE" fx:id="profileBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="" focusTraversable="false" graphicTextGap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefWidth="0.0" styleClass="menu-btn" text="Profile" textOverrun="CLIP">
+            <Button id="PROFILE" fx:id="profileBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="" focusTraversable="false" graphicTextGap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefWidth="0.0" styleClass="menu-btn" text="Profile" textOverrun="CLIP">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

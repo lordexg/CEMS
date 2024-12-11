@@ -251,3 +251,14 @@
 .menu-item:focused {
     /*-fx-background-color: #3282B8;*/
 }
+
+.user-data-field {
+    -fx-text-fill: gray;
+}
+.user-data-field:disabled {
+    -fx-opacity: 1.0; /* Prevent graying out */
+    -fx-background-color: #E2E2E2; /* Optional: ensure background stays the same */
+}
+.text-field-top-btn {
+
+}

@@ -1,7 +1,5 @@
 package com.sage.cems.controllers.admin;
 
-
-import com.sage.cems.controllers.student.StudentHomeController;
 import com.sage.cems.models.user.User;
 import com.sage.cems.views.View;
 import com.sage.cems.views.ViewFactory;
@@ -48,7 +46,7 @@ public class AdminController implements Initializable {
             }
             case STUDENT_RESULTS -> {
             }
-            case STUDENT_PROFILE -> {
+            case PROFILE -> {
             }
         }
         mainView.setCenter(ViewFactory.getInstance().getView(view));

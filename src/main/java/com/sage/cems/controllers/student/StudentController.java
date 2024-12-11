@@ -1,5 +1,6 @@
 package com.sage.cems.controllers.student;
 
+import com.sage.cems.controllers.ProfileController;
 import com.sage.cems.models.Student;
 import com.sage.cems.views.View;
 import com.sage.cems.views.ViewFactory;
@@ -52,7 +53,9 @@ public class StudentController implements Initializable {
                 StudentResultsController resultsController = (StudentResultsController) ViewFactory.getInstance().getController(View.STUDENT_RESULTS);
                 resultsController.setStudentID(student.getID());
             }
-            case STUDENT_PROFILE -> {
+            case PROFILE -> {
+                ProfileController profileController = (ProfileController) ViewFactory.getInstance().getController(View.PROFILE);
+                profileController.setUser(student);
             }
         }
     }
