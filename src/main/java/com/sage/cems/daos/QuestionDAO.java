@@ -37,17 +37,18 @@ public class QuestionDAO {
 
         return createQuestionsList(examQuestions);
     }
+
     public void addQuestion(Question question) throws IOException {
-        fileManager.insertRow(TableName.QUESTION, createQuestionMap(question));
+        fileManager.insertRow(TableName.QUESTION, createQuestionMapADD(question));
     }
 
 //     NOT WORKING (UPDATE HAS NO EFFECT ON QUESTION_TABLE)
     public void updateQuestion(Question question) throws IOException {
-        fileManager.updateRow(TableName.QUESTION, createQuestionMap(question));
+        fileManager.updateRow(TableName.QUESTION, createQuestionMapDU(question));
     }
 
     public void deleteQuestion(Question question) throws IOException {
-        fileManager.deleteRow(TableName.QUESTION, createQuestionMap(question));
+        fileManager.deleteRow(TableName.QUESTION, createQuestionMapDU(question));
     }
 //===========================================================================================
 //===========================================================================================
@@ -59,9 +60,24 @@ public class QuestionDAO {
         return question;
     }
 
-    private Map<ColumnName, String> createQuestionMap(Question question) throws IOException {
+    private Map<ColumnName, String> createQuestionMapADD(Question question) throws IOException {
         Map<ColumnName, String> newQuestion = new TreeMap<>();
+        newQuestion.put(ColumnName.QUESTION_ID, EnumHelper.getNewPK(TableName.QUESTION));
+        populateQuestionMap(newQuestion, question);
+        return newQuestion;
+    }
+    // used for deletion/update, MUST ADD QUESTION_ID
+    private Map<ColumnName, String> createQuestionMapDU(Question question) throws IOException {
+        Map<ColumnName, String> newQuestion = new TreeMap<>();
+        newQuestion.put(ColumnName.QUESTION_ID, question.getQuestionID());
+        populateQuestionMap(newQuestion, question);
+        return newQuestion;
+    }
 
+    /**
+     *  populates an questionMap without adding an questionID, cus different createQuestionMap functions will implement it
+     */
+    private void populateQuestionMap(Map<ColumnName, String> questionMap, Question question) throws IOException {
         // to put choices in the QUESTIONS_TABLE as choice1,choice2,choice3... or null
         List<String> choicesList;
         String choices;
@@ -72,17 +88,11 @@ public class QuestionDAO {
             choices = "-";
         }
 
-        // Question ID has to be calculated based on the last ID in QUESTION_TABLE
-
-        String newIDString = EnumHelper.getNewPK(TableName.QUESTION);
-
-        newQuestion.put(ColumnName.QUESTION_ID, newIDString);
-        newQuestion.put(ColumnName.QUESTION_CHOICES, choices);
-        newQuestion.put(ColumnName.EXAM_ID, question.getExamID());
-        newQuestion.put(ColumnName.QUESTION_STATEMENT, question.getStatement());
-        newQuestion.put(ColumnName.QUESTION_TYPE, question.getQuestionType().name());
-        newQuestion.put(ColumnName.QUESTION_CORRECT_ANSWER, question.getCorrectAnswer());
-        return newQuestion;
+        questionMap.put(ColumnName.QUESTION_CHOICES, choices);
+        questionMap.put(ColumnName.EXAM_ID, question.getExamID());
+        questionMap.put(ColumnName.QUESTION_STATEMENT, question.getStatement());
+        questionMap.put(ColumnName.QUESTION_TYPE, question.getQuestionType().name());
+        questionMap.put(ColumnName.QUESTION_CORRECT_ANSWER, question.getCorrectAnswer());
     }
 
     private List<Question> createQuestionsList(List<Map<ColumnName, String>> questionsMap) throws IOException {
