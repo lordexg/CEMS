@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="parent" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.admin.AdminHomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="parent" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.admin.AdminHomeController">
    <stylesheets>
       <URL value="@../../styles/student.css" />
       <URL value="@../../styles/main.css" />

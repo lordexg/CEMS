@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="parent" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" styleClass="side-menu" stylesheets="@../../styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.admin.AdminSideMenuController">
+<AnchorPane fx:id="parent" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" styleClass="side-menu" stylesheets="@../../styles/admin.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sage.cems.controllers.admin.AdminSideMenuController">
    <children>
       <VBox fx:id="menuButtonsVBox" layoutX="7.0" layoutY="20.0" minWidth="-Infinity" prefWidth="0.0" spacing="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="20.0">
          <children>
