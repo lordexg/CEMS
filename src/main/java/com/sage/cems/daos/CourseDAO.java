@@ -2,8 +2,6 @@ package com.sage.cems.daos;
 
 import com.sage.cems.models.Course;
 import com.sage.cems.models.Exam;
-import com.sage.cems.models.Lecturer;
-import com.sage.cems.models.Student;
 import com.sage.cems.models.user.User;
 import com.sage.cems.util.ColumnName;
 import com.sage.cems.util.FileManager;
@@ -78,16 +76,8 @@ public class CourseDAO {
                 return;
             }
         }
-
         // update the file system
         fileManager.insertRow(TableName.ENROLLMENT, newEnrollment);
-
-//        // update the user data
-//        if(user instanceof Student student) {
-//            student.getCourses().add(course);
-//        }else if(user instanceof Lecturer lecturer) {
-//            lecturer.getCourses().add(course);
-//        }
     }
 
     /**
@@ -109,8 +99,11 @@ public class CourseDAO {
         }
     }
 
-    // Will be implemented later if needed.
     public void deleteCourseFromUser(User user, Course course) throws IOException {
+        Map<ColumnName, String> enrollment = new TreeMap<>();
+        enrollment.put(ColumnName.STUDENT_ID, user.getID());
+        enrollment.put(ColumnName.COURSE_ID, course.getCourseID());
+        fileManager.deleteRow(TableName.ENROLLMENT, enrollment);
     }
 
 
