@@ -3,6 +3,7 @@ package com.sage.cems.daos;
 import com.sage.cems.models.Course;
 import com.sage.cems.models.Student;
 import com.sage.cems.models.user.Role;
+import com.sage.cems.models.user.User;
 import com.sage.cems.util.ColumnName;
 import com.sage.cems.util.FileManager;
 import com.sage.cems.util.TableName;
@@ -44,7 +45,7 @@ public class StudentDAO {
         fileManager.insertRow(TableName.STUDENT, createStudentMap(student));
     }
 
-    public void updateStudent(Student student) throws IOException {
+    public void updateStudent(User student) throws IOException {
         fileManager.updateRow(TableName.STUDENT, createStudentMap(student));
     }
 
@@ -86,7 +87,7 @@ public class StudentDAO {
         return student;
     }
 
-    private Map<ColumnName, String> createStudentMap(Student student){
+    private Map<ColumnName, String> createStudentMap(User student){
         Map<ColumnName, String> newStudent = new TreeMap<>();
         newStudent.put(ColumnName.STUDENT_ID, student.getID());
         newStudent.put(ColumnName.STUDENT_FIRST_NAME, student.getFirstName());
