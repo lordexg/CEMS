@@ -36,6 +36,21 @@ public class ExamDAO {
         return createExamsList(allMatchedExams);
     }
 
+    public Exam getExam(String examID) throws IOException {
+        List<Map<ColumnName, String>> matchedExamMap = fileManager.getRows(TableName.EXAM, examID);
+        Map<ColumnName, String> examMap = new TreeMap<>();
+
+        // examID might conflict with any other column (filtration needed)
+        for (Map<ColumnName, String> matchedExam : matchedExamMap) {
+            if(Objects.equals(matchedExam.get(ColumnName.EXAM_ID), examID)) {
+                examMap = matchedExam;
+                break;
+            }
+        }
+
+        return createExam(examMap);
+    }
+
     public List<Exam> getAllExams() throws IOException {
         List<Map<ColumnName, String>> exams = fileManager.getAllRows(TableName.EXAM);
         if(exams.isEmpty()) {
