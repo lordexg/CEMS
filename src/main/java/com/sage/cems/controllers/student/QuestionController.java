@@ -1,11 +1,13 @@
 package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Question;
+import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
@@ -29,18 +31,21 @@ public class QuestionController implements Initializable {
     public TextField shortAnswerField;
     public AnchorPane thirdQuestionPane;
     public AnchorPane fourthQuestionPane;
+    public Label correctAnswerField;
 
     private Question question;
     private int questionNumber;
+    private boolean isAnswered;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         questionParent.setOnMouseClicked( _ -> questionParent.getStyleClass().remove("question-error"));
     }
 
-    public void setQuestionData(Question question, int questionNumber) {
+    public void setQuestionData(Question question, int questionNumber, boolean isAnswered) {
         this.question = question;
         this.questionNumber = questionNumber;
+        this.isAnswered = isAnswered;
         updateView();
     }
 
@@ -64,6 +69,17 @@ public class QuestionController implements Initializable {
     private void createCompleteQuestionView() {
         toggleChoicesPane(false);
         shortAnswerField.setOnMouseClicked(_ -> questionParent.getStyleClass().remove("question-error"));
+        if (isAnswered) {
+            shortAnswerField.setText(question.getStudentAnswer());
+            shortAnswerField.setDisable(true);
+            if (question.getStudentAnswer().equals(question.getCorrectAnswer())) {
+                shortAnswerField.getStyleClass().add("correct-short-answer");
+                return;
+            }
+            shortAnswerField.getStyleClass().add("question-error");
+            correctAnswerField.setVisible(true);
+            correctAnswerField.setText("Correct Answer: " + question.getCorrectAnswer());
+        }
     }
 
     private void createMCQuestionView() {
@@ -73,7 +89,11 @@ public class QuestionController implements Initializable {
             toggleButton.setOnMouseClicked(_ -> questionParent.getStyleClass().remove("question-error"));
             toggleButton.setVisible(true);
             toggleButton.setText(iterator.next());
+            if (isAnswered)
+                consumeToggle(toggleButton);
         }
+        if (isAnswered)
+            showCorrectedChoices();
     }
 
     private void createTrueFalseQuestionView() {
@@ -84,6 +104,12 @@ public class QuestionController implements Initializable {
         fourthQuestionPane.setVisible(false);
         thirdQuestionPane.setManaged(false);
         fourthQuestionPane.setManaged(false);
+        if (isAnswered) {
+            showCorrectedChoices();
+            consumeToggle(firstChoice);
+            consumeToggle(secondChoice);
+        }
+
     }
 
     private void toggleChoicesPane(boolean visible) {
@@ -112,4 +138,24 @@ public class QuestionController implements Initializable {
         question.setStudentAnswer(selectedAnswer == null ? "" : selectedAnswer.getId());
         return question;
     }
+
+    private void showCorrectedChoices() {
+        boolean isCorrect = question.getCorrectAnswer().equals(question.getStudentAnswer());
+        for (ToggleButton toggleButton : new ToggleButton[]{firstChoice, secondChoice, thirdChoice, fourthChoice}) {
+            if (isCorrect && toggleButton.getId().equals(question.getCorrectAnswer())) {
+                toggleButton.getStyleClass().add("green-choice-answer");
+                return;
+            }
+            if (!isCorrect && toggleButton.getId().equals(question.getStudentAnswer()))
+                toggleButton.getStyleClass().add("red-choice-answer");
+            if (!isCorrect && toggleButton.getId().equals(question.getCorrectAnswer()))
+                toggleButton.getStyleClass().add("green-choice-answer");
+        }
+    }
+
+    private void consumeToggle(ToggleButton toggleButton) {
+        toggleButton.addEventFilter(MouseEvent.MOUSE_PRESSED, Event::consume);
+        toggleButton.getStyleClass().add("consume-toggle");
+    }
+
 }

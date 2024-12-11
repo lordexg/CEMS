@@ -108,7 +108,7 @@ public class ExamStageController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/question.fxml"));
             questionView = loader.load();
-            ((QuestionController) loader.getController()).setQuestionData(question, questionNumber);
+            ((QuestionController) loader.getController()).setQuestionData(question, questionNumber, false);
             questionControllers.add(loader.getController());
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);

@@ -78,6 +78,12 @@
     -fx-border-color: red;
 }
 
+.correct-short-answer {
+    -fx-background-color: #c2ffc2;
+    -fx-border-width: 0.5;
+    -fx-border-color: green;
+}
+
 .statement, .toggle-choice {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: gray;
@@ -129,4 +135,19 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16;
     -fx-text-fill: #3282B8;
+}
+
+.green-choice-answer {
+    -fx-background-color: #c2ffc2;
+    -fx-pref-height: 44;
+}
+.red-choice-answer {
+    -fx-background-color: #ff9393;
+    -fx-pref-height: 44;
+}
+.consume-toggle {
+    -fx-cursor: default;
+}
+.consume-toggle:hover {
+    -fx-border-color: rgba(0, 0, 0, 0.12);
 }

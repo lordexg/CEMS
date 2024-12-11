@@ -57,6 +57,7 @@
       <HBox fx:id="shortAnswerPane" spacing="17.0" style="-fx-padding: 30 30 30;">
          <Label prefHeight="20.0" prefWidth="54.0" styleClass="short-answer-label" text="Answer" />
          <TextField fx:id="shortAnswerField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="181.0" stylesheets="@../../styles/main.css" />
+         <Label fx:id="correctAnswerField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="243.0" style="-fx-text-fill: green;" styleClass="short-answer-label" text="Answer" visible="false" wrapText="true" />
       </HBox>
    </VBox>
    <StackPane layoutX="3.0" layoutY="3.0" prefHeight="39.0" prefWidth="39.0" styleClass="qno" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">

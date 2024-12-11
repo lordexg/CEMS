@@ -3,6 +3,7 @@ package com.sage.cems.views;
 import com.sage.cems.controllers.PopUpController;
 import com.sage.cems.controllers.admin.AdminController;
 import com.sage.cems.controllers.lecturer.LecturerController;
+import com.sage.cems.controllers.student.CorrectedExamController;
 import com.sage.cems.controllers.student.ExamStageController;
 import com.sage.cems.controllers.student.StudentController;
 import com.sage.cems.models.Exam;
@@ -118,6 +119,13 @@ public class ViewFactory {
     public void showExamWindow(Exam exam, String studentId, Stage parent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/exam-stage.fxml"));
         ExamStageController controller = new ExamStageController(exam, studentId, parent);
+        loader.setController(controller);
+        createStage(loader, 900, 950);
+    }
+
+    public void showCorrectedExamWindow(Exam exam, String studentId, Stage parent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/corrected-exam-stage.fxml"));
+        CorrectedExamController controller = new CorrectedExamController(exam, studentId, parent);
         loader.setController(controller);
         createStage(loader, 900, 950);
     }

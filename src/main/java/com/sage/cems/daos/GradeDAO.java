@@ -102,14 +102,8 @@ public class GradeDAO {
         grade.setCourseID(gradeMap.get(ColumnName.COURSE_ID));
         grade.setMark(Integer.parseInt(gradeMap.get(ColumnName.GRADE_MARK)));
         grade.setStudentID(gradeMap.get(ColumnName.STUDENT_ID));
-        Exam exam = null;
-        for (Exam searchedExam : examDAO.getAllExams(grade.getExamID())) {
-            if (searchedExam.getExam_ID().equals(grade.getExamID()))
-                exam = searchedExam;
-        }
-        if (exam != null) {
-            grade.setExamName(exam.getExamName());
-            grade.setFullMark((int)exam.getFullMark());
-        }
+        Exam exam = examDAO.getExam(grade.getExamID());
+        grade.setExamName(exam.getExamName());
+        grade.setFullMark((int)exam.getFullMark());
     }
 }

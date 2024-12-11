@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="731.0" prefWidth="933.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane layoutY="25.0" prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #3282B8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="examNameLabel" layoutX="30.0" layoutY="32.0" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="406.0" style="-fx-text-fill: white; -fx-font-size: 20;" styleClass="header-label" text="Exam" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="gradeLabel" alignment="CENTER_RIGHT" graphicTextGap="6.0" layoutX="386.0" layoutY="31.0" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="236.0" style="-fx-text-fill: white; -fx-font-family: &quot;Segoe UI&quot;; -fx-font-weight: bold; -fx-font-size: 20;" styleClass="header-label" text="25/30 (A+)" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="25.0" />
+   </AnchorPane>
+   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="135.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="85.0">
+      <StackPane>
+         <VBox fx:id="questionsPane" maxHeight="-Infinity" maxWidth="-Infinity" spacing="10.0">
+            <StackPane.margin>
+               <Insets left="23.0" top="20.0" />
+            </StackPane.margin>
+         </VBox>
+      </StackPane>
+   </ScrollPane>
+   <StackPane layoutY="602.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="340.0">
+         <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="108.0" styleClass="main-btn" text="Close" AnchorPane.rightAnchor="0.0">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Button fx:id="reCorrectionButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="202.0" styleClass="sec-btn" text="Request Re-correction" AnchorPane.leftAnchor="0.0">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+      </AnchorPane>
+   </StackPane>
+</AnchorPane>

@@ -216,3 +216,38 @@
 .more-btn:hover {
     -fx-background-color: rgba(0, 0, 0, 0.06);
 }
+
+/* Style the ContextMenu */
+.context-menu {
+    -fx-background-color: #EAEAEA;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgba(0, 0, 0, 0.17);
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.menu-item {
+    -fx-background-color: #EAEAEA;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-cursor: hand;
+    -fx-padding: 5 10;
+}
+
+.menu-item .label{
+    -fx-background-color: #EAEAEA;
+    -fx-border-width: 0;
+}
+
+.menu-item:hover {
+    -fx-background-color: #3282B8;
+}
+
+.menu-item:hover .label {
+    -fx-background-color: #3282B8;
+    -fx-text-fill: white;
+}
+
+.menu-item:focused {
+    /*-fx-background-color: #3282B8;*/
+}

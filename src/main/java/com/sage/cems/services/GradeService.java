@@ -1,7 +1,9 @@
 package com.sage.cems.services;
 
+import com.sage.cems.daos.ExamDAO;
 import com.sage.cems.daos.GradeDAO;
 import com.sage.cems.daos.SolvedExamDAO;
+import com.sage.cems.models.Exam;
 import com.sage.cems.models.Grade;
 import com.sage.cems.models.SolvedExam;
 import com.sage.cems.util.CEMSFileManager;
@@ -15,11 +17,13 @@ public class GradeService {
 
     private final SolvedExamDAO solvedExamDAO;
     private final GradeDAO gradeDAO;
+    private final ExamDAO examDAO;
 
     public GradeService() throws IOException {
         FileManager fileManager = new CEMSFileManager();
         this.solvedExamDAO = new SolvedExamDAO(fileManager);
         this.gradeDAO = new GradeDAO(fileManager);
+        this.examDAO = new ExamDAO(fileManager);
     }
 
 
@@ -33,14 +37,32 @@ public class GradeService {
         return grades;
     }
 
-    public SolvedExam getStudentSolvedExam(String examID, String studentID) throws IOException {
-        List<SolvedExam> solvedExams = solvedExamDAO.getAllSolvedExams(examID);
-        for(SolvedExam solvedExam : solvedExams){
-            if((solvedExam.getStudentID().equals(studentID)) && (solvedExam.getExamID().equals(examID))){
-                return solvedExam;
+    public String getFormatedGrade(String examID, String studentID) throws IOException {
+        Grade studentGrade = null;
+        for (Grade grade : gradeDAO.getAllGrades(studentID)) {
+            if (grade.getStudentID().equals(studentID) && grade.getExamID().equals(examID))
+                studentGrade = grade;
+        }
+        return studentGrade == null ? "" : studentGrade.getMark() + "/" + studentGrade.getFullMark()
+                + " (" + getGradeSymbol(studentGrade) + ")";
+    }
+
+    public Exam getStudentSolvedExam(String examID, String studentID) throws IOException {
+        SolvedExam studentSolvedExam = null;
+        for(SolvedExam solvedExam : solvedExamDAO.getAllSolvedExams(examID)){
+            if ((solvedExam.getStudentID().equals(studentID)) && (solvedExam.getExamID().equals(examID))){
+                studentSolvedExam = solvedExam;
             }
         }
-        return new SolvedExam();
+        Exam studentExam = examDAO.getExam(examID);
+
+        if (studentExam == null || studentSolvedExam == null)
+            throw new IOException("Student with this id doesn't do the exam with given id");
+
+        for (int i = 0; i < studentExam.getQuestions().size(); ++i) {
+            studentExam.getQuestions().get(i).setStudentAnswer(studentSolvedExam.getSolvedExamAnswers().get(i));
+        }
+        return studentExam;
     }
 
     public String getGradeSymbol(Grade grade) {
