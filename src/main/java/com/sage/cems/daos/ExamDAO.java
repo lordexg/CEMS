@@ -52,15 +52,15 @@ public class ExamDAO {
     }
 
     public void addExam(Exam exam) throws IOException {
-        fileManager.insertRow(TableName.EXAM, createExamMap(exam));
+        fileManager.insertRow(TableName.EXAM, createExamMapADD(exam));
     }
 
     public void updateExam(Exam exam) throws IOException {
-        fileManager.updateRow(TableName.EXAM, createExamMap(exam));
+        fileManager.updateRow(TableName.EXAM, createExamMapDU(exam));
     }
 
     public void deleteExam(Exam exam) throws IOException {
-        fileManager.deleteRow(TableName.EXAM, createExamMap(exam));
+        fileManager.deleteRow(TableName.EXAM, createExamMapDU(exam));
     }
 
     private void populateExamFields(Exam exam, Map<ColumnName, String> examMap) throws IOException {
@@ -104,11 +104,25 @@ public class ExamDAO {
     }
 
     // Used in some functions that interacts with the CEMS File System (insertion, deletion, update)
-    private Map<ColumnName, String> createExamMap(Exam exam) throws IOException {
+    // used to add exam
+    private Map<ColumnName, String> createExamMapADD(Exam exam) throws IOException {
         Map<ColumnName, String> newExam = new TreeMap<>();
-        String newExamID = EnumHelper.getNewPK(TableName.EXAM);
+        populateExamMap(newExam, exam);
+        newExam.put(ColumnName.EXAM_ID, EnumHelper.getNewPK(TableName.EXAM));
+        return newExam;
+    }
+    // used to delete/update an exam
+    private Map<ColumnName, String> createExamMapDU(Exam exam) throws IOException {
+        Map<ColumnName, String> newExam = new TreeMap<>();
+        populateExamMap(newExam, exam);
+        newExam.put(ColumnName.EXAM_ID, exam.getExam_ID());
+        return newExam;
+    }
 
-        newExam.put(ColumnName.EXAM_ID, newExamID);
+    /**
+     *  populates an ExamMap without adding an examID, cus different createExamMap functions will implement it
+    */
+    private void populateExamMap(Map<ColumnName, String> newExam, Exam exam) throws IOException {
         newExam.put(ColumnName.EXAM_NAME, exam.getExamName());
         newExam.put(ColumnName.EXAM_LENGTH, String.valueOf(exam.getExamLength()));
         newExam.put(ColumnName.EXAM_FULL_MARK, String.valueOf(exam.getFullMark()));
@@ -116,7 +130,6 @@ public class ExamDAO {
         newExam.put(ColumnName.EXAM_START_DATE, String.valueOf(exam.getExamStartDate()));
         newExam.put(ColumnName.EXAM_IS_APPROVED, String.valueOf(exam.isApproved()));
         newExam.put(ColumnName.COURSE_ID, String.valueOf(exam.getCourseID()));
-        return newExam;
     }
 
     // create exams list
