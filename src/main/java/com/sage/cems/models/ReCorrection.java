@@ -1,28 +1,28 @@
 package com.sage.cems.models;
 
-public class Recorrection {
-    private String RECORRECTION_ID;
+public class ReCorrection {
+    private String reCorrectionID;
     private String examID;
     private String studentID;
     private String studentMessage;
     private boolean requestStatus;
 
-    public Recorrection(){}
+    public ReCorrection(){}
 
-    public Recorrection(String RECORRECTION_ID, String examID, String studentID, String studentMessage, boolean requestStatus) {
-        this.RECORRECTION_ID = RECORRECTION_ID;
+    public ReCorrection(String reCorrectionID, String examID, String studentID, String studentMessage, boolean requestStatus) {
+        this.reCorrectionID = reCorrectionID;
         this.examID = examID;
         this.studentID = studentID;
         this.studentMessage = studentMessage;
         this.requestStatus = requestStatus;
     }
 
-    public String getRECORRECTION_ID() {
-        return RECORRECTION_ID;
+    public String getReCorrectionID() {
+        return reCorrectionID;
     }
 
-    public void setRECORRECTION_ID(String RECORRECTION_ID) {
-        this.RECORRECTION_ID = RECORRECTION_ID;
+    public void setReCorrectionID(String reCorrectionID) {
+        this.reCorrectionID = reCorrectionID;
     }
 
     public String getExamID() {

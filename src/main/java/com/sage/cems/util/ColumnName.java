@@ -43,7 +43,7 @@ public enum ColumnName {
     QUESTION_STUDENT_ANSWER,
     // Grades
     GRADE_MARK,
-    // Recorrection table
+    // ReCorrection table
     STUDENT_MESSAGE,
     REQUEST_STATUS
 }
