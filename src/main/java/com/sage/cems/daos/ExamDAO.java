@@ -28,19 +28,12 @@ public class ExamDAO {
     * */
     public List<Exam> getAllExams(String courseID) throws IOException {
         List<Map<ColumnName, String>> allMatchedExams = fileManager.getRows(TableName.EXAM, courseID);
-        List<Map<ColumnName, String>> examsMap = new ArrayList<>();
 
-        for(Map<ColumnName, String> examMap : allMatchedExams) {
-            if(Objects.equals(examMap.get(ColumnName.COURSE_ID), courseID)){
-                examsMap.add(examMap);
-            }
-        }
-
-        if (examsMap.isEmpty()) {
+        if (allMatchedExams.isEmpty()) {
             return new ArrayList<>();
         }
 
-        return createExamsList(examsMap);
+        return createExamsList(allMatchedExams);
     }
 
     public List<Exam> getAllExams() throws IOException {
