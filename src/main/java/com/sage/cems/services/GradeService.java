@@ -30,7 +30,7 @@ public class GradeService {
     public List<Grade> getStudentGrades(String studentID) throws IOException {
         List<Grade> grades = new ArrayList<>();
         for(Grade grade : gradeDAO.getAllGrades(studentID)) {
-            if(grade.getStudentID().equals(studentID)){
+            if(grade.getStudentID().equals(studentID) && isGradeApproved(grade)){
                 grades.add(grade);
             }
         }
@@ -93,4 +93,8 @@ public class GradeService {
         }
     }
 
+    private boolean isGradeApproved(Grade grade) throws IOException {
+        Exam exam = examDAO.getExam(grade.getExamID());
+        return exam.isApproved();
+    }
 }

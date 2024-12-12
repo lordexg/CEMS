@@ -43,6 +43,10 @@ public class ReCorrectionRequestController implements Initializable {
         submitButton.setOnAction( _ -> onSubmit());
         Platform.runLater(() -> courseField.getScene().getWindow().setOnCloseRequest(this::handleCloseRequest));
         messageTextArea.textProperty().addListener((_, _, newVal) -> submitButton.setDisable(newVal.isEmpty()));
+        messageTextArea.textProperty().addListener((_, oldVal, newVal) -> {
+            if (newVal.contains("\t"))
+                messageTextArea.setText(oldVal);
+        });
     }
 
     private void onSubmit() {
