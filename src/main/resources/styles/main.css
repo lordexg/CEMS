@@ -70,6 +70,24 @@
     -fx-border-color: #3282B8;   /* Border color when focused */
     -fx-background-color: #ffffff; /* Background when focused */
 }
+
+.text-area {
+    -fx-background-color: #E2E2E2;  /* Background color of the entire TextArea */
+    -fx-control-inner-background: transparent;  /* Background color of the text input area */
+    -fx-background-insets: 0; /* Removes inset around the background */
+    -fx-border-insets: 0; /* Removes inset around the border */
+    -fx-control-inner-border: transparent;
+    -fx-border-color: transparent;  /* Border color */
+    -fx-border-width: 0.7;
+    -fx-border-radius: 5px;  /* Rounded corners for the border */
+    -fx-background-radius: 5px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: gray;       /* Text color */
+    -fx-font-size: 15px;          /* Font size */
+    -fx-padding: 5px;             /* Inner padding */
+    -fx-prompt-text-fill: rgba(128, 128, 128, 0.3); /* Placeholder text color */
+}
+
 .scroll-pane {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;

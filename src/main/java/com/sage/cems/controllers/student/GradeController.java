@@ -3,7 +3,10 @@ package com.sage.cems.controllers.student;
 import com.sage.cems.models.Exam;
 import com.sage.cems.models.Grade;
 import com.sage.cems.services.GradeService;
+import com.sage.cems.services.ReCorrectionService;
 import com.sage.cems.views.ViewFactory;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.control.Button;
@@ -26,20 +29,23 @@ public class GradeController implements Initializable {
     public Label totalGradeLabel;
     public Button checkAnswersButton;
     public Button moreButton;
+    private final ContextMenu contextMenu = new ContextMenu();
+    private final MenuItem requestReCorrection = new MenuItem("Request Re-correction");
 
     private Grade grade;
+    private final BooleanProperty hasSubmittedRequestProperty = new SimpleBooleanProperty();
     private GradeService gradeService;
+    private ReCorrectionService reCorrectionService;
 
-    public void setGradeData(Grade grade, GradeService gradeService) {
+    public void setGradeData(Grade grade, GradeService gradeService, ReCorrectionService reCorrectionService) {
         this.grade = grade;
         this.gradeService = gradeService;
+        this.reCorrectionService = reCorrectionService;
         updateView();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem requestReCorrection = new MenuItem("Request Re-correction");
         requestReCorrection.setOnAction(_ -> onRequestReCorrection());
         contextMenu.getItems().add(requestReCorrection);
 
@@ -53,6 +59,7 @@ public class GradeController implements Initializable {
     }
 
     private void updateView() {
+        updateReCorrectionMenuItem();
         examNameLabel.setText(grade.getExamName());
         courseIdLabel.setText(grade.getCourseID());
         gradeLabel.setText(grade.getMark() + " (" + gradeService.getGradeSymbol(grade) + ")");
@@ -68,11 +75,21 @@ public class GradeController implements Initializable {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
         examNameLabel.getScene().getWindow().hide();
-        ViewFactory.getInstance().showCorrectedExamWindow(solvedExam, grade.getStudentID(), ((Stage) examNameLabel.getScene().getWindow()));
+        ViewFactory.getInstance().showCorrectedExamWindow(solvedExam, grade.getStudentID(), hasSubmittedRequestProperty, ((Stage) examNameLabel.getScene().getWindow()), gradeService, reCorrectionService);
     }
 
     private void onRequestReCorrection() {
+        ViewFactory.getInstance().showReCorrectionWindow(grade, reCorrectionService, hasSubmittedRequestProperty);
+    }
 
+    private void updateReCorrectionMenuItem() {
+        try {
+            boolean hasRequestBefore = reCorrectionService.hasRequestReCorrection(grade.getStudentID(), grade.getExamID());
+            hasSubmittedRequestProperty.addListener((_, _, newVal) -> requestReCorrection.setDisable(newVal));
+            hasSubmittedRequestProperty.set(hasRequestBefore);
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Grade;
 import com.sage.cems.services.GradeService;
+import com.sage.cems.services.ReCorrectionService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -20,11 +21,13 @@ public class StudentResultsController {
     public ScrollPane gradesScrollPane;
 
     private GradeService gradeService;
+    private ReCorrectionService reCorrectionService;
     private String studentID;
 
     public StudentResultsController() {
         try {
             this.gradeService = new GradeService();
+            this.reCorrectionService = new ReCorrectionService();
         } catch (IOException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
@@ -62,7 +65,7 @@ public class StudentResultsController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/grade.fxml"));
             gradeView = loader.load();
-            ((GradeController) loader.getController()).setGradeData(grade, gradeService);
+            ((GradeController) loader.getController()).setGradeData(grade, gradeService, reCorrectionService);
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }

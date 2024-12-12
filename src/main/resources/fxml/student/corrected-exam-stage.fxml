@@ -30,12 +30,12 @@
    </ScrollPane>
    <StackPane layoutY="602.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="340.0">
-         <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="108.0" styleClass="main-btn" text="Close" AnchorPane.rightAnchor="0.0">
+         <Button fx:id="closeButton" focusTraversable="false" mnemonicParsing="false" prefHeight="33.0" prefWidth="108.0" styleClass="main-btn" text="Close" AnchorPane.rightAnchor="0.0">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button fx:id="reCorrectionButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="202.0" styleClass="sec-btn" text="Request Re-correction" AnchorPane.leftAnchor="0.0">
+         <Button fx:id="reCorrectionButton" focusTraversable="false" mnemonicParsing="false" prefHeight="33.0" prefWidth="202.0" styleClass="sec-btn" text="Request Re-correction" AnchorPane.leftAnchor="0.0">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>

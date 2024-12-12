@@ -16,6 +16,12 @@ public class ReCorrection {
         this.studentMessage = studentMessage;
         this.requestStatus = requestStatus;
     }
+    public ReCorrection(String examID, String studentID, String studentMessage, boolean requestStatus) {
+        this.examID = examID;
+        this.studentID = studentID;
+        this.studentMessage = studentMessage;
+        this.requestStatus = requestStatus;
+    }
 
     public String getReCorrectionID() {
         return reCorrectionID;

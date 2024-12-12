@@ -5,10 +5,14 @@ import com.sage.cems.controllers.admin.AdminController;
 import com.sage.cems.controllers.lecturer.LecturerController;
 import com.sage.cems.controllers.student.CorrectedExamController;
 import com.sage.cems.controllers.student.ExamStageController;
+import com.sage.cems.controllers.student.ReCorrectionRequestController;
 import com.sage.cems.controllers.student.StudentController;
 import com.sage.cems.models.Exam;
+import com.sage.cems.models.Grade;
 import com.sage.cems.models.Student;
 import com.sage.cems.models.user.User;
+import com.sage.cems.services.GradeService;
+import com.sage.cems.services.ReCorrectionService;
 import javafx.beans.property.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -123,11 +127,24 @@ public class ViewFactory {
         createStage(loader, 900, 950);
     }
 
-    public void showCorrectedExamWindow(Exam exam, String studentId, Stage parent) {
+    public void showCorrectedExamWindow(Exam exam, String studentId, BooleanProperty hasSubmittedRequestProperty,
+                                        Stage parent, GradeService gradeService, ReCorrectionService reCorrectionService) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/corrected-exam-stage.fxml"));
-        CorrectedExamController controller = new CorrectedExamController(exam, studentId, parent);
+        CorrectedExamController controller = new CorrectedExamController(exam, studentId, hasSubmittedRequestProperty, parent, gradeService, reCorrectionService);
         loader.setController(controller);
         createStage(loader, 900, 950);
+    }
+
+    public void showReCorrectionWindow(Grade grade, ReCorrectionService reCorrectionService,
+                                       BooleanProperty hasSubmittedRequestProperty) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student/re-correction-request.fxml"));
+        ReCorrectionRequestController controller = new ReCorrectionRequestController(grade, reCorrectionService, hasSubmittedRequestProperty);
+        loader.setController(controller);
+        Image icon = new Image(Objects.requireNonNull(getClass().getResource("/images/exam.png")).toExternalForm());
+        Stage stage = creatBasicStage(loader, "ReCorrection Request", icon, 690, 480);
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
     }
 
     /*

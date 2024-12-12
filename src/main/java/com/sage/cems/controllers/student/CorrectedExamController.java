@@ -1,9 +1,13 @@
 package com.sage.cems.controllers.student;
 
 import com.sage.cems.models.Exam;
+import com.sage.cems.models.Grade;
 import com.sage.cems.models.Question;
 import com.sage.cems.services.GradeService;
+import com.sage.cems.services.ReCorrectionService;
+import com.sage.cems.views.ViewFactory;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,18 +33,18 @@ public class CorrectedExamController implements Initializable {
 
     private final Exam exam;
     private final String studentID;
+    private final BooleanProperty hasSubmittedRequestProperty;
     private final Stage parentStage;
-    private GradeService gradeService;
+    private final GradeService gradeService;
+    private final ReCorrectionService reCorrectionService;
 
-    public CorrectedExamController(Exam exam, String studentID, Stage parentStage) {
+    public CorrectedExamController(Exam exam, String studentID, BooleanProperty hasSubmittedRequestProperty, Stage parentStage, GradeService gradeService ,ReCorrectionService reCorrectionService) {
         this.exam = exam;
-        this.parentStage = parentStage;
         this.studentID = studentID;
-        try {
-            this.gradeService = new GradeService();
-        } catch (IOException e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
-        }
+        this.hasSubmittedRequestProperty = hasSubmittedRequestProperty;
+        this.parentStage = parentStage;
+        this.gradeService = gradeService;
+        this.reCorrectionService = reCorrectionService;
     }
 
     @Override
@@ -58,6 +62,9 @@ public class CorrectedExamController implements Initializable {
             loadQuestion();
             examNameLabel.getScene().getWindow().setOnHidden( _ -> parentStage.show());
         });
+        updateReCorrectionButton();
+        reCorrectionButton.setOnAction( _ -> onRequestReCorrection());
+
     }
 
     private void loadQuestion() {
@@ -79,4 +86,25 @@ public class CorrectedExamController implements Initializable {
         }
         return questionView;
     }
+
+    private void updateReCorrectionButton() {
+        try {
+            boolean hasRequestBefore = reCorrectionService.hasRequestReCorrection(studentID, exam.getExam_ID());
+            if (hasRequestBefore)
+                reCorrectionButton.setDisable(true);
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private void onRequestReCorrection() {
+        Grade tempGrade = new Grade();
+        tempGrade.setExamName(exam.getExamName());
+        tempGrade.setStudentID(studentID);
+        tempGrade.setExamID(exam.getExam_ID());
+        tempGrade.setCourseID(exam.getCourseID());
+        ViewFactory.getInstance().showReCorrectionWindow(tempGrade, reCorrectionService, hasSubmittedRequestProperty);
+        hasSubmittedRequestProperty.addListener((_, _, newVal) -> reCorrectionButton.setDisable(newVal));
+    }
+
 }
