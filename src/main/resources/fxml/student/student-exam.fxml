@@ -102,7 +102,7 @@
          </AnchorPane>
       </TilePane>
       <StackPane layoutY="205.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <Button fx:id="startExamButton" mnemonicParsing="false" styleClass="main-btn" text="START">
+         <Button fx:id="startExamButton" focusTraversable="false" mnemonicParsing="false" styleClass="main-btn" text="START">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
@@ -111,11 +111,23 @@
       <StackPane AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <AnchorPane maxWidth="-Infinity" styleClass="timer">
             <VBox layoutX="22.0" layoutY="42.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label fx:id="timerHeader" alignment="CENTER" prefHeight="16.0" prefWidth="331.0" text="YOU CAN START THE EXAM AFTER" />
-                  <Label fx:id="countdownLabel" alignment="CENTER" prefHeight="38.0" prefWidth="331.0" text="You can start the exam after" visible="false" />
-               </children>
+               <Label fx:id="timerHeader" alignment="CENTER" prefHeight="16.0" prefWidth="331.0" text="YOU CAN START THE EXAM AFTER" />
+               <Label fx:id="countdownLabel" alignment="CENTER" prefHeight="38.0" prefWidth="331.0" text="You can start the exam after" visible="false" />
             </VBox>
+         </AnchorPane>
+      </StackPane>
+      <StackPane fx:id="afterExamPane" layoutX="10.0" layoutY="215.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="311.0">
+            <Button fx:id="giveFeedbackButton" focusTraversable="false" mnemonicParsing="false" prefHeight="33.0" prefWidth="142.0" style="-fx-background-color: #1B262C;" styleClass="main-btn" text="Give Feedback" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="showAnswersButton" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="142.0" style="-fx-background-color: #5DB996;" styleClass="main-btn" text="Show Answers" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </AnchorPane>
       </StackPane>
    </AnchorPane>

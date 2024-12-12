@@ -22,3 +22,6 @@ QUESTION_ID	EXAM_ID	QUESTION_STATEMENT	QUESTION_CORRECT_ANSWER	QUESTION_TYPE	QUE
 21	6	What is the chemical symbol for water?	h2o	COMPLETE	-
 22	6	The Pyramids of Giza are located in which country?	c	MCQ	Greece,,,India,,,Egypt,,,Peru
 23	6	The sun rises in the east. Is this statement true?	a	TRUE_FALSE	true,,,false
+24	7	What is the chemical symbol for water?	h2o	COMPLETE	-
+25	7	The Pyramids of Giza are located in which country?	c	MCQ	Greece,,,India,,,Egypt,,,Peru
+26	7	The sun rises in the east. Is this statement true?	a	TRUE_FALSE	true,,,false
